@@ -1,0 +1,6 @@
+- ubuntu:
+    url: "URL_GOES_HERE"
+    download_command: "apt-get source <pkg>=<version>"
+- debian:
+    url: "URL_GOES_HERE"
+    download_command: "yum source <pkg>=<version>"
