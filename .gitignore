@@ -1,0 +1,8 @@
+# emacs
+*~
+
+# python
+*.pyc
+
+# executables
+*.exe
