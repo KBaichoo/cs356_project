@@ -130,11 +130,13 @@ class PackageFinder:
             # TODO(jayden): Extract build log URL.
             build_log_url = None
          except Exception as e:
-            print 'Error for (%s, %s, %s): %s' % (repo_name, rank, package_name, str(e))
+            print 'Error: %s\n' % str(e)
             continue
          finally:
             # Delete the downloads directory.
             shutil.rmtree(DOWNLOADS_PATH)
+
+         print "Success: project meets all requirements\n"
 
          package_info = {
             'package_name': package_name,
