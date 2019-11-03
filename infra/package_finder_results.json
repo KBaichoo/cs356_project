@@ -1,0 +1,9 @@
+[
+    {
+        "source": "debian", 
+        "version_number": "2:8.38-3.1", 
+        "rank": "69", 
+        "package_name": "pcre3", 
+        "download_cmd": "apt-get source pcre3=2:8.38-3.1"
+    }
+]
