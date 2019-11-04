@@ -7,7 +7,7 @@ class Detector:
     """
     An abstract class for detecting nodes.
     """
-    def detect_feature(source):
+    def detect_feature(self, source):
         pass
 
 class FlagDetector(Detector):
@@ -20,9 +20,9 @@ class ALSRDetector(FlagDetector):
     """
     Given a string source of a command line flags detects for ASLR protection.
     """
-    def detect_feature(source):
+    def detect_feature(self, source):
         # TODO(kbaichoo): improve the detection.
-        if "-fPIE" in soruce or "-pie" in source:
+        if "-fPIE" in source or "-pie" in source:
             return True
         else:
             return False
@@ -58,13 +58,19 @@ class RulesFlagParser:
     def get_flag_value(self, flag_name):
         if not self.parser_ready:
             self.setup_parser()
-        # TODO(kbaichoo): triage why subprocess chokes on this, but os.system is ok...
-        # returns file not found errors.
+
+        # Run the command via a shell since string constructed.
         command = '{} print-{}'.format(self.altered_file, flag_name)
-        output = subprocess.check_output([command])
-        print('output: {}'.format(output))
-        # TODO(kbaichoo): only return the line where flag is output.
-        return output
+        output = subprocess.check_output(command, shell=True)
+
+        # Clean up output, looking for the line with the flag.
+        decoded_output = output.decode('utf-8').split('\n')
+        filtered_output = list(
+                filter(lambda x: x.startswith(flag_name), decoded_output))
+        print('Filtered Output: {}'.format(filtered_output))
+
+        assert(len(filtered_output) == 1)
+        return filtered_output[0] 
 
 
 if __name__ == '__main__':
