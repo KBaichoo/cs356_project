@@ -1,13 +1,15 @@
 #!/usr/bin/env python2
 
 import argparse
+import datetime
 import json
 import os
+import shutil
 import subprocess
 
 DEFAULT_OUT_FILENAME = 'detection_results.json'
 DOWNLOADS_PATH = 'package_downloads'
-DETECTION_TOOL_COMMAND = './src/mock_detection_tool.sh'
+DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
 
 class DetectionHarness:
    def __init__(self, package_infos, start_offset):
@@ -16,13 +18,61 @@ class DetectionHarness:
 
       self._detection_results = []
 
-   def run(self):
-      for package_info in self._package_infos:
-         # TODO(jayden): Download the package source.
+   @staticmethod
+   def _download_package(download_cmd):
+      # Enter download path.
+      cwd = os.getcwd()
+      os.chdir(DOWNLOADS_PATH)
 
-         # Run the detection tool on the package.
-         detection_result_string = subprocess.check_output(DETECTION_TOOL_COMMAND.split())
-         self._detection_results.append(json.loads(detection_result_string))
+      try:
+         # Pull down source.
+         subprocess.call(download_cmd.split(),
+                         stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+
+         # Find source path.
+         subdirs = next(os.walk('.'))[1]
+         if len(subdirs) != 1:
+            raise PackageError('package source could not be extracted')
+      except Exception as e:
+         raise e
+      finally:
+         # Return to earlier working directory.
+         os.chdir(cwd)
+
+      return os.path.join(os.getcwd(), DOWNLOADS_PATH, subdirs[0])
+
+   def run(self):
+      for package_info in self._package_infos[self._start_offset:]:
+         (repo_name, rank, package_name) = (package_info['source'], package_info['rank'],
+                                            package_info['package_name'])
+         print 'Running tool on: (%s, %s, %s)' % (repo_name, rank, package_name)
+
+         # Create the downloads directory.
+         if os.path.isdir(DOWNLOADS_PATH):
+            shutil.rmtree(DOWNLOADS_PATH)
+         os.makedirs(DOWNLOADS_PATH)
+
+         try:
+            # Download the package source.
+            package_path = self._download_package(package_info['download_cmd'])
+
+            # Run the detection tool on the package.
+            cmd = DETECTION_TOOL_CMD % package_path
+            detection_result_string = subprocess.check_output(cmd.split())
+            self._detection_results.append({
+               'package_name': package_name,
+               'version_number': package_info['version_number'],
+               'data_collection_timestamp': datetime.datetime.today().strftime('%Y-%m-%d-%H:%M:%S'),
+               'detection_tool_output': json.loads(detection_result_string)
+            })
+         except Exception as e:
+            print 'Error: %s\n' % str(e)
+            continue
+         finally:
+            # Delete the downloads directory.
+            shutil.rmtree(DOWNLOADS_PATH)
+
+         print ''
 
       return self._detection_results
 

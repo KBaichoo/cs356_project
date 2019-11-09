@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-printf "{\"test\": 1234}"
+printf "{\"package_path\": \"%s\"}" "$1"
