@@ -38,7 +38,7 @@ class DetectionHarness:
          # Find source path.
          subdirs = next(os.walk('.'))[1]
          if len(subdirs) != 1:
-            raise PackageError('package source could not be extracted')
+            raise Exception('package source could not be extracted')
       except Exception as e:
          raise e
       finally:
