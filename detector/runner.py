@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 import argparse
-import subprocess
-import os.path
 import logging
+import json
+import os.path
+import subprocess
 import yaml
 
 class Detector:
@@ -37,7 +38,12 @@ class ALSRDetector(FlagDetector):
             return False
 
     def run(self, parsers):
-        raise  NotImplementedError('Not yet implemented')
+        parser = parsers[self.parser_to_use]
+        cxx_flags = parser.parse(flag_name='CXXFLAGS')
+        detection_results = self.detect_feature(cxx_flags)
+
+        logging.debug('Ran detector %s and detected feature? %s', self.name, detection_results)
+        return detection_results  
 
 class RulesFlagParser:
     """
@@ -181,10 +187,16 @@ class Runner:
 
 
     def run(self):
+        results_dict = {}
+
         # Run the detectors using the parsers.
         for detector_name, detector in self.detector_mapping.items():
             logging.info('Running detector %s', detector_name)
-            detector.run(self.parser_mapping)
+            result = detector.run(self.parser_mapping)
+            results_dict[detector_name] = result
+        
+        # Output the detection output
+        print(json.dumps(results_dict))
 
 if __name__ == '__main__':
     # Will get full path to root
