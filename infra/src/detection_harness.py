@@ -7,14 +7,20 @@ import os
 import shutil
 import subprocess
 
+MOCK = False
 DEFAULT_OUT_FILENAME = 'detection_results.json'
 DOWNLOADS_PATH = 'package_downloads'
-DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
+if MOCK:
+   DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
+else:
+   CONFIG_FILE = '../detector/config.yaml'
+   DETECTION_TOOL_CMD = '../detector/runner.py --config_file %s --package_directory %s'
 
 class DetectionHarness:
-   def __init__(self, package_infos, start_offset):
+   def __init__(self, package_infos, start_offset, count):
       self._package_infos = package_infos
       self._start_offset = start_offset
+      self._count = count
 
       self._detection_results = []
 
@@ -42,7 +48,8 @@ class DetectionHarness:
       return os.path.join(os.getcwd(), DOWNLOADS_PATH, subdirs[0])
 
    def run(self):
-      for package_info in self._package_infos[self._start_offset:]:
+      for package_info in self._package_infos[self._start_offset :
+                                              self._start_offset + self._count]:
          (repo_name, rank, package_name) = (package_info['source'], package_info['rank'],
                                             package_info['package_name'])
          print 'Running tool on: (%s, %s, %s)' % (repo_name, rank, package_name)
@@ -57,7 +64,10 @@ class DetectionHarness:
             package_path = self._download_package(package_info['download_cmd'])
 
             # Run the detection tool on the package.
-            cmd = DETECTION_TOOL_CMD % package_path
+            if MOCK:
+               cmd = DETECTION_TOOL_CMD % package_path
+            else:
+               cmd = DETECTION_TOOL_CMD % (CONFIG_FILE, package_path)
             detection_result_string = subprocess.check_output(cmd.split())
             self._detection_results.append({
                'package_name': package_name,
@@ -84,6 +94,8 @@ if __name__ == '__main__':
    parser.add_argument('--out', help="output file path, default: %s" % DEFAULT_OUT_FILENAME,
                        default=DEFAULT_OUT_FILENAME)
    parser.add_argument('--start-offset', help='package index to start at', default=0)
+   parser.add_argument('--count', help='number of packages to process, default to all',
+                       default=None)
    args = parser.parse_args()
 
    # Verify package infos file exists.
@@ -96,8 +108,10 @@ if __name__ == '__main__':
    with open(package_infos_path) as f:
       package_infos = json.load(f)
 
+   count = len(package_infos) if not args.count else int(args.count)
+
    # Run detection harness.
-   detection_harness = DetectionHarness(package_infos, int(args.start_offset))
+   detection_harness = DetectionHarness(package_infos, int(args.start_offset), count)
    results = detection_harness.run()
 
    # Save results to output file.
