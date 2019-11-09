@@ -2,12 +2,16 @@
 import argparse
 import subprocess
 import os.path
+import logging
 
 class Detector:
     """
     An abstract class for detecting nodes.
     """
     def detect_feature(self, source):
+        pass
+
+    def run(self, parsers):
         pass
 
 class FlagDetector(Detector):
@@ -27,16 +31,24 @@ class ALSRDetector(FlagDetector):
         else:
             return False
 
+    def run(self, parsers):
+        raise  NotImplementedError('Not yet implemented')
+
 class RulesFlagParser:
     """
     Parser for command line flags.
     """
-    def __init__(self, filepath):
+    def __init__(self, name, filepath):
+        self.name = name
         self.filepath = filepath
         self.altered_file = filepath + "_flag_parser"
         self.parser_ready = False
+        logging.info('Parsers %s was created.', self.name)
 
-    def setup_parser(self):
+    def _setup_parser(self):
+        """
+        Sets up the parser if it wasn't correctly set up.
+        """
         if not self.parser_ready:
             # Copy the file to our modified version
             if not os.path.exists(self.filepath):
@@ -45,7 +57,8 @@ class RulesFlagParser:
             if not os.path.isfile(self.filepath):
                 raise ValueError('Filepath points to a non file object')
             copy_command = 'cp {} {}'.format(self.filepath, self.altered_file)
-            print('Copying rules file using command: {}'.format(copy_command))
+            logging.info('Copying rules file using command: {}'.format(
+                copy_command))
             result = os.system(copy_command)
             
             # Modify the altered version to include printing vars.
@@ -54,10 +67,17 @@ class RulesFlagParser:
                 """.format(self.altered_file)
             result = os.system(alteration_command)
             self.parser_ready = True
+            logging.info('Parsers %s was setup.', self.name)
 
-    def get_flag_value(self, flag_name):
+    def _get_flag_value(self, flag_name):
+        """
+        Runs the modified rules makefile to output the FLAG value.
+        Returns the the line begining with {FLAGNAME} : {FLAGVALUE}.
+
+        parse is the interface that should be used by external classes.
+        """
         if not self.parser_ready:
-            self.setup_parser()
+            self._setup_parser()
 
         # Run the command via a shell since string constructed.
         command = '{} print-{}'.format(self.altered_file, flag_name)
@@ -67,15 +87,84 @@ class RulesFlagParser:
         decoded_output = output.decode('utf-8').split('\n')
         filtered_output = list(
                 filter(lambda x: x.startswith(flag_name), decoded_output))
-        print('Filtered Output: {}'.format(filtered_output))
+        logging.debug('Filtered Output: {}'.format(filtered_output))
 
         assert(len(filtered_output) == 1)
-        return filtered_output[0] 
+        return filtered_output[0]
 
+    def parse(self, **kwargs):
+        """
+        Access point from which to call into the parser.
+
+        kwargs is expected to have a key 'flag_name' mapping to a string 
+        representing a flag.
+        """
+        if 'flag_name' not in kwargs:
+            logging.warning(self.name, ' was called without flag_name in kwargs.')
+            return None
+        flag = kwargs['flag_name'] 
+        return self._get_flag_value(flag)
+        
+class Runner:
+
+    @classmethod
+    def create(cls, config_filepath, package_directory):
+        """
+        Use this classmethod to construct the class. 
+        
+        If does validation of arguments, and raises errors if incorrect.
+        """
+        # Validates the existence of these paths, and correct node types.
+        if not os.path.exists(config_filepath):
+            raise ValueError('config_filepath %s does not exists.', 
+                    config_filepath)
+            
+        if not os.path.exists(package_directory):
+            raise ValueError('package_directory %s does not exists.', 
+                    package_directory)
+        
+        if not os.path.isfile(config_filepath):
+            raise ValueError('config_filepath %s is not a file.', 
+                    config_filepath)
+            
+        if not os.path.isdir(package_directory):
+            raise ValueError('package_directory %s is not a dir.', 
+                    package_directory)
+        return cls(config_filepath, package_directory)
+
+
+    def __init__(self, config_filepath, package_directory):
+        self.config_filepath = config_filepath
+        self.package_directory = package_directory
+        # Mapping from 'name' -> instantiated class
+        self.detector_mapping = {}
+        self.parse_mapping = {}
+
+    def setup(self):
+        # Parse config file + detectors and parsers added and create them.
+        logging.info('Runner is setting up with config %s on pkg directory %s', 
+                self.config_filepath, self.package_directory)
+        raise  NotImplementedError('Not yet implemented')
+
+    def run(self):
+        # Run the detectors.
+        raise  NotImplementedError('Not yet implemented')
 
 if __name__ == '__main__':
-    parser = RulesFlagParser('./rules')
-    flag_output = parser.get_flag_value('CPPFLAGS')
-    aslr_detector = ALSRDetector()
-    detected_aslr = aslr_detector.detect_feature(flag_output)
-    print('Found aslr in rules?{}'.format(detected_aslr))
+    # Will get full path to root
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config_file',
+            help="Path to the config file that will be parsed to"
+            "instantiate the necessary detectors.", required=True)
+    parser.add_argument('--package_directory',
+            help="Path to the package directory.", required=True)
+    # Enable logging.
+    # TODO(kbaichoo): add cli flag to set logging levels.
+    logging.getLogger().setLevel(logging.INFO)
+    args = parser.parse_args()
+    
+    # Run the detectors and parsers specified in the config flag
+    # on the package directory.
+    runner = Runner.create(args.config_file, args.package_directory)
+    runner.setup()
+    runner.run()
