@@ -1,0 +1,9 @@
+detectors:
+  - detector:
+      name: ASLR_DETECTOR
+      type: ALSRDetector
+      parser_to_use: RULES_FLAG_PARSER
+parsers:
+  - parser:
+      name: RULES_FLAG_PARSER
+      type: RulesFlagParser

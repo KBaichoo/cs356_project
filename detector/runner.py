@@ -3,11 +3,16 @@ import argparse
 import subprocess
 import os.path
 import logging
+import yaml
 
 class Detector:
     """
     An abstract class for detecting nodes.
     """
+    def __init__(self, name, parser_to_use):
+        self.name = name
+        self.parser_to_use = parser_to_use
+
     def detect_feature(self, source):
         pass
 
@@ -136,19 +141,50 @@ class Runner:
     def __init__(self, config_filepath, package_directory):
         self.config_filepath = config_filepath
         self.package_directory = package_directory
+        if self.package_directory[-1] != '/':
+            self.package_directory += '/'
         # Mapping from 'name' -> instantiated class
         self.detector_mapping = {}
-        self.parse_mapping = {}
+        self.parser_mapping = {}
 
     def setup(self):
         # Parse config file + detectors and parsers added and create them.
         logging.info('Runner is setting up with config %s on pkg directory %s', 
                 self.config_filepath, self.package_directory)
-        raise  NotImplementedError('Not yet implemented')
+        with open(self.config_filepath) as f:
+            config_data = yaml.load(f, Loader=yaml.FullLoader)
+
+            for detector_config_mapping in config_data['detectors']:
+                detector_config = detector_config_mapping['detector']
+                detector_type = detector_config['type'] 
+                name = detector_config['name']
+                parser_name = detector_config['parser_to_use']
+                
+                # TODO(kbaichoo): make this more general / less brittle.
+                if detector_type == 'ALSRDetector':
+                    self.detector_mapping[name] = ALSRDetector(name, parser_name)         
+                else:
+                    logging.ERROR('Detector type %s is unsupported!', detector_type)
+            
+            for parser_config_mapping in config_data['parsers']:
+                parser_config = parser_config_mapping['parser']
+                name = parser_config['name']
+                parser_type = parser_config['type']
+
+                # TODO(kbaichoo): make this more general / less brittle.
+                if parser_type == 'RulesFlagParser':
+                    rules_filepath = self.package_directory + 'debian/rules'
+                    self.parser_mapping[name] = RulesFlagParser(name, rules_filepath)
+                else:
+                    logging.ERROR('Parser type %s is unsupported!', detector_type)
+        logging.info('Finished setting up the Parsers and Detectors.')
+
 
     def run(self):
-        # Run the detectors.
-        raise  NotImplementedError('Not yet implemented')
+        # Run the detectors using the parsers.
+        for detector_name, detector in self.detector_mapping.items():
+            logging.info('Running detector %s', detector_name)
+            detector.run(self.parser_mapping)
 
 if __name__ == '__main__':
     # Will get full path to root
@@ -158,6 +194,7 @@ if __name__ == '__main__':
             "instantiate the necessary detectors.", required=True)
     parser.add_argument('--package_directory',
             help="Path to the package directory.", required=True)
+    
     # Enable logging.
     # TODO(kbaichoo): add cli flag to set logging levels.
     logging.getLogger().setLevel(logging.INFO)
