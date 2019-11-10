@@ -64,7 +64,8 @@ class HardeningDetector(FlagDetector):
         output = subprocess.check_output(command, shell=True)
         
         # Clean up output, looking for the line with the flag.
-        decoded_output = output.decode('utf-8').split('\n')[1:]
+        # Drop first and last newline, since don't contain hardening features
+        decoded_output = output.decode('utf-8').split('\n')[1:][:-1]
         results = {}
         for output in decoded_output:
             feature, presence = output.split(':')
