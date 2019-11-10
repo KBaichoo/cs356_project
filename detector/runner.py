@@ -46,7 +46,36 @@ class ALSRDetector(FlagDetector):
         detection_results = self.detect_feature(linking_results[0])
 
         logging.debug('Ran detector %s and detected feature? %s', self.name, detection_results)
-        return detection_results  
+        return detection_results
+
+class HardeningDetector(FlagDetector):
+    """
+    Returns signs of hardening on the binary
+    """
+    def __init__(self, name, binary_path):
+        self.binary_path = binary_path
+        super(HardeningDetector, self).__init__(name, None)
+
+    def detect_feature(self, source):
+        pass
+
+    def run(self, parsers):
+        command = 'hardening-check {}'.format(self.binary_path)
+        output = subprocess.check_output(command, shell=True)
+        
+        # Clean up output, looking for the line with the flag.
+        decoded_output = output.decode('utf-8').split('\n')[1:]
+        results = {}
+        for output in decoded_output:
+            feature, presence = output.split(':')
+            feature = feature.strip()
+            presence = presence.strip()
+            results[feature] = presence
+            
+        logging.debug('Ran detector %s and detected feature? %s', 
+                self.name, results)
+        return results 
+
 
 class BuildLogParser:
     """
@@ -264,7 +293,10 @@ class Runner:
                 
                 # TODO(kbaichoo): make this more general / less brittle.
                 if detector_type == 'ALSRDetector':
-                    self.detector_mapping[name] = ALSRDetector(name, parser_name)         
+                    self.detector_mapping[name] = ALSRDetector(name, parser_name)
+                elif detector_type == 'HardeningDetector':
+                    binary_path = self.package_directory + self.binary_name
+                    self.detector_mapping[name] = HardeningDetector(name, binary_path)
                 else:
                     logging.ERROR('Detector type %s is unsupported!', detector_type)
             
@@ -311,7 +343,7 @@ if __name__ == '__main__':
     parser.add_argument('--binary_name',
             help='Name of the prog ultimately produced. Should match what'
             'debtags outputs.', required=True)
-    
+
     # Enable logging.
     # TODO(kbaichoo): add cli flag to set logging levels.
     logging.getLogger().setLevel(logging.INFO)
