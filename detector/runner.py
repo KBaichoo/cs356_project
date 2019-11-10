@@ -5,6 +5,8 @@ import json
 import os.path
 import subprocess
 import yaml
+import re
+
 
 class Detector:
     """
@@ -32,6 +34,7 @@ class ALSRDetector(FlagDetector):
     """
     def detect_feature(self, source):
         # TODO(kbaichoo): improve the detection.
+        import pdb; pdb.set_trace()
         if "-fPIE" in source or "-pie" in source:
             return True
         else:
@@ -39,11 +42,103 @@ class ALSRDetector(FlagDetector):
 
     def run(self, parsers):
         parser = parsers[self.parser_to_use]
-        cxx_flags = parser.parse(flag_name='CXXFLAGS')
-        detection_results = self.detect_feature(cxx_flags)
+        linking_results = parser.parse(stage='linker')
+        detection_results = self.detect_feature(linking_results[0])
 
         logging.debug('Ran detector %s and detected feature? %s', self.name, detection_results)
         return detection_results  
+
+class BuildLogParser:
+    """
+    Parser for command line flags.
+    """
+    def __init__(self, name, binary_name, build_log_path):
+        self.name = name
+        self.binary_name = binary_name
+        self.build_log_path = build_log_path
+        self.parser_ready = False
+        # lines prefixing g++
+        self.compiler_lines = []
+        # lines that compile into object files.
+        self.object_file_lines = []
+        # lines containing the final binary created (-o [binaryname])
+        self.linker_lines = []
+        # other g++ prefix lines not either of those two.
+        self.other_lines = []
+        logging.info('Parsers %s was created.', self.name)
+
+    def _setup_parser(self):
+        """
+        Sets up the parser if it wasn't correctly set up.
+        """
+        if not self.parser_ready:
+            # Copy the file to our modified version
+            if not os.path.exists(self.build_log_path):
+                raise ValueError('Class should be instantiated with a filepath'
+                        'representing the buildlog')
+            if not os.path.isfile(self.build_log_path):
+                raise ValueError('Filepath points to a non file object')
+            
+            linker_output_flag = '-o ' + self.binary_name.lower()
+            object_file_regex =  re.compile('g\+\+ .* -c')
+            defined_flag_regex = re.compile('-D\w*=[^\s]+')
+
+            with open(self.build_log_path, 'r') as fh:
+                line = fh.readline()
+                while line != '':
+                    if line.startswith('g++ '):
+                        old_line = line 
+                        # Filter line, removing -D[name]=foo flags.
+                        # TODO(kbaichoo: as it, will remove any D_FORTIFY flags
+                        line = defined_flag_regex.sub('', line)
+                        logging.debug('After removing line went from\n %s to\n %s', old_line, line)
+                        self.compiler_lines.append(line)
+                        if linker_output_flag in line.lower():
+                            self.linker_lines.append(line)
+                        elif object_file_regex.match(line):
+                            self.object_file_lines.append(line)
+                        else:
+                            self.other_lines.append(line)
+                    line = fh.readline()
+             
+            self.parser_ready = True
+            logging.info('Parsers %s was setup.', self.name)
+
+    def _get_compiler_calls(self, stage):
+        """
+        Returns all lines corresponding to a particular stage for the compiler.
+        stage is a string repesenting the stage; values: linker, objects, all,
+            others.
+
+        parse is the interface that should be used by external classes.
+        """
+        stage = stage.lower()
+        if stage == 'linker':
+            if len(self.linker_lines) > 1:
+                logging.warning('Expected only a single linking',
+                        'line with the binary name... instead found %d',
+                        len(self.linker_lines))
+            return self.linker_lines
+        elif stage == 'objects':
+            return self.object_file_lines
+        elif stage == 'others':
+            return self.other_lines
+        else:
+            return self.compiler_lines
+
+    def parse(self, **kwargs):
+        """
+        Access point from which to call into the parser.
+
+        kwargs is expected to have a key 'flag_name' mapping to a string 
+        representing a flag.
+        """
+        if 'stage' not in kwargs:
+            logging.warning(self.name, ' was called without stage in kwargs.')
+            return None
+        if not self.parser_ready:
+            self._setup_parser()
+        return self._get_compiler_calls(kwargs['stage'])
 
 class RulesFlagParser:
     """
@@ -119,7 +214,7 @@ class RulesFlagParser:
 class Runner:
 
     @classmethod
-    def create(cls, config_filepath, package_directory):
+    def create(cls, config_filepath, package_directory, binary_name):
         """
         Use this classmethod to construct the class. 
         
@@ -141,14 +236,15 @@ class Runner:
         if not os.path.isdir(package_directory):
             raise ValueError('package_directory %s is not a dir.', 
                     package_directory)
-        return cls(config_filepath, package_directory)
+        return cls(config_filepath, package_directory, binary_name)
 
 
-    def __init__(self, config_filepath, package_directory):
+    def __init__(self, config_filepath, package_directory, binary_name):
         self.config_filepath = config_filepath
         self.package_directory = package_directory
         if self.package_directory[-1] != '/':
             self.package_directory += '/'
+        self.binary_name = binary_name
         # Mapping from 'name' -> instantiated class
         self.detector_mapping = {}
         self.parser_mapping = {}
@@ -181,6 +277,9 @@ class Runner:
                 if parser_type == 'RulesFlagParser':
                     rules_filepath = self.package_directory + 'debian/rules'
                     self.parser_mapping[name] = RulesFlagParser(name, rules_filepath)
+                elif parser_type == 'BuildLogParser':
+                    build_log_path = self.package_directory + '/cs356_data/build.log'
+                    self.parser_mapping[name] = BuildLogParser(name, self.binary_name, build_log_path)
                 else:
                     logging.ERROR('Parser type %s is unsupported!', detector_type)
         logging.info('Finished setting up the Parsers and Detectors.')
@@ -199,13 +298,19 @@ class Runner:
         print(json.dumps(results_dict))
 
 if __name__ == '__main__':
+    # TODO(kbaichoo): use deb build logs :)...
+    # also expect <pkg_path>/cs356_data/build.log
+    # to contain more information...
     # Will get full path to root
     parser = argparse.ArgumentParser()
     parser.add_argument('--config_file',
-            help="Path to the config file that will be parsed to"
-            "instantiate the necessary detectors.", required=True)
+            help='Path to the config file that will be parsed to'
+            'instantiate the necessary detectors.', required=True)
     parser.add_argument('--package_directory',
-            help="Path to the package directory.", required=True)
+            help='Path to the package directory.', required=True)
+    parser.add_argument('--binary_name',
+            help='Name of the prog ultimately produced. Should match what'
+            'debtags outputs.', required=True)
     
     # Enable logging.
     # TODO(kbaichoo): add cli flag to set logging levels.
@@ -214,6 +319,7 @@ if __name__ == '__main__':
     
     # Run the detectors and parsers specified in the config flag
     # on the package directory.
-    runner = Runner.create(args.config_file, args.package_directory)
+    runner = Runner.create(args.config_file, args.package_directory, 
+            args.binary_name)
     runner.setup()
     runner.run()

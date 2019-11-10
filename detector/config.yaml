@@ -2,8 +2,8 @@ detectors:
   - detector:
       name: ASLR_DETECTOR
       type: ALSRDetector
-      parser_to_use: RULES_FLAG_PARSER
+      parser_to_use: BUILD_LOG_PARSER
 parsers:
   - parser:
-      name: RULES_FLAG_PARSER
-      type: RulesFlagParser
+      name: BUILD_LOG_PARSER
+      type: BuildLogParser
