@@ -296,7 +296,7 @@ class Runner:
                 if detector_type == 'ALSRDetector':
                     self.detector_mapping[name] = ALSRDetector(name, parser_name)
                 elif detector_type == 'HardeningDetector':
-                    binary_path = self.package_directory + self.binary_name
+                    binary_path = os.path.join(self.package_directory, self.binary_name)
                     self.detector_mapping[name] = HardeningDetector(name, binary_path)
                 else:
                     logging.ERROR('Detector type %s is unsupported!', detector_type)

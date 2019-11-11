@@ -40,7 +40,7 @@ class DetectionHarness:
                          stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
 
          # Find source path.
-         subfiles = next(os.walk('.'))[0]
+         subfiles = os.listdir('.')
          if len(subfiles) != 1:
             raise Exception('package source could not be extracted')
 
@@ -65,7 +65,7 @@ class DetectionHarness:
    def _get_binary_paths(extraction_path):
       # Enter extraction path.
       cwd = os.getcwd()
-      os.chdir(DOWNLOADS_PATH)
+      os.chdir(extraction_path)
 
       try:
          # Get the binary path.
@@ -79,8 +79,10 @@ class DetectionHarness:
       return binary_paths
 
    def run(self):
-      for package_info in self._package_infos[self._start_offset :
-                                              self._start_offset + self._count]:
+      for package_info in self._package_infos[self._start_offset:]:
+         if len(self._detection_results) == self._count:
+            break
+
          (repo_name, rank, package_name) = (package_info['source'], package_info['rank'],
                                             package_info['package_name'])
          print 'Running tool on: (%s, %s, %s)' % (repo_name, rank, package_name)
@@ -100,14 +102,11 @@ class DetectionHarness:
             # Get binary paths.
             binary_paths = self._get_binary_paths(extraction_path)
 
-            print extraction_path
-            print binary_paths
-            continue
-
             # If more than one binary path, ignore for now.
             # TODO(jayden): Cleanly support multiple binaries.
             if (len(binary_paths) != 1):
                raise Exception('wrong number of binary paths')
+            binary_path = binary_paths[0]
 
             # Run the detection tool on the package.
             if MOCK:
@@ -128,7 +127,7 @@ class DetectionHarness:
             # Delete the downloads directory.
             shutil.rmtree(DOWNLOADS_PATH)
 
-         print ''
+         print 'Success: Added detection results for package.'
 
       return self._detection_results
 
