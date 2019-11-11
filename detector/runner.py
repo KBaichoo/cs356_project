@@ -61,7 +61,13 @@ class HardeningDetector(FlagDetector):
 
     def run(self, parsers):
         command = 'hardening-check {}'.format(self.binary_path)
-        output = subprocess.check_output(command, shell=True)
+        try:
+            output = subprocess.check_output(command, shell=True)
+        except subprocess.CalledProcessError as e:
+            # hardening-check returns exit code 1 if any of the
+            # protections are not enabled, so we have to ignore
+            # the exit status.
+            output = e.output
         
         # Clean up output, looking for the line with the flag.
         # Drop first and last newline, since don't contain hardening features

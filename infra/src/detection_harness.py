@@ -128,7 +128,7 @@ class DetectionHarness:
             # Delete the downloads directory.
             shutil.rmtree(DOWNLOADS_PATH)
 
-         print 'Success: Added detection results for package.'
+         print 'Success: Added detection results for package.\n'
 
       return self._detection_results
 
