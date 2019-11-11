@@ -41,16 +41,20 @@ class DetectionHarness:
                          stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
 
          # Find source path.
-         subdirs = next(os.walk('.'))[1]
-         if len(subdirs) != 1:
+         subfiles = next(os.walk('.'))[0]
+         if len(subfiles) != 1:
             raise Exception('package source could not be extracted')
+
+         # subdirs = next(os.walk('.'))[1]
+         # if len(subdirs) != 1:
+         #    raise Exception('package source could not be extracted')
       except Exception as e:
          raise e
       finally:
          # Return to earlier working directory.
          os.chdir(cwd)
 
-      return os.path.join(os.getcwd(), DOWNLOADS_PATH, subdirs[0])
+      return os.path.join(os.getcwd(), DOWNLOADS_PATH, subfiles[0])
 
    @staticmethod
    def _extract_deb(deb_path):
