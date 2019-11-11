@@ -105,7 +105,8 @@ class DetectionHarness:
             # If more than one binary path, ignore for now.
             # TODO(jayden): Cleanly support multiple binaries.
             if (len(binary_paths) != 1):
-               raise Exception('wrong number of binary paths')
+               raise Exception('wrong number of binary paths: %d (expected %d)' %
+                               (len(binary_paths), 1))
             binary_path = binary_paths[0]
 
             # Run the detection tool on the package.
