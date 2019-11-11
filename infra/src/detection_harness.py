@@ -14,7 +14,12 @@ if MOCK:
    DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
 else:
    CONFIG_FILE = '../detector/config.yaml'
-   DETECTION_TOOL_CMD = '../detector/runner.py --config_file %s --package_directory %s'
+   DETECTION_TOOL_CMD = ('../detector/runner.py --config_file %s --package_directory %s '
+                         '--binary_name %s')
+EXTRACTION_CMD = 'dpkg -x %s %s'
+DEB_EXTRACTION_PATH = os.path.join(DOWNLOADS_PATH, 'extraction_root')
+BINARY_PATH_FINDER_CMD = ("""find . -executable -type f -path "*/usr/bin/*" -exec file {} \; | """
+                          """grep "ELF" | awk '{print $1;}' | sed 's/:$//' | cut -c 3-""")
 
 class DetectionHarness:
    def __init__(self, package_infos, start_offset, count):
@@ -47,6 +52,29 @@ class DetectionHarness:
 
       return os.path.join(os.getcwd(), DOWNLOADS_PATH, subdirs[0])
 
+   @staticmethod
+   def _extract_deb(deb_path):
+      subprocess.call((EXTRACTION_CMD % (deb_path, DEB_EXTRACTION_PATH)).split(),
+                      stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+      return os.path.join(os.getcwd(), DEB_EXTRACTION_PATH)
+
+   @staticmethod
+   def _get_binary_paths(extraction_path):
+      # Enter extraction path.
+      cwd = os.getcwd()
+      os.chdir(DOWNLOADS_PATH)
+
+      try:
+         # Get the binary path.
+         binary_paths = subprocess.check_output(BINARY_PATH_FINDER_CMD.split()).splitlines()
+      except Exception as e:
+         raise e
+      finally:
+         # Return to earlier working directory.
+         os.chdir(cwd)
+
+      return binary_paths
+
    def run(self):
       for package_info in self._package_infos[self._start_offset :
                                               self._start_offset + self._count]:
@@ -63,11 +91,26 @@ class DetectionHarness:
             # Download the package source.
             package_path = self._download_package(package_info['download_cmd'])
 
+            # Extract download from the deb.
+            extraction_path = self._extract_deb(package_path)
+
+            # Get binary paths.
+            binary_paths = self._get_binary_paths(extraction_path)
+
+            print extraction_path
+            print binary_paths
+            continue
+
+            # If more than one binary path, ignore for now.
+            # TODO(jayden): Cleanly support multiple binaries.
+            if (len(binary_paths) != 1):
+               raise Exception('wrong number of binary paths')
+
             # Run the detection tool on the package.
             if MOCK:
                cmd = DETECTION_TOOL_CMD % package_path
             else:
-               cmd = DETECTION_TOOL_CMD % (CONFIG_FILE, package_path)
+               cmd = DETECTION_TOOL_CMD % (CONFIG_FILE, extraction_path, binary_path)
             detection_result_string = subprocess.check_output(cmd.split())
             self._detection_results.append({
                'package_name': package_name,
