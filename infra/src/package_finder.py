@@ -16,12 +16,20 @@ CPP_REGEX_STRINGS = [
    'CXX_FLAGS'
 ]
 CPP_REGEXES = [re.compile(regex) for regex in CPP_REGEX_STRINGS]
+USE_DEBTAGS = True
+DEBTAGS_PATH = 'debtags_cpp.txt'
 
 class PackageError(Exception):
    pass
 
 class BenignError(Exception):
    pass
+
+class Info:
+   def __init__(self, version_number, git_repo_url, build_log_url):
+      self.version_number = version_number
+      self.git_repo_url = git_repo_url
+      self.build_log_url = build_log_url
 
 class PackageFinder:
    def __init__(self, num_packages, package_repos_contents, start_offset):
@@ -31,6 +39,8 @@ class PackageFinder:
 
       # [(repo_name, rank, package_name)]
       self._packages_list = []
+      # set([package_name])
+      self._debtags_cpp_packages = None
       # [package_info]
       self._package_infos = []
 
@@ -44,6 +54,11 @@ class PackageFinder:
                if line[0] == '#':
                   continue
                self._packages_list.append(tuple([repo_name] + line.split()[:2]))
+
+   def _extract_debtags_package_names(self):
+      with open(DEBTAGS_PATH) as f:
+         contents = f.read()
+      self._debtags_cpp_packages = set(contents.splitlines())
 
    @staticmethod
    def _download_package(package_name):
@@ -69,7 +84,7 @@ class PackageFinder:
       return os.path.join(DOWNLOADS_PATH, subdirs[0])
 
    @staticmethod
-   def _is_cpp_project(src_path):
+   def _is_cpp_project_from_src(src_path):
       for relative_makefile_path in MAKEFILE_PATHS:
          makefile_path = os.path.join(src_path, relative_makefile_path)
          if not os.path.isfile(makefile_path):
@@ -82,7 +97,7 @@ class PackageFinder:
       return False
 
    @staticmethod
-   def _extract_version_number(src_path):
+   def _extract_version_number_from_src(src_path):
       with open(os.path.join(src_path, CHANGELOG_PATH)) as f:
          first_line = f.readline()
 
@@ -96,14 +111,36 @@ class PackageFinder:
 
       return version_string[1:-1]
 
-   def _generate_package_infos(self):
-      for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
-         # If we've found enough packages, stop.
-         if len(self._package_infos) == self._num_packages:
-            break
+   @staticmethod
+   def _extract_version_number(package_name):
+      output = subprocess.check_output(('apt show %s' % package_name).split(),
+                                       stderr=open(os.devnull, 'w')).splitlines()
+      second_line_split = output[1].split()
+      if second_line_split[0] != 'Version:':
+         return None
+      return second_line_split[1]
 
-         print 'Extracting information for: (%s, %s, %s)' % (repo_name, rank, package_name)
+   def _is_cpp_project(self, package_name):
+      if USE_DEBTAGS:
+         try:
+            if package_name not in self._debtags_cpp_packages:
+               raise PackageError('not a C++ project')
 
+            version_number = self._extract_version_number(package_name)
+            if not version_number:
+               raise PackageError('no version number found')
+
+            # TODO(jayden): Extract git repo URL if it exists.
+            git_repo_url = None
+
+            # TODO(jayden): Extract build log URL.
+            build_log_url = None
+         except Exception as e:
+            print 'Error: %s' % str(e)
+            return (False, None)
+
+         return (package_name in self._debtags_cpp_packages, Info(version_number, None, None))
+      else:
          # Create the downloads directory.
          if os.path.isdir(DOWNLOADS_PATH):
             shutil.rmtree(DOWNLOADS_PATH)
@@ -116,11 +153,11 @@ class PackageFinder:
                raise PackageError('could not download source')
 
             # Check if it is a C++ project.
-            if not self._is_cpp_project(src_path):
+            if not self._is_cpp_project_from_src(src_path):
                raise BenignError('not a C++ project')
 
             # Extract version number from changelog.
-            version_number = self._extract_version_number(src_path)
+            version_number = self._extract_version_number_from_src(src_path)
             if not version_number:
                raise PackageError('no version number found')
 
@@ -130,31 +167,50 @@ class PackageFinder:
             # TODO(jayden): Extract build log URL.
             build_log_url = None
          except Exception as e:
-            print 'Error: %s\n' % str(e)
-            continue
+            print 'Error: %s' % str(e)
+            return (False, None)
          finally:
             # Delete the downloads directory.
             shutil.rmtree(DOWNLOADS_PATH)
 
-         print "Success: project meets all requirements\n"
+         return (True, Info(version_number, git_repo_url, build_log_url))
+
+   def _generate_package_infos(self):
+      for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
+         # If we've found enough packages, stop.
+         if len(self._package_infos) == self._num_packages:
+            break
+
+         print 'Extracting information for: (%s, %s, %s)' % (repo_name, rank, package_name)
+
+         (is_cpp, info) = self._is_cpp_project(package_name)
+         if not is_cpp:
+            print 'Package did not meet requirements\n'
+            continue
+
+         print 'Success: project meets all requirements\n'
 
          package_info = {
             'package_name': package_name,
-            'version_number': version_number,
+            'version_number': info.version_number,
             'source': repo_name,
             'rank': rank,
-            'download_cmd': 'apt-get source %s=%s' % (package_name, version_number),
+            'download_cmd': 'apt-get download %s=%s' % (package_name, info.version_number),
          }
-         if git_repo_url:
-            package_info['git_repo_url'] = git_repo_url
-         if build_log_url:
-            package_info['build_log_url'] = build_log_url
+         if info.git_repo_url:
+            package_info['git_repo_url'] = info.git_repo_url
+         if info.build_log_url:
+            package_info['build_log_url'] = info.build_log_url
 
          self._package_infos.append(package_info)
 
    def run(self):
       # Extract package names from popcon rank file.
       self._extract_package_names()
+
+      if USE_DEBTAGS:
+         # Extract package names from debtags file.
+         self._extract_debtags_package_names()
 
       # Generate package infos for each package.
       self._generate_package_infos()
