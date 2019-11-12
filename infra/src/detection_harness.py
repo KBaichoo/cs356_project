@@ -18,7 +18,7 @@ else:
                          '--binary_name %s')
 EXTRACTION_CMD = 'dpkg -x %s %s'
 DEB_EXTRACTION_PATH = os.path.join(DOWNLOADS_PATH, 'extraction_root')
-BINARY_PATH_FINDER_CMD = "%s" % os.path.join(os.getcwd(), 'binary_finder.sh')
+BINARY_PATH_FINDER_CMD = "%s" % os.path.join(os.getcwd(), 'src/binary_finder.sh')
 
 class DetectionHarness:
    def __init__(self, package_infos, start_offset, count):
