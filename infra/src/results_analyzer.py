@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 
 import argparse
+import collections
 import json
 import os
 
@@ -9,14 +10,22 @@ DEFAULT_OUT_FILENAME = 'analyzed_results.json'
 class DetectionAnalyzer:
    def __init__(self, detection_results):
       self._detection_results = detection_results
-      self._analyzed_results = {}
+      # {detector_name: {feature_name: {result: count}}}
+      self._analyzed_results = collections.defaultdict(
+         lambda: collections.defaultdict(
+            lambda: collections.defaultdict(int)))
 
    def run(self):
-      # TODO(jayden):
       # For every package, extract the features and record
       # the result for each feature in a dictionary mapping
-      # features to a tuple of (detection_result, count)
-      self._analyzed_results = self._detection_results
+      # features to feature results and their counts
+      for package_detection_result in self._detection_results:
+         detectors = package_detection_result['detection_tool_output']
+         for (detector_name, features) in detectors.iteritems():
+            detector = self._analyzed_results[detector_name]
+            for (feature_name, feature_result) in features.iteritems():
+               detector[feature_name][feature_result] += 1
+
       return self._analyzed_results
 
 if __name__ == '__main__':
