@@ -2,6 +2,7 @@
 
 import argparse
 import datetime
+import errno
 import json
 import os
 import shutil
@@ -150,7 +151,7 @@ if __name__ == '__main__':
    # Verify package infos file exists.
    package_infos_path = os.path.join(os.getcwd(), args.package_infos_file)
    if not os.path.isfile(package_infos_path):
-      sys.stderr.write('package infos file "%s" does not exist' % args.package_infos_file)
+      sys.stderr.write('package infos file "%s" does not exist\n' % args.package_infos_file)
       exit(errno.ENOENT)
 
    # Read package infos.
