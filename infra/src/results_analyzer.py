@@ -6,11 +6,11 @@ import json
 import os
 
 DEFAULT_OUT_FILENAME = 'analyzed_results.json'
-BUCKETS = [100, 1000, 10000]
+BUCKETS = [100, 1000, 10000, 30000]
 
 def get_bucket(x):
    for bucket in BUCKETS:
-      if x <= bucket:
+      if int(x) <= bucket:
          return bucket
 
 class DetectionAnalyzer:
