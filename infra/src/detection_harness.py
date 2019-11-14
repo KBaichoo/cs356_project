@@ -6,6 +6,7 @@ import json
 import os
 import shutil
 import subprocess
+import sys
 
 MOCK = False
 DEFAULT_OUT_FILENAME = 'detection_results.json'
