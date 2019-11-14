@@ -117,6 +117,8 @@ class DetectionHarness:
             detection_result_string = subprocess.check_output(cmd.split())
             self._detection_results.append({
                'package_name': package_name,
+               'rank': rank,
+               'source': repo_name,
                'version_number': package_info['version_number'],
                'data_collection_timestamp': datetime.datetime.today().strftime('%Y-%m-%d-%H:%M:%S'),
                'detection_tool_output': json.loads(detection_result_string)

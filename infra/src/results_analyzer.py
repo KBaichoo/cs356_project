@@ -6,14 +6,21 @@ import json
 import os
 
 DEFAULT_OUT_FILENAME = 'analyzed_results.json'
+BUCKETS = [100, 1000, 10000]
+
+def get_bucket(x):
+   for bucket in BUCKETS:
+      if x <= bucket:
+         return bucket
 
 class DetectionAnalyzer:
    def __init__(self, detection_results):
       self._detection_results = detection_results
-      # {detector_name: {feature_name: {result: count}}}
+      # {bucket: {detector_name: {feature_name: {result: count}}}}
       self._analyzed_results = collections.defaultdict(
          lambda: collections.defaultdict(
-            lambda: collections.defaultdict(int)))
+            lambda: collections.defaultdict(
+               lambda: collections.defaultdict(int))))
 
    def run(self):
       # For every package, extract the features and record
@@ -21,10 +28,10 @@ class DetectionAnalyzer:
       # features to feature results and their counts
       for package_detection_result in self._detection_results:
          detectors = package_detection_result['detection_tool_output']
+         bucket = get_bucket(package_detection_result['rank'])
          for (detector_name, features) in detectors.iteritems():
-            detector = self._analyzed_results[detector_name]
             for (feature_name, feature_result) in features.iteritems():
-               detector[feature_name][feature_result] += 1
+               self._analyzed_results[bucket][detector_name][feature_name][feature_result] += 1
 
       return self._analyzed_results
 
