@@ -41,17 +41,17 @@ class Runner:
             raise ValueError('config_filepath %s is not a file.',
                              config_filepath)
 
-        if not os.path.isdir(binary_directory):
+        if binary_directory and not os.path.isdir(binary_directory):
             raise ValueError('binary_directory %s is not a dir.',
                              binary_directory)
 
-        if not os.path.isdir(source_directory):
+        if source_directory and not os.path.isdir(source_directory):
             raise ValueError('source_directory %s is not a dir.',
                              source_directory)
 
-        if binary_directory[-1] != '/':
+        if binary_directory and binary_directory[-1] != '/':
             binary_directory += '/'
-        if source_directory[-1] != '/':
+        if source_directory and source_directory[-1] != '/':
             source_directory += '/'
 
         return cls(config_filepath, binary_directory, source_directory,
@@ -67,6 +67,73 @@ class Runner:
         # Mapping from 'name' -> instantiated class
         self.detector_mapping = {}
         self.parser_mapping = {}
+        # Map from feature to detector that generates the feature.
+        self.feature_to_detector_mapping = {}
+        self.selected_features = []
+
+    def _create_detector(self, detector_config, parser_configs):
+        """
+        Creates the detector and dependency parsers specified in the
+        detector_config. Adds the detectors/parsers to the mapping.
+        """
+        detector_type = detector_config['type']
+        name = detector_config['name']
+        parser_name = detector_config['parser_to_use']
+
+        # TODO(kbaichoo): make this more general / less brittle.
+        # Set up the detector
+        if detector_type == 'ALSRDetector':
+            self.detector_mapping[name] = ASLRDetector(
+                name, parser_name)
+        elif detector_type == 'HardeningDetector':
+            if not self.binary_directory:
+                raise ValueError(
+                    'Binary Directory necessary for the HardeningDetector')
+
+            binary_path = os.path.join(
+                self.binary_directory, self.binary_name)
+            self.detector_mapping[name] = HardeningDetector(
+                name, binary_path)
+
+        # Set up the parser to use if there's one and it isn't inited.
+        if not parser_name or parser_name in self.parser_mapping:
+            return
+
+        parser_created = False
+        for parser_config_mapping in parser_configs:
+            parser_config = parser_config_mapping['parser']
+            name = parser_config['name']
+
+            if parser_name != name:
+                continue
+
+            parser_type = parser_config['type']
+            # TODO(kbaichoo): make this more general / less brittle.
+            if parser_type == 'RulesFlagParser':
+                if not self.source_directory:
+                    raise ValueError(
+                        'Source Directory necessary for the RulesFlagParser')
+
+                rules_filepath = self.source_directory + 'debian/rules'
+                self.parser_mapping[name] = RulesFlagParser(
+                    name, rules_filepath)
+            elif parser_type == 'BuildLogParser':
+                if not self.source_directory:
+                    raise ValueError(
+                        'Source Directory necessary for the BuildLogParser')
+
+                build_log_path = (
+                    self.source_directory + '/cs356_data/build.log'
+                )
+                self.parser_mapping[name] = BuildLogParser(
+                    name, self.binary_name, build_log_path)
+            else:
+                raise NotImplementedError('Parser type: %s not yet supported.',
+                                          parser_type)
+            parser_created = True
+
+        if not parser_created:
+            raise ValueError('Could not create parser %s', parser_name)
 
     def setup(self):
         # Parse config file + detectors and parsers added and create them.
@@ -77,54 +144,46 @@ class Runner:
         with open(self.config_filepath) as f:
             config_data = yaml.load(f, Loader=yaml.FullLoader)
 
+            # Create a mapping from detector features provided to the
+            # detector that provides it.
             for detector_config_mapping in config_data['detectors']:
                 detector_config = detector_config_mapping['detector']
-                detector_type = detector_config['type']
-                name = detector_config['name']
-                parser_name = detector_config['parser_to_use']
 
-                # TODO(kbaichoo): make this more general / less brittle.
-                if detector_type == 'ALSRDetector':
-                    self.detector_mapping[name] = ASLRDetector(
-                        name, parser_name)
-                elif detector_type == 'HardeningDetector':
-                    binary_path = os.path.join(
-                        self.binary_directory, self.binary_name)
-                    self.detector_mapping[name] = HardeningDetector(
-                        name, binary_path)
-                else:
-                    logging.ERROR(
-                        'Detector type %s is unsupported!', detector_type)
+                for feature in detector_config['features_provided']:
+                    self.feature_to_detector_mapping[feature] = (
+                        detector_config['name'])
 
-            for parser_config_mapping in config_data['parsers']:
-                parser_config = parser_config_mapping['parser']
-                name = parser_config['name']
-                parser_type = parser_config['type']
+            # Figure out set of unique detectors needed
+            required_detectors = set()
+            for feature_selected in config_data['features_selected']:
+                if feature_selected not in self.feature_to_detector_mapping:
+                    raise IndexError(
+                        'Feature %s is does not have a detector.'.format(
+                            feature_selected))
+                required_detectors.add(
+                    self.feature_to_detector_mapping[feature_selected])
+            self.selected_features = config_data['features_selected']
 
-                # TODO(kbaichoo): make this more general / less brittle.
-                if parser_type == 'RulesFlagParser':
-                    rules_filepath = self.source_directory + 'debian/rules'
-                    self.parser_mapping[name] = RulesFlagParser(
-                        name, rules_filepath)
-                elif parser_type == 'BuildLogParser':
-                    build_log_path = (
-                        self.package_directory + '/cs356_data/build.log'
-                    )
-                    self.parser_mapping[name] = BuildLogParser(
-                        name, self.binary_name, build_log_path)
-                else:
-                    logging.ERROR(
-                        'Parser type %s is unsupported!', detector_type)
+            # Only create the detector and parsers we need to create.
+            for detector_name in required_detectors:
+                for detector_config in config_data['detectors']:
+                    if detector_config['detector']['name'] == detector_name:
+                        self._create_detector(detector_config['detector'],
+                                              config_data['parsers'])
         logging.info('Finished setting up the Parsers and Detectors.')
 
     def run(self):
         results_dict = {}
 
         # Run the detectors using the parsers.
-        for detector_name, detector in self.detector_mapping.items():
-            logging.info('Running detector %s', detector_name)
-            result = detector.run(self.parser_mapping)
-            results_dict[detector_name] = result
+        for feature in self.selected_features:
+            detector_name = self.feature_to_detector_mapping[feature]
+            detector = self.detector_mapping[detector_name]
+
+            logging.info('Gathering feature %s using detector %s', feature,
+                         detector_name)
+            result = detector.run(self.parser_mapping, feature=feature)
+            results_dict[feature] = result
 
         # Output the detection output
         print(json.dumps(results_dict))

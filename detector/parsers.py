@@ -1,3 +1,6 @@
+"""
+Contains parsers used to support the detectors detecting features.
+"""
 import logging
 import os.path
 import subprocess

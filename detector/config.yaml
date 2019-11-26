@@ -6,13 +6,15 @@ detectors:
   - detector:
       name: HARDENING_DETECTOR
       type: HardeningDetector
-      parser_to_use: None
+      parser_to_use:
       features_provided:
         - ro-relocation
         - stack-protector
         - fortify-source
         - PIE
         - immediate-binding
+        - stack-clash
+        - control-flow-integrity
   - detector:
       name: ASLR_DETECTOR
       type: ASLRDetector
@@ -31,9 +33,11 @@ parsers:
 # Modify the features selected to adjust which parsers and detectors run.
 # Detectors are tagged with the features they can detect, uniquely labeled if
 # multiple detectors clash on provided features (see features_provided).
-features_seletected:
+features_selected:
   - ro-relocation
   - stack-protector
   - fortify-source
   - PIE
   - immediate-binding
+  - stack-clash
+  - control-flow-integrity
