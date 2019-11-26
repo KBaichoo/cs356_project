@@ -1,0 +1,96 @@
+{
+    "1000": {
+        "HARDENING_DETECTOR": {
+            "Fortify Source functions": {
+                "no, only unprotected functions found!": 4, 
+                "yes (some protected functions found)": 3, 
+                "unknown, no protectable libc functions used": 3
+            }, 
+            "Read-only relocations": {
+                "yes": 10
+            }, 
+            "Stack protected": {
+                "yes": 8, 
+                "no, not found!": 2
+            }, 
+            "Immediate binding": {
+                "yes": 2, 
+                "no, not found!": 8
+            }, 
+            "Position Independent Executable": {
+                "yes": 9, 
+                "no, normal executable!": 1
+            }, 
+            "Stack clash protection": {
+                "unknown, no -fstack-clash-protection instructions found": 10
+            }, 
+            "Control flow integrity": {
+                "unknown, no -fcf-protection instructions found!": 10
+            }
+        }
+    }, 
+    "10000": {
+        "HARDENING_DETECTOR": {
+            "Fortify Source functions": {
+                "yes": 3, 
+                "no, only unprotected functions found!": 116, 
+                "yes (some protected functions found)": 108, 
+                "unknown, no protectable libc functions used": 24
+            }, 
+            "Read-only relocations": {
+                "yes": 249, 
+                "no, not found!": 2
+            }, 
+            "Stack protected": {
+                "yes": 217, 
+                "no, not found!": 34
+            }, 
+            "Immediate binding": {
+                "yes": 77, 
+                "no, not found!": 174
+            }, 
+            "Position Independent Executable": {
+                "yes": 244, 
+                "no, normal executable!": 7
+            }, 
+            "Stack clash protection": {
+                "unknown, no -fstack-clash-protection instructions found": 251
+            }, 
+            "Control flow integrity": {
+                "unknown, no -fcf-protection instructions found!": 251
+            }
+        }
+    }, 
+    "30000": {
+        "HARDENING_DETECTOR": {
+            "Fortify Source functions": {
+                "yes": 3, 
+                "no, only unprotected functions found!": 71, 
+                "yes (some protected functions found)": 77, 
+                "unknown, no protectable libc functions used": 6
+            }, 
+            "Read-only relocations": {
+                "yes": 156, 
+                "no, not found!": 1
+            }, 
+            "Stack protected": {
+                "yes": 126, 
+                "no, not found!": 31
+            }, 
+            "Immediate binding": {
+                "yes": 57, 
+                "no, not found!": 100
+            }, 
+            "Position Independent Executable": {
+                "yes": 152, 
+                "no, normal executable!": 5
+            }, 
+            "Stack clash protection": {
+                "unknown, no -fstack-clash-protection instructions found": 157
+            }, 
+            "Control flow integrity": {
+                "unknown, no -fcf-protection instructions found!": 157
+            }
+        }
+    }
+}

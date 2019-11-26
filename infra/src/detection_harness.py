@@ -2,10 +2,12 @@
 
 import argparse
 import datetime
+import errno
 import json
 import os
 import shutil
 import subprocess
+import sys
 
 MOCK = False
 DEFAULT_OUT_FILENAME = 'detection_results.json'
@@ -117,6 +119,8 @@ class DetectionHarness:
             detection_result_string = subprocess.check_output(cmd.split())
             self._detection_results.append({
                'package_name': package_name,
+               'rank': rank,
+               'source': repo_name,
                'version_number': package_info['version_number'],
                'data_collection_timestamp': datetime.datetime.today().strftime('%Y-%m-%d-%H:%M:%S'),
                'detection_tool_output': json.loads(detection_result_string)
@@ -147,7 +151,7 @@ if __name__ == '__main__':
    # Verify package infos file exists.
    package_infos_path = os.path.join(os.getcwd(), args.package_infos_file)
    if not os.path.isfile(package_infos_path):
-      sys.stderr.write('package infos file "%s" does not exist' % args.package_infos_file)
+      sys.stderr.write('package infos file "%s" does not exist\n' % args.package_infos_file)
       exit(errno.ENOENT)
 
    # Read package infos.
