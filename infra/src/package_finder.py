@@ -1,11 +1,13 @@
 #!/usr/bin/env python2
 
 import argparse
+import errno
 import json
 import os
 import re
 import shutil
 import subprocess
+import sys
 import yaml
 
 DEFAULT_OUT_FILENAME = 'package_finder_results.json'
@@ -195,7 +197,8 @@ class PackageFinder:
             'version_number': info.version_number,
             'source': repo_name,
             'rank': rank,
-            'download_cmd': 'apt-get download %s=%s' % (package_name, info.version_number),
+            'download_binary_cmd': 'apt-get download %s=%s' % (package_name, info.version_number),
+            'download_source_cmd': 'apt-get source %s=%s' % (package_name, info.version_number),
          }
          if info.git_repo_url:
             package_info['git_repo_url'] = info.git_repo_url

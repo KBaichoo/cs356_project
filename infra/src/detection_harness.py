@@ -11,15 +11,19 @@ import sys
 
 MOCK = False
 DEFAULT_OUT_FILENAME = 'detection_results.json'
-DOWNLOADS_PATH = 'package_downloads'
+SOURCE_DOWNLOADS_PATH = 'source_package_downloads'
+BINARY_DOWNLOADS_PATH = 'binary_package_downloads'
 if MOCK:
    DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
 else:
    CONFIG_FILE = '../detector/config.yaml'
-   DETECTION_TOOL_CMD = ('../detector/runner.py --config_file %s --package_directory %s '
-                         '--binary_name %s')
+   DETECTION_TOOL_CMD = ('../detector/runner.py '
+                         '--config_file %s '
+                         '--binary_package_directory %s '
+                         '--binary_name %s '
+                         '--source_package_directory %s')
 EXTRACTION_CMD = 'dpkg -x %s %s'
-DEB_EXTRACTION_PATH = os.path.join(DOWNLOADS_PATH, 'extraction_root')
+DEB_EXTRACTION_PATH = os.path.join(BINARY_DOWNLOADS_PATH, 'extraction_root')
 BINARY_PATH_FINDER_CMD = "%s" % os.path.join(os.getcwd(), 'src/binary_finder.sh')
 
 class DetectionHarness:
@@ -31,10 +35,33 @@ class DetectionHarness:
       self._detection_results = []
 
    @staticmethod
-   def _download_package(download_cmd):
+   def _download_source_package(download_cmd):
       # Enter download path.
       cwd = os.getcwd()
-      os.chdir(DOWNLOADS_PATH)
+      os.chdir(SOURCE_DOWNLOADS_PATH)
+
+      try:
+         # Pull down source.
+         subprocess.call(download_cmd.split(),
+                         stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+
+         # Find source path.
+         subdirs = next(os.walk('.'))[1]
+         if len(subdirs) != 1:
+            raise Exception('package source could not be extracted')
+      except Exception as e:
+         raise e
+      finally:
+         # Return to earlier working directory.
+         os.chdir(cwd)
+
+      return os.path.join(os.getcwd(), SOURCE_DOWNLOADS_PATH, subdirs[0])
+
+   @staticmethod
+   def _download_binary_package(download_cmd):
+      # Enter download path.
+      cwd = os.getcwd()
+      os.chdir(BINARY_DOWNLOADS_PATH)
 
       try:
          # Pull down source.
@@ -45,17 +72,13 @@ class DetectionHarness:
          subfiles = os.listdir('.')
          if len(subfiles) != 1:
             raise Exception('package source could not be extracted')
-
-         # subdirs = next(os.walk('.'))[1]
-         # if len(subdirs) != 1:
-         #    raise Exception('package source could not be extracted')
       except Exception as e:
          raise e
       finally:
          # Return to earlier working directory.
          os.chdir(cwd)
 
-      return os.path.join(os.getcwd(), DOWNLOADS_PATH, subfiles[0])
+      return os.path.join(os.getcwd(), BINARY_DOWNLOADS_PATH, subfiles[0])
 
    @staticmethod
    def _extract_deb(deb_path):
@@ -89,20 +112,28 @@ class DetectionHarness:
                                             package_info['package_name'])
          print 'Running tool on: (%s, %s, %s)' % (repo_name, rank, package_name)
 
-         # Create the downloads directory.
-         if os.path.isdir(DOWNLOADS_PATH):
-            shutil.rmtree(DOWNLOADS_PATH)
-         os.makedirs(DOWNLOADS_PATH)
+         # Create the download directories.
+         if os.path.isdir(SOURCE_DOWNLOADS_PATH):
+            shutil.rmtree(SOURCE_DOWNLOADS_PATH)
+         os.makedirs(SOURCE_DOWNLOADS_PATH)
+         if os.path.isdir(BINARY_DOWNLOADS_PATH):
+            shutil.rmtree(BINARY_DOWNLOADS_PATH)
+         os.makedirs(BINARY_DOWNLOADS_PATH)
 
          try:
-            # Download the package source.
-            package_path = self._download_package(package_info['download_cmd'])
+            # Download the source package.
+            source_extraction_path = self._download_source_package(
+               package_info['download_source_cmd'])
+
+            # Download the binary package.
+            binary_package_path = self._download_binary_package(
+               package_info['download_binary_cmd'])
 
             # Extract download from the deb.
-            extraction_path = self._extract_deb(package_path)
+            binary_extraction_path = self._extract_deb(binary_package_path)
 
             # Get binary paths.
-            binary_paths = self._get_binary_paths(extraction_path)
+            binary_paths = self._get_binary_paths(binary_extraction_path)
 
             # If more than one binary path, ignore for now.
             # TODO(jayden): Cleanly support multiple binaries.
@@ -113,9 +144,12 @@ class DetectionHarness:
 
             # Run the detection tool on the package.
             if MOCK:
-               cmd = DETECTION_TOOL_CMD % package_path
+               cmd = DETECTION_TOOL_CMD % binary_package_path
             else:
-               cmd = DETECTION_TOOL_CMD % (CONFIG_FILE, extraction_path, binary_path)
+               cmd = DETECTION_TOOL_CMD % (CONFIG_FILE,
+                                           binary_extraction_path,
+                                           binary_path,
+                                           source_extraction_path)
             detection_result_string = subprocess.check_output(cmd.split())
             self._detection_results.append({
                'package_name': package_name,
@@ -129,8 +163,9 @@ class DetectionHarness:
             print 'Error: %s\n' % str(e)
             continue
          finally:
-            # Delete the downloads directory.
-            shutil.rmtree(DOWNLOADS_PATH)
+            # Delete the download directories.
+            shutil.rmtree(SOURCE_DOWNLOADS_PATH)
+            shutil.rmtree(BINARY_DOWNLOADS_PATH)
 
          print 'Success: Added detection results for package.\n'
 
