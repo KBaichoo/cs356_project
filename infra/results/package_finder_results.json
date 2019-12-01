@@ -3,6 +3,7 @@
         "version_number": "1.4.9", 
         "package_name": "apt", 
         "download_binary_cmd": "apt-get download apt=1.4.9", 
+        "git_repo_url": "https://github.com/Debian/apt.git", 
         "download_source_cmd": "apt-get source apt=1.4.9", 
         "rank": "22", 
         "source": "debian"
@@ -59,6 +60,7 @@
         "version_number": "3.0.8-0+deb9u1", 
         "package_name": "vlc", 
         "download_binary_cmd": "apt-get download vlc=3.0.8-0+deb9u1", 
+        "git_repo_url": "https://github.com/videolan/vlc.git", 
         "download_source_cmd": "apt-get source vlc=3.0.8-0+deb9u1", 
         "rank": "654", 
         "source": "debian"
@@ -2027,6 +2029,7 @@
         "version_number": "1.1.6-1+deb9u1", 
         "package_name": "qtpass", 
         "download_binary_cmd": "apt-get download qtpass=1.1.6-1+deb9u1", 
+        "git_repo_url": "https://github.com/ontheroadlending/qtpass.git", 
         "download_source_cmd": "apt-get source qtpass=1.1.6-1+deb9u1", 
         "rank": "5061", 
         "source": "debian"
@@ -3595,6 +3598,7 @@
         "version_number": "0.1-1.1+b2", 
         "package_name": "m16c-flash", 
         "download_binary_cmd": "apt-get download m16c-flash=0.1-1.1+b2", 
+        "git_repo_url": "https://github.com/larsbrinkhoff/m16c-flash.git", 
         "download_source_cmd": "apt-get source m16c-flash=0.1-1.1+b2", 
         "rank": "9922", 
         "source": "debian"
@@ -3611,6 +3615,7 @@
         "version_number": "4.6.3-1+b1", 
         "package_name": "nco", 
         "download_binary_cmd": "apt-get download nco=4.6.3-1+b1", 
+        "git_repo_url": "https://github.com/nco/nco.git", 
         "download_source_cmd": "apt-get source nco=4.6.3-1+b1", 
         "rank": "9943", 
         "source": "debian"
@@ -4251,6 +4256,7 @@
         "version_number": "0.85-1", 
         "package_name": "squidview", 
         "download_binary_cmd": "apt-get download squidview=0.85-1", 
+        "git_repo_url": "https://github.com/pld-linux/squidview.git", 
         "download_source_cmd": "apt-get source squidview=0.85-1", 
         "rank": "11943", 
         "source": "debian"
@@ -4259,6 +4265,7 @@
         "version_number": "0.95.5-8.2+deb9u1", 
         "package_name": "starplot", 
         "download_binary_cmd": "apt-get download starplot=0.95.5-8.2+deb9u1", 
+        "git_repo_url": "https://github.com/sthagen/starplot.git", 
         "download_source_cmd": "apt-get source starplot=0.95.5-8.2+deb9u1", 
         "rank": "11944", 
         "source": "debian"
@@ -5203,6 +5210,7 @@
         "version_number": "0.4.0-2", 
         "package_name": "dbeacon", 
         "download_binary_cmd": "apt-get download dbeacon=0.4.0-2", 
+        "git_repo_url": "https://github.com/hugosantos/dbeacon.git", 
         "download_source_cmd": "apt-get source dbeacon=0.4.0-2", 
         "rank": "15644", 
         "source": "debian"
@@ -5219,6 +5227,7 @@
         "version_number": "5.2-1", 
         "package_name": "glpeces", 
         "download_binary_cmd": "apt-get download glpeces=5.2-1", 
+        "git_repo_url": "https://github.com/cygwinports-extras/glpeces.git", 
         "download_source_cmd": "apt-get source glpeces=5.2-1", 
         "rank": "15831", 
         "source": "debian"
@@ -5235,6 +5244,7 @@
         "version_number": "0.0.20041216-10+b1", 
         "package_name": "kball", 
         "download_binary_cmd": "apt-get download kball=0.0.20041216-10+b1", 
+        "git_repo_url": "https://github.com/waynecraig/kball.git", 
         "download_source_cmd": "apt-get source kball=0.0.20041216-10+b1", 
         "rank": "16072", 
         "source": "debian"
