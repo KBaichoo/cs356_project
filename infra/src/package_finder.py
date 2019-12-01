@@ -5,6 +5,7 @@ import errno
 import json
 import os
 import re
+import requests
 import shutil
 import subprocess
 import sys
@@ -20,18 +21,13 @@ CPP_REGEX_STRINGS = [
 CPP_REGEXES = [re.compile(regex) for regex in CPP_REGEX_STRINGS]
 USE_DEBTAGS = True
 DEBTAGS_PATH = 'debtags_cpp.txt'
+GITHUB_SEARCH_URL = 'https://api.github.com/search/repositories?q=%s&sort=stars&order=desc'
 
 class PackageError(Exception):
    pass
 
 class BenignError(Exception):
    pass
-
-class Info:
-   def __init__(self, version_number, git_repo_url, build_log_url):
-      self.version_number = version_number
-      self.git_repo_url = git_repo_url
-      self.build_log_url = build_log_url
 
 class PackageFinder:
    def __init__(self, num_packages, package_repos_contents, start_offset):
@@ -131,17 +127,11 @@ class PackageFinder:
             version_number = self._extract_version_number(package_name)
             if not version_number:
                raise PackageError('no version number found')
-
-            # TODO(jayden): Extract git repo URL if it exists.
-            git_repo_url = None
-
-            # TODO(jayden): Extract build log URL.
-            build_log_url = None
          except Exception as e:
             print 'Error: %s' % str(e)
             return (False, None)
 
-         return (package_name in self._debtags_cpp_packages, Info(version_number, None, None))
+         return (package_name in self._debtags_cpp_packages, version_number)
       else:
          # Create the downloads directory.
          if os.path.isdir(DOWNLOADS_PATH):
@@ -162,12 +152,6 @@ class PackageFinder:
             version_number = self._extract_version_number_from_src(src_path)
             if not version_number:
                raise PackageError('no version number found')
-
-            # TODO(jayden): Extract git repo URL if it exists.
-            git_repo_url = None
-
-            # TODO(jayden): Extract build log URL.
-            build_log_url = None
          except Exception as e:
             print 'Error: %s' % str(e)
             return (False, None)
@@ -175,7 +159,22 @@ class PackageFinder:
             # Delete the downloads directory.
             shutil.rmtree(DOWNLOADS_PATH)
 
-         return (True, Info(version_number, git_repo_url, build_log_url))
+         return (True, version_number)
+
+   @staticmethod
+   def _get_git_repo(package_name):
+      # Issue search for repositories with this package name.
+      github_search = requests.get(GITHUB_SEARCH_URL % package_name)
+      results = github_search.json()
+
+      # Find all repositories that match this name. If not exactly one, return.
+      matching_repos = [repo for repo in results['items'] if repo['name'] == package_name]
+      if len(matching_repos) != 1:
+         return None
+      repo = matching_repos[0]
+
+      # Extract repo clone URL.
+      return repo['clone_url']
 
    def _generate_package_infos(self):
       for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
@@ -185,25 +184,31 @@ class PackageFinder:
 
          print 'Extracting information for: (%s, %s, %s)' % (repo_name, rank, package_name)
 
-         (is_cpp, info) = self._is_cpp_project(package_name)
+         (is_cpp, version_number) = self._is_cpp_project(package_name)
          if not is_cpp:
             print 'Package did not meet requirements\n'
             continue
 
          print 'Success: project meets all requirements\n'
 
+         # Get git repo URL if it exists.
+         git_repo_url = self._get_git_repo(package_name)
+
+         # TODO(jayden): Get build log.
+         build_log_url = None
+
          package_info = {
             'package_name': package_name,
-            'version_number': info.version_number,
+            'version_number': version_number,
             'source': repo_name,
             'rank': rank,
-            'download_binary_cmd': 'apt-get download %s=%s' % (package_name, info.version_number),
-            'download_source_cmd': 'apt-get source %s=%s' % (package_name, info.version_number),
+            'download_binary_cmd': 'apt-get download %s=%s' % (package_name, version_number),
+            'download_source_cmd': 'apt-get source %s=%s' % (package_name, version_number),
          }
-         if info.git_repo_url:
-            package_info['git_repo_url'] = info.git_repo_url
-         if info.build_log_url:
-            package_info['build_log_url'] = info.build_log_url
+         if git_repo_url:
+            package_info['git_repo_url'] = git_repo_url
+         if build_log_url:
+            package_info['build_log_url'] = build_log_url
 
          self._package_infos.append(package_info)
 
