@@ -163,18 +163,21 @@ class PackageFinder:
 
    @staticmethod
    def _get_git_repo(package_name):
-      # Issue search for repositories with this package name.
-      github_search = requests.get(GITHUB_SEARCH_URL % package_name)
-      results = github_search.json()
+      try:
+         # Issue search for repositories with this package name.
+         github_search = requests.get(GITHUB_SEARCH_URL % package_name)
+         results = github_search.json()
 
-      # Find all repositories that match this name. If not exactly one, return.
-      matching_repos = [repo for repo in results['items'] if repo['name'] == package_name]
-      if len(matching_repos) != 1:
+         # Find all repositories that match this name. If not exactly one, return.
+         matching_repos = [repo for repo in results['items'] if repo['name'] == package_name]
+         if len(matching_repos) != 1:
+            return None
+         repo = matching_repos[0]
+
+         # Extract repo clone URL.
+         return repo['clone_url']
+      except:
          return None
-      repo = matching_repos[0]
-
-      # Extract repo clone URL.
-      return repo['clone_url']
 
    def _generate_package_infos(self):
       for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
