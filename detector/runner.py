@@ -55,10 +55,10 @@ class Runner:
             source_directory += '/'
 
         return cls(config_filepath, binary_directory, source_directory,
-                   binary_name)
+                   binary_name, args.override_feature_selected)
 
     def __init__(self, config_filepath, binary_directory, source_directory,
-                 binary_name):
+                 binary_name, preselected_features):
         self.config_filepath = config_filepath
         self.binary_directory = binary_directory
         self.source_directory = source_directory
@@ -69,7 +69,7 @@ class Runner:
         self.parser_mapping = {}
         # Map from feature to detector that generates the feature.
         self.feature_to_detector_mapping = {}
-        self.selected_features = []
+        self.selected_features = preselected_features
 
     def _create_detector(self, detector_config, parser_configs):
         """
@@ -161,14 +161,17 @@ class Runner:
 
             # Figure out set of unique detectors needed
             required_detectors = set()
-            for feature_selected in config_data['features_selected']:
+
+            # If not already assigned, use the selected feature in the yaml.
+            if not self.selected_features:
+                self.selected_features = config_data['features_selected']
+            for feature_selected in self.selected_features:
                 if feature_selected not in self.feature_to_detector_mapping:
                     raise IndexError(
-                        'Feature %s is does not have a detector.'.format(
+                        'Feature {} does not have a detector.'.format(
                             feature_selected))
                 required_detectors.add(
                     self.feature_to_detector_mapping[feature_selected])
-            self.selected_features = config_data['features_selected']
 
             # Only create the detector and parsers we need to create.
             for detector_name in required_detectors:
@@ -207,7 +210,6 @@ if __name__ == '__main__':
     parser.add_argument('--binary_name',
                         help='Name of the prog ultimately produced. '
                         'Should match what debtags outputs.', required=True)
-    # TODO(kbaichoo): this will likely break the integration (new flags).
     parser.add_argument('--binary_package_directory',
                         help='Path to the binary package directory. '
                         'Either this or the source directory must be set.')
@@ -217,6 +219,9 @@ if __name__ == '__main__':
     parser.add_argument('--verbosity', default=2, type=int,
                         help='Verbosity from 1 (least verbose) to 4. '
                         'Default 2 (INFO)')
+    parser.add_argument('-o', '--override-feature-selected', action='append',
+                        help='Overrides config.yaml feature_selected to use '
+                        'the specified list. i.e -o foo -o bar')
 
     args = parser.parse_args()
     # Validate Args
