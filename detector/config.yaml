@@ -30,6 +30,14 @@ detectors:
         - reinterpret_cast
         - const_cast
         - dynamic_cast
+  - detector:
+      name: SMARTPOINTER_DETECTOR
+      type: SmartPointerDetector
+      parser_to_use:
+      features_provided:
+        - unique_ptr
+        - shared_ptr
+        - weak_ptr
 # Parsers are sometimes used by detectors.
 parsers:
   - parser:
@@ -43,10 +51,6 @@ parsers:
 # Detectors are tagged with the features they can detect, uniquely labeled if
 # multiple detectors clash on provided features (see features_provided).
 features_selected:
-  - static_cast
-  - reinterpret_cast
-  - const_cast
-  - dynamic_cast
   - ro-relocation
   - stack-protector
   - fortify-source
@@ -54,3 +58,11 @@ features_selected:
   - immediate-binding
   - stack-clash
   - control-flow-integrity
+  # c++ specific lang. features.
+  - unique_ptr
+  - shared_ptr
+  - weak_ptr
+  - static_cast
+  - reinterpret_cast
+  - const_cast
+  - dynamic_cast

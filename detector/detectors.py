@@ -114,7 +114,7 @@ GREP_NOT_FOUND = 1
 
 class NamedCastDetector(Detector):
     """
-    Returns signs using C++ named-cast in the source
+    Returns signs of C++ named-cast usage in the source
     """
 
     def __init__(self, name, source_path):
@@ -141,6 +141,60 @@ class NamedCastDetector(Detector):
         # Use extended regex, include only c++ files, look in subdirs case-ins.
         command = 'grep -ir --include *.h --include *.cpp -E "{}" {}'.format(
             self.regex_mapping[cast_type], self.source_path)
+        try:
+            output = subprocess.check_output(command, shell=True)
+        except subprocess.CalledProcessError as e:
+            # Grep has exit status 1 if not found, and 2 if there's an error.
+            if e.returncode == GREP_ERROR:
+                raise Exception('Grep command ({}) failed'.format(command))
+            else:
+                assert(e.returncode == GREP_NOT_FOUND)
+                output = e.output
+
+        # Drop the last line since it'll be empty.
+        decoded_output = output.decode('utf-8').split('\n')[:-1]
+
+        # Count may be unreliable since a regex is fairly basic.
+        detected_count = len(decoded_output)
+
+        results = 'No'
+
+        if detected_count:
+            results = 'Yes ({})'.format(detected_count)
+
+        logging.debug('Ran detector %s and detected feature? %s',
+                      self.name, results)
+        return results
+
+
+class SmartPointerDetector(Detector):
+    """
+    Returns signs of C++ smart pointer usage in the source
+    """
+
+    def __init__(self, name, source_path):
+        self.source_path = source_path
+        self.regex_mapping = {
+            'unique_ptr': 'unique_ptr<.+>',
+            'shared_ptr': 'shared_ptr<.+>',
+            'weak_ptr': 'weak_ptr<.+>',
+        }
+        super(SmartPointerDetector, self).__init__(name, None)
+
+    def run(self, parsers, **kwargs):
+
+        if 'feature' not in kwargs:
+            raise ValueError('Expected feature to be explicitly specified.')
+
+        pointer_type = kwargs['feature']
+
+        if pointer_type not in self.regex_mapping:
+            raise ValueError(
+                'No matching regex for pointer type {}'.format(pointer_type))
+
+        # Use extended regex, include only c++ files, look in subdirs case-ins.
+        command = 'grep -ir --include *.h --include *.cpp -E "{}" {}'.format(
+            self.regex_mapping[pointer_type], self.source_path)
         try:
             output = subprocess.check_output(command, shell=True)
         except subprocess.CalledProcessError as e:

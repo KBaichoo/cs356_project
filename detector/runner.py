@@ -7,7 +7,7 @@ import yaml
 
 # imports from local libs
 from parsers import BuildLogParser, RulesFlagParser
-from detectors import ASLRDetector, HardeningDetector, NamedCastDetector
+from detectors import ASLRDetector, HardeningDetector, NamedCastDetector, SmartPointerDetector
 
 
 class Runner:
@@ -99,6 +99,12 @@ class Runner:
                 raise ValueError(
                     'Source Dir necessary for the NamedCastDetector')
             self.detector_mapping[name] = NamedCastDetector(
+                name, self.source_directory)
+        elif detector_type == 'SmartPointerDetector':
+            if not self.source_directory:
+                raise ValueError(
+                    'Source Dir necessary for the SmartPointerDetector')
+            self.detector_mapping[name] = SmartPointerDetector(
                 name, self.source_directory)
 
         # Set up the parser to use if there's one and it isn't inited.
