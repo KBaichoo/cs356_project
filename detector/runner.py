@@ -215,7 +215,7 @@ if __name__ == '__main__':
                         'instantiate the necessary detectors.', required=True)
     parser.add_argument('--binary_name',
                         help='Name of the prog ultimately produced. '
-                        'Should match what debtags outputs.', required=True)
+                        'Should match what debtags outputs.')
     parser.add_argument('--binary_package_directory',
                         help='Path to the binary package directory. '
                         'Either this or the source directory must be set.')
