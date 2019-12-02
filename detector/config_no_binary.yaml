@@ -33,13 +33,6 @@ parsers:
 # Detectors are tagged with the features they can detect, uniquely labeled if
 # multiple detectors clash on provided features (see features_provided).
 features_selected:
-  - ro-relocation
-  - stack-protector
-  - fortify-source
-  - PIE
-  - immediate-binding
-  - stack-clash
-  - control-flow-integrity
   # c++ specific lang. features.
   - unique_ptr
   - shared_ptr
