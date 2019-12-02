@@ -22,6 +22,9 @@ else:
                          '--binary_package_directory %s '
                          '--binary_name %s '
                          '--source_package_directory %s')
+   DETECTION_TOOL_NO_BINARY_CMD = ('../detector/runner.py '
+                                   '--config_file %s '
+                                   '--source_package_directory %s')
 EXTRACTION_CMD = 'dpkg -x %s %s'
 DEB_EXTRACTION_PATH = os.path.join(BINARY_DOWNLOADS_PATH, 'extraction_root')
 BINARY_PATH_FINDER_CMD = "%s" % os.path.join(os.getcwd(), 'src/binary_finder.sh')
@@ -135,21 +138,25 @@ class DetectionHarness:
             # Get binary paths.
             binary_paths = self._get_binary_paths(binary_extraction_path)
 
-            # If more than one binary path, ignore for now.
+            # If not correct number of binary paths included, don't pass into detector.
             # TODO(jayden): Cleanly support multiple binaries.
-            if (len(binary_paths) != 1):
-               raise Exception('wrong number of binary paths: %d (expected %d)' %
-                               (len(binary_paths), 1))
-            binary_path = binary_paths[0]
+            if len(binary_paths) == 1:
+               binary_path = binary_paths[0]
+            else:
+               binary_path = None
 
             # Run the detection tool on the package.
             if MOCK:
                cmd = DETECTION_TOOL_CMD % binary_package_path
             else:
-               cmd = DETECTION_TOOL_CMD % (CONFIG_FILE,
-                                           binary_extraction_path,
-                                           binary_path,
-                                           source_extraction_path)
+               if binary_path:
+                  cmd = DETECTION_TOOL_CMD % (CONFIG_FILE,
+                                              binary_extraction_path,
+                                              binary_path,
+                                              source_extraction_path)
+               else:
+                  cmd = DETECTION_TOOL_NO_BINARY_CMD % (CONFIG_FILE,
+                                                        source_extraction_path)
             detection_result_string = subprocess.check_output(cmd.split())
             self._detection_results.append({
                'package_name': package_name,
