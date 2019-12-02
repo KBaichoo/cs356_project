@@ -157,10 +157,10 @@ class NamedCastDetector(Detector):
         # Count may be unreliable since a regex is fairly basic.
         detected_count = len(decoded_output)
 
-        results = 'No'
-
-        if detected_count:
-            results = 'Yes ({})'.format(detected_count)
+        results = {
+            'detected': 'yes' if detected_count else 'no',
+            'occurrences': detected_count
+        }
 
         logging.debug('Ran detector %s and detected feature? %s',
                       self.name, results)
@@ -211,10 +211,10 @@ class SmartPointerDetector(Detector):
         # Count may be unreliable since a regex is fairly basic.
         detected_count = len(decoded_output)
 
-        results = 'No'
-
-        if detected_count:
-            results = 'Yes ({})'.format(detected_count)
+        results = {
+            'detected': 'yes' if detected_count else 'no',
+            'occurrences': detected_count
+        }
 
         logging.debug('Ran detector %s and detected feature? %s',
                       self.name, results)
