@@ -7,7 +7,7 @@ import yaml
 
 # imports from local libs
 from parsers import BuildLogParser, RulesFlagParser
-from detectors import ASLRDetector, HardeningDetector
+from detectors import ASLRDetector, HardeningDetector, NamedCastDetector
 
 
 class Runner:
@@ -94,6 +94,12 @@ class Runner:
                 self.binary_directory, self.binary_name)
             self.detector_mapping[name] = HardeningDetector(
                 name, binary_path)
+        elif detector_type == 'NamedCastDetector':
+            if not self.source_directory:
+                raise ValueError(
+                    'Source Dir necessary for the NamedCastDetector')
+            self.detector_mapping[name] = NamedCastDetector(
+                name, self.source_directory)
 
         # Set up the parser to use if there's one and it isn't inited.
         if not parser_name or parser_name in self.parser_mapping:
