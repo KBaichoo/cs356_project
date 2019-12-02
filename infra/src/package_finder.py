@@ -168,8 +168,8 @@ class PackageFinder:
 
    @staticmethod
    def _get_git_repo(package_name):
-      try:
-         for github_search_url in GITHUB_SEARCH_URLS:
+      for github_search_url in GITHUB_SEARCH_URLS:
+         try:
             # Issue search for repositories with this package name.
             github_search = requests.get(github_search_url % package_name)
             results = github_search.json()
@@ -182,9 +182,9 @@ class PackageFinder:
 
             # Extract repo clone URL.
             return repo['clone_url']
-         return None
-      except:
-         return None
+         except:
+            continue
+      return None
 
    def _generate_package_infos(self):
       for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
