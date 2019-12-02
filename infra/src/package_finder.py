@@ -21,7 +21,12 @@ CPP_REGEX_STRINGS = [
 CPP_REGEXES = [re.compile(regex) for regex in CPP_REGEX_STRINGS]
 USE_DEBTAGS = True
 DEBTAGS_PATH = 'debtags_cpp.txt'
-GITHUB_SEARCH_URL = 'https://api.github.com/search/repositories?q=%s&sort=stars&order=desc'
+GITHUB_SEARCH_URLS = [
+   # Search all repos.
+   'https://api.github.com/search/repositories?q=%s&sort=stars&order=desc',
+   # Search only mirrors.
+   'https://api.github.com/search/repositories?q=%s+mirror:true&sort=stars&order=desc',
+]
 
 class PackageError(Exception):
    pass
@@ -164,18 +169,20 @@ class PackageFinder:
    @staticmethod
    def _get_git_repo(package_name):
       try:
-         # Issue search for repositories with this package name.
-         github_search = requests.get(GITHUB_SEARCH_URL % package_name)
-         results = github_search.json()
+         for github_search_url in GITHUB_SEARCH_URLS:
+            # Issue search for repositories with this package name.
+            github_search = requests.get(github_search_url % package_name)
+            results = github_search.json()
 
-         # Find all repositories that match this name. If not exactly one, return.
-         matching_repos = [repo for repo in results['items'] if repo['name'] == package_name]
-         if len(matching_repos) != 1:
-            return None
-         repo = matching_repos[0]
+            # Find all repositories that match this name. If not exactly one, continue.
+            matching_repos = [repo for repo in results['items'] if repo['name'] == package_name]
+            if len(matching_repos) != 1:
+               continue
+            repo = matching_repos[0]
 
-         # Extract repo clone URL.
-         return repo['clone_url']
+            # Extract repo clone URL.
+            return repo['clone_url']
+         return None
       except:
          return None
 
