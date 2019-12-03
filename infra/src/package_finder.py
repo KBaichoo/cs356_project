@@ -283,7 +283,7 @@ if __name__ == '__main__':
    # Create github request HTTP auth.
    if args.use_github_auth:
       username = raw_input("Enter GitHub username: ")
-      passowrd = raw_input("Enter GitHub password: ")
+      password = raw_input("Enter GitHub password: ")
       github_auth = requests.auth.HTTPBasicAuth(username, password)
    else:
       github_auth = None
