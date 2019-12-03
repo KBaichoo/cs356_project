@@ -9,6 +9,7 @@ import requests
 import shutil
 import subprocess
 import sys
+import time
 import yaml
 
 DEFAULT_OUT_FILENAME = 'package_finder_results.json'
@@ -176,19 +177,28 @@ class PackageFinder:
    def _get_git_repo(package_name):
       for github_search_url in GITHUB_SEARCH_URLS:
          try:
-            # Issue search for repositories with this package name.
-            github_search = requests.get(github_search_url % package_name)
-            results = github_search.json()
+            valid_results = False
+            while not valid_results:
+               # Issue search for repositories with this package name.
+               github_search = requests.get(github_search_url % package_name)
+               results = github_search.json()
 
-            # Find all repositories that match this name. If not exactly one, continue.
-            matching_repos = [repo for repo in results['items'] if repo['name'] == package_name]
-            if len(matching_repos) != 1:
-               continue
-            repo = matching_repos[0]
+               # Wait then retry if request failed.
+               if 'items' not in results:
+                  time.sleep(10)
+                  continue
+               else:
+                  valid_results = True
 
-            # Extract repo clone URL.
-            return repo['clone_url']
-         except:
+               # Find all repositories that match this name. If not exactly one, continue.
+               matching_repos = [repo for repo in results['items'] if repo['name'] == package_name]
+               if len(matching_repos) != 1:
+                  continue
+               repo = matching_repos[0]
+
+               # Extract repo clone URL.
+               return repo['clone_url']
+         except Exception as e:
             continue
       return None
 
