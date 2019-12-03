@@ -36,10 +36,11 @@ class BenignError(Exception):
    pass
 
 class PackageFinder:
-   def __init__(self, num_packages, package_repos_contents, start_offset):
+   def __init__(self, num_packages, package_repos_contents, start_offset, github_auth):
       self._num_packages = num_packages
       self._package_repos_contents = package_repos_contents
       self._start_offset = start_offset
+      self._github_auth = github_auth
 
       # [(repo_name, rank, package_name)]
       self._packages_list = []
@@ -174,13 +175,13 @@ class PackageFinder:
          return (True, version_number)
 
    @staticmethod
-   def _get_git_repo(package_name):
+   def _get_git_repo(package_name, github_auth):
       for github_search_url in GITHUB_SEARCH_URLS:
          try:
             valid_results = False
             while not valid_results:
                # Issue search for repositories with this package name.
-               github_search = requests.get(github_search_url % package_name)
+               github_search = requests.get(github_search_url % package_name, auth=github_auth)
                results = github_search.json()
 
                # Wait then retry if request failed.
@@ -218,7 +219,7 @@ class PackageFinder:
          print 'Success: project meets all requirements\n'
 
          # Get git repo URL if it exists.
-         git_repo_url = self._get_git_repo(package_name)
+         git_repo_url = self._get_git_repo(package_name, self._github_auth)
 
          # TODO(jayden): Get build log.
          build_log_url = None
@@ -265,6 +266,8 @@ if __name__ == '__main__':
    parser.add_argument('--out', help="output file path, default: %s" % DEFAULT_OUT_FILENAME,
                        default=DEFAULT_OUT_FILENAME)
    parser.add_argument('--start-offset', help='package index to start at', default=0)
+   parser.add_argument('--use-github-auth', help='Login to GitHub, ups rate limit',
+                       action='store_true')
    args = parser.parse_args()
 
    # Verify repo info file is present.
@@ -277,9 +280,17 @@ if __name__ == '__main__':
    with open(package_repos_path) as f:
       package_repos_contents = yaml.load(f)
 
+   # Create github request HTTP auth.
+   if args.use_github_auth:
+      username = raw_input("Enter GitHub username: ")
+      passowrd = raw_input("Enter GitHub password: ")
+      github_auth = requests.auth.HTTPBasicAuth(username, password)
+   else:
+      github_auth = None
+
    # Run package finder.
    package_finder = PackageFinder(int(args.num_packages), package_repos_contents,
-                                  int(args.start_offset))
+                                  int(args.start_offset), github_auth)
    results = package_finder.run()
 
    # Save results to output file.
