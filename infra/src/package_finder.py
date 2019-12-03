@@ -118,7 +118,7 @@ class PackageFinder:
    def _get_package_attribute(package_name, attribute):
       output = subprocess.check_output(('apt show %s' % package_name).split(),
                                        stderr=open(os.devnull, 'w')).splitlines()
-      package_info = dict([line.split(': ', 1) for line in output])
+      package_info = dict([line.split(': ', 1) for line in output if len(line.split(': ', 1)) == 2])
       return package_info[attribute] if attribute in package_info else None
 
    @staticmethod
