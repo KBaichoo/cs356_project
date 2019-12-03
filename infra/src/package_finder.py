@@ -115,13 +115,19 @@ class PackageFinder:
       return version_string[1:-1]
 
    @staticmethod
-   def _extract_version_number(package_name):
+   def _get_package_attribute(package_name, attribute):
       output = subprocess.check_output(('apt show %s' % package_name).split(),
                                        stderr=open(os.devnull, 'w')).splitlines()
-      second_line_split = output[1].split()
-      if second_line_split[0] != 'Version:':
-         return None
-      return second_line_split[1]
+      package_info = dict([line.split(': ', 1) for line in output])
+      return package_info[attribute] if attribute in package_info else None
+
+   @staticmethod
+   def _extract_maintainer(package_name):
+      return PackageFinder._get_package_attribute(package_name, 'Maintainer')
+
+   @staticmethod
+   def _extract_version_number(package_name):
+      return PackageFinder._get_package_attribute(package_name, 'Version')
 
    def _is_cpp_project(self, package_name):
       if USE_DEBTAGS:
@@ -207,6 +213,9 @@ class PackageFinder:
          # TODO(jayden): Get build log.
          build_log_url = None
 
+         # Get maintainer information.
+         maintainer = self._extract_maintainer(package_name)
+
          package_info = {
             'package_name': package_name,
             'version_number': version_number,
@@ -219,6 +228,8 @@ class PackageFinder:
             package_info['git_repo_url'] = git_repo_url
          if build_log_url:
             package_info['build_log_url'] = build_log_url
+         if maintainer:
+            package_info['maintainer'] = maintainer
 
          self._package_infos.append(package_info)
 

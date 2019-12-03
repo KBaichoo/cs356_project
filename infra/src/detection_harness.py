@@ -112,8 +112,14 @@ class DetectionHarness:
          if len(self._detection_results) == self._count:
             break
 
-         (repo_name, rank, package_name) = (package_info['source'], package_info['rank'],
-                                            package_info['package_name'])
+         (repo_name,
+          rank,
+          package_name,
+          maintainer) = (
+            package_info['source'],
+            package_info['rank'],
+            package_info['package_name'],
+            package_info['maintainer'])
          print 'Running tool on: (%s, %s, %s)' % (repo_name, rank, package_name)
 
          # Create the download directories.
@@ -159,14 +165,17 @@ class DetectionHarness:
                   cmd = DETECTION_TOOL_NO_BINARY_CMD % (CONFIG_NO_BINARY_FILE,
                                                         source_extraction_path)
             detection_result_string = subprocess.check_output(cmd.split())
-            self._detection_results.append({
+            result = {
                'package_name': package_name,
                'rank': rank,
                'source': repo_name,
                'version_number': package_info['version_number'],
                'data_collection_timestamp': datetime.datetime.today().strftime('%Y-%m-%d-%H:%M:%S'),
                'detection_tool_output': json.loads(detection_result_string)
-            })
+            }
+            if maintainer:
+               result['maintainer'] = maintainer
+            self._detection_results.append(result)
          except Exception as e:
             print 'Error: %s\n' % str(e)
             continue
