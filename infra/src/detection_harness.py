@@ -3,21 +3,28 @@
 import argparse
 import datetime
 import errno
+import git
 import json
 import os
 import shutil
 import subprocess
 import sys
+import yaml
 
 MOCK = False
 DEFAULT_OUT_FILENAME = 'detection_results.json'
 SOURCE_DOWNLOADS_PATH = 'source_package_downloads'
 BINARY_DOWNLOADS_PATH = 'binary_package_downloads'
+GIT_REPO_PATH = 'git_bisection_repo_tmp'
+GITHUB_REPO_WHITELIST = './results/github_repo_whitelist.txt'
+BISECTION_RUNNER_PATH = './src/bisect_runner.sh'
+DETECTOR_BISECT_PATH = './src/detector_bisect.sh'
 if MOCK:
    DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
 else:
    CONFIG_FILE = '../detector/config.yaml'
    CONFIG_NO_BINARY_FILE = '../detector/config_no_binary.yaml'
+   RUNNER_PATH = '../detector/runner.py'
    DETECTION_TOOL_CMD = ('../detector/runner.py '
                          '--config_file %s '
                          '--binary_package_directory %s '
@@ -29,12 +36,15 @@ else:
 EXTRACTION_CMD = 'dpkg -x %s %s'
 DEB_EXTRACTION_PATH = os.path.join(BINARY_DOWNLOADS_PATH, 'extraction_root')
 BINARY_PATH_FINDER_CMD = "%s" % os.path.join(os.getcwd(), 'src/binary_finder.sh')
+DATE_FMT = '%Y-%m-%d'
 
 class DetectionHarness:
-   def __init__(self, package_infos, start_offset, count):
+   def __init__(self, package_infos, start_offset, count, github_repo_whitelist, features):
       self._package_infos = package_infos
       self._start_offset = start_offset
       self._count = count
+      self._github_repo_whitelist = github_repo_whitelist
+      self._features = features
 
       self._detection_results = []
 
@@ -107,6 +117,93 @@ class DetectionHarness:
 
       return binary_paths
 
+   @staticmethod
+   def _run_git_bisect(new_commit, old_commit, feature):
+      # Get full paths to tools.
+      bisection_runner_path = os.path.abspath(BISECTION_RUNNER_PATH)
+      detector_bisect_path = os.path.abspath(DETECTOR_BISECT_PATH)
+      runner_path = os.path.abspath(RUNNER_PATH)
+      config_no_binary_path = os.path.abspath(CONFIG_NO_BINARY_FILE)
+      repo_path = os.path.abspath(GIT_REPO_PATH)
+
+      # Enter git repo root.
+      cwd = os.getcwd()
+      os.chdir(GIT_REPO_PATH)
+
+      try:
+         # Get bisection commit.
+         return subprocess.check_output(
+            [bisection_runner_path,
+             str(new_commit),
+             str(old_commit),
+             detector_bisect_path,
+             runner_path,
+             config_no_binary_path,
+             repo_path,
+             feature]).strip()
+      except:
+         return None
+      finally:
+         # Return to earlier working directory.
+         os.chdir(cwd)
+
+   @staticmethod
+   def _feature_detected(feature):
+      try:
+         subprocess.check_call([DETECTOR_BISECT_PATH, RUNNER_PATH, CONFIG_NO_BINARY_FILE,
+                                GIT_REPO_PATH, feature])
+         return False
+      except subprocess.CalledProcessError:
+         return True
+
+   @staticmethod
+   def _run_git_bisection(git_repo_url, features):
+      try:
+         data = {}
+
+         repo = git.Repo.clone_from(git_repo_url, GIT_REPO_PATH)
+
+         # Get head commit and first commit.
+         main_branch = repo.active_branch
+         head_commit = next(repo.iter_commits(main_branch))
+         first_commit = None
+         for first_commit in repo.iter_commits(main_branch):
+            pass
+
+         # Extract initial commit timestamp.
+         data['creation_timestamp'] = first_commit.authored_datetime.strftime(DATE_FMT)
+
+         # Iterate over features, running git bisection on each.
+         features_data = {}
+         for feature in features:
+            # If feature not detected in head commit, continue.
+            repo.git.checkout(head_commit)
+            if not DetectionHarness._feature_detected(feature):
+               continue
+
+            # If feature detected in first commit, continue.
+            repo.git.checkout(first_commit)
+            if DetectionHarness._feature_detected(feature):
+               continue
+
+            # Run bisection.
+            repo.git.checkout(main_branch)
+            introduction_hash = DetectionHarness._run_git_bisect(head_commit, first_commit, feature)
+            if introduction_hash:
+               introduction_commit = repo.commit(introduction_hash)
+               features_data[feature] = {
+                  'commit': introduction_hash,
+                  'timestamp': introduction_commit.authored_datetime.strftime(DATE_FMT)
+               }
+         data['features'] = features_data
+
+         return data
+      except:
+         print "Failed to run git bisection on %s" % git_repo_url
+         return None
+      finally:
+         shutil.rmtree(GIT_REPO_PATH, ignore_errors=True)
+
    def run(self):
       for package_info in self._package_infos[self._start_offset:]:
          if len(self._detection_results) == self._count:
@@ -115,11 +212,14 @@ class DetectionHarness:
          (repo_name,
           rank,
           package_name,
-          maintainer) = (
-            package_info['source'],
-            package_info['rank'],
-            package_info['package_name'],
-            package_info['maintainer'])
+          maintainer,
+          git_repo_url) = (
+             package_info['source'],
+             package_info['rank'],
+             package_info['package_name'],
+             # Optional data.
+             package_info.get('maintainer'),
+             package_info.get('git_repo_url'))
          print 'Running tool on: (%s, %s, %s)' % (repo_name, rank, package_name)
 
          # Create the download directories.
@@ -165,6 +265,12 @@ class DetectionHarness:
                   cmd = DETECTION_TOOL_NO_BINARY_CMD % (CONFIG_NO_BINARY_FILE,
                                                         source_extraction_path)
             detection_result_string = subprocess.check_output(cmd.split())
+
+            # If repo has a github URL in the whitelist, run git bisection on it.
+            git_bisection_data = None
+            if git_repo_url and git_repo_url in self._github_repo_whitelist:
+               git_bisection_data = self._run_git_bisection(git_repo_url, self._features)
+
             result = {
                'package_name': package_name,
                'rank': rank,
@@ -173,6 +279,8 @@ class DetectionHarness:
                'data_collection_timestamp': datetime.datetime.today().strftime('%Y-%m-%d-%H:%M:%S'),
                'detection_tool_output': json.loads(detection_result_string)
             }
+            if git_bisection_data:
+               result['git_bisection_data'] = git_bisection_data
             if maintainer:
                result['maintainer'] = maintainer
             self._detection_results.append(result)
@@ -212,8 +320,18 @@ if __name__ == '__main__':
 
    count = len(package_infos) if not args.count else int(args.count)
 
+   # Read in github repo whitelist.
+   with open(GITHUB_REPO_WHITELIST) as f:
+      github_repo_whitelist = set(f.read().splitlines())
+
+   # Read in features from no-binary config.
+   with open(CONFIG_NO_BINARY_FILE) as f:
+      no_binary_config = yaml.load(f)
+      features = no_binary_config['features_selected']
+
    # Run detection harness.
-   detection_harness = DetectionHarness(package_infos, int(args.start_offset), count)
+   detection_harness = DetectionHarness(package_infos, int(args.start_offset), count,
+                                        github_repo_whitelist, features)
    results = detection_harness.run()
 
    # Save results to output file.
