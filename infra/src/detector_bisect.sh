@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-CONFIG_FILE="$1"
-SOURCE_DIR="$2"
-FEATURE="$3"
+DETECTOR_RUNNER="$1"
+CONFIG_FILE="$2"
+SOURCE_DIR="$3"
+FEATURE="$4"
 
-OUTPUT=$(../detector/runner.py \
+OUTPUT=$("$DETECTOR_RUNNER" \
              --config_file "$CONFIG_FILE" \
              --source_package_directory "$SOURCE_DIR" \
              -o "$FEATURE" 2> /dev/null)
