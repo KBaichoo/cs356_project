@@ -170,6 +170,9 @@ class DetectionHarness:
          for first_commit in repo.iter_commits(main_branch):
             pass
 
+         # Add the repo URL.
+         data['git_repo_url'] = git_repo_url
+
          # Extract initial commit timestamp.
          data['creation_timestamp'] = first_commit.authored_datetime.strftime(DATE_FMT)
 
