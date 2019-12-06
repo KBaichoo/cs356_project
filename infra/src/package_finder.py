@@ -225,10 +225,13 @@ class PackageFinder:
          return None
 
       # Try to access URL, following redirect if necessary.
-      r = requests.head(repo_url, allow_redirects=True)
-      if not r.ok:
+      try:
+         r = requests.head(repo_url, allow_redirects=True)
+         if not r.ok:
+            return None
+         return r.url
+      except:
          return None
-      return r.url
 
    def _generate_package_infos(self):
       for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
