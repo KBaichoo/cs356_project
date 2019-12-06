@@ -132,6 +132,21 @@ class PackageFinder:
    def _extract_version_number(package_name):
       return PackageFinder._get_package_attribute(package_name, 'Version')
 
+   @staticmethod
+   def _get_debcheckout_info(package_name):
+      try:
+         # Get debcheckout details of the repo.
+         output = subprocess.check_output(
+            ('debcheckout -d %s' % package_name).split(),
+            stderr=open(os.devnull, 'w')).splitlines()
+         attributes = dict([(s[0], s[1:])
+                            for line in output
+                            for s in [line.split] if len(s) >= 2])
+      except:
+         return (None, None)
+
+      return (attributes.get('type'), attributes.get('url'))
+
    def _is_cpp_project(self, package_name):
       if USE_DEBTAGS:
          try:
@@ -177,6 +192,7 @@ class PackageFinder:
 
    @staticmethod
    def _get_git_repo(package_name, github_auth):
+      # Search for repo in GitHub.
       for github_search_url in GITHUB_SEARCH_URLS:
          try:
             valid_results = False
@@ -202,6 +218,18 @@ class PackageFinder:
                return repo['clone_url']
          except Exception as e:
             continue
+
+      # Search for repo in debcheckout.
+      (repo_type, repo_url) = PackageFinder._get_debcheckout_info(package_name)
+      if repo_type != 'git':
+         return None
+
+      # Try to access URL, following redirect if necessary.
+      r = requests.head(repo_url, allow_redirects=True)
+      if not r.ok:
+         return None
+      return r.url.encode('ascii','ignore')
+
       return None
 
    def _generate_package_infos(self):
