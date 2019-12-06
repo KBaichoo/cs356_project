@@ -139,9 +139,9 @@ class PackageFinder:
          output = subprocess.check_output(
             ('debcheckout -d %s' % package_name).split(),
             stderr=open(os.devnull, 'w')).splitlines()
-         attributes = dict([(s[0], s[1:])
+         attributes = dict([(s[0], ' '.join(s[1:]))
                             for line in output
-                            for s in [line.split] if len(s) >= 2])
+                            for s in [line.split()] if len(s) >= 2])
       except:
          return (None, None)
 
