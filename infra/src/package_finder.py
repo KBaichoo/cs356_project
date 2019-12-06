@@ -228,7 +228,7 @@ class PackageFinder:
       r = requests.head(repo_url, allow_redirects=True)
       if not r.ok:
          return None
-      return r.url.encode('ascii','ignore')
+      return r.url
 
    def _generate_package_infos(self):
       for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
