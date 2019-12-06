@@ -230,8 +230,6 @@ class PackageFinder:
          return None
       return r.url.encode('ascii','ignore')
 
-      return None
-
    def _generate_package_infos(self):
       for repo_name, rank, package_name in self._packages_list[self._start_offset:]:
          # If we've found enough packages, stop.
