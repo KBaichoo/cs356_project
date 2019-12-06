@@ -269,9 +269,12 @@ class DetectionHarness:
                                                         source_extraction_path)
             detection_result_string = subprocess.check_output(cmd.split())
 
-            # If repo has a github URL in the whitelist, run git bisection on it.
+            # If repo has a git URL, run git bisection on it. If it's a github
+            # URL make sure it's in the whitelist.
             git_bisection_data = None
-            if git_repo_url and git_repo_url in self._github_repo_whitelist:
+            if (git_repo_url and
+                ('github.com' not in git_repo_url or
+                 git_repo_url in self._github_repo_whitelist)):
                git_bisection_data = self._run_git_bisection(git_repo_url, self._features)
 
             result = {
