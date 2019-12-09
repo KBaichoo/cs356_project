@@ -13,12 +13,14 @@ import yaml
 
 MOCK = False
 DEFAULT_OUT_FILENAME = 'detection_results.json'
-SOURCE_DOWNLOADS_PATH = 'source_package_downloads'
-BINARY_DOWNLOADS_PATH = 'binary_package_downloads'
+SOURCE_DOWNLOADS_PATH = 'source_package_downloads_tmp'
+BINARY_DOWNLOADS_PATH = 'binary_package_downloads_tmp'
+BUILD_LOG_DIR_PATH = 'build_log_dir_tmp'
 GIT_REPO_PATH = 'git_bisection_repo_tmp'
 GITHUB_REPO_WHITELIST = './results/github_repo_whitelist.txt'
 BISECTION_RUNNER_PATH = './src/bisect_runner.sh'
 DETECTOR_BISECT_PATH = './src/detector_bisect.sh'
+BUILD_LOG_DOWNLOAD_CMD = 'getbuildlog %s last amd64'
 if MOCK:
    DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
 else:
@@ -30,9 +32,19 @@ else:
                          '--binary_package_directory %s '
                          '--binary_name %s '
                          '--source_package_directory %s')
+   DETECTION_TOOL_LOG_CMD = ('../detector/runner.py '
+                             '--config_file %s '
+                             '--binary_package_directory %s '
+                             '--binary_name %s '
+                             '--source_package_directory %s '
+                             '--build_log_path %s')
    DETECTION_TOOL_NO_BINARY_CMD = ('../detector/runner.py '
                                    '--config_file %s '
                                    '--source_package_directory %s')
+   DETECTION_TOOL_NO_BINARY_LOG_CMD = ('../detector/runner.py '
+                                       '--config_file %s '
+                                       '--source_package_directory %s '
+                                       '--build_log_path %s')
 EXTRACTION_CMD = 'dpkg -x %s %s'
 DEB_EXTRACTION_PATH = os.path.join(BINARY_DOWNLOADS_PATH, 'extraction_root')
 BINARY_PATH_FINDER_CMD = "%s" % os.path.join(os.getcwd(), 'src/binary_finder.sh')
@@ -207,6 +219,29 @@ class DetectionHarness:
       finally:
          shutil.rmtree(GIT_REPO_PATH, ignore_errors=True)
 
+   @staticmethod
+   def _download_build_log(package_name):
+      # Enter log dir.
+      cwd = os.getcwd()
+      os.chdir(BUILD_LOG_DIR_PATH)
+
+      try:
+         # Pull down source.
+         subprocess.call(BUILD_LOG_DOWNLOAD_CMD % package_name,
+                         stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
+
+         # Find source path.
+         subfiles = os.listdir('.')
+         if len(subfiles) != 1:
+            raise Exception('package source could not be extracted')
+      except:
+         print "Failed to download build log for %s" % package_name
+         return None
+      finally:
+         os.chdir(cwd)
+
+      return os.path.join(os.getcwd(), BUILD_LOG_DIR_PATH, subfiles[0])
+
    def run(self):
       for package_info in self._package_infos[self._start_offset:]:
          if len(self._detection_results) == self._count:
@@ -232,6 +267,9 @@ class DetectionHarness:
          if os.path.isdir(BINARY_DOWNLOADS_PATH):
             shutil.rmtree(BINARY_DOWNLOADS_PATH)
          os.makedirs(BINARY_DOWNLOADS_PATH)
+         if os.path.isdir(BUILD_LOG_DIR_PATH):
+            shutil.rmtree(BUILD_LOG_DIR_PATH)
+         os.makedirs(BUILD_LOG_DIR_PATH)
 
          try:
             # Download the source package.
@@ -255,18 +293,33 @@ class DetectionHarness:
             else:
                binary_path = None
 
+            # Get the build log.
+            build_log_path = self._download_build_log(package_name)
+
             # Run the detection tool on the package.
             if MOCK:
                cmd = DETECTION_TOOL_CMD % binary_package_path
             else:
                if binary_path:
-                  cmd = DETECTION_TOOL_CMD % (CONFIG_FILE,
-                                              binary_extraction_path,
-                                              binary_path,
-                                              source_extraction_path)
+                  if build_log_path:
+                     cmd = DETECTION_TOOL_LOG_CMD % (CONFIG_FILE,
+                                                     binary_extraction_path,
+                                                     binary_path,
+                                                     source_extraction_path,
+                                                     build_log_path)
+                  else:
+                     cmd = DETECTION_TOOL_CMD % (CONFIG_FILE,
+                                                 binary_extraction_path,
+                                                 binary_path,
+                                                 source_extraction_path)
                else:
-                  cmd = DETECTION_TOOL_NO_BINARY_CMD % (CONFIG_NO_BINARY_FILE,
-                                                        source_extraction_path)
+                  if build_log_path:
+                     cmd = DETECTION_TOOL_NO_BINARY_LOG_CMD % (CONFIG_NO_BINARY_FILE,
+                                                               source_extraction_path,
+                                                               build_log_path)
+                  else:
+                     cmd = DETECTION_TOOL_NO_BINARY_CMD % (CONFIG_NO_BINARY_FILE,
+                                                           source_extraction_path)
             detection_result_string = subprocess.check_output(cmd.split())
 
             # If repo has a git URL, run git bisection on it. If it's a github
@@ -297,6 +350,7 @@ class DetectionHarness:
             # Delete the download directories.
             shutil.rmtree(SOURCE_DOWNLOADS_PATH)
             shutil.rmtree(BINARY_DOWNLOADS_PATH)
+            shutil.rmtree(BUILD_LOG_DIR_PATH)
 
          print 'Success: Added detection results for package.\n'
 
