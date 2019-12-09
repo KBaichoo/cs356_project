@@ -30,7 +30,7 @@ class Runner:
             raise ValueError('config_filepath %s does not exists.',
                              config_filepath)
 
-        if not os.path.exists(build_log_path):
+        if build_log_path and not os.path.exists(build_log_path):
             raise ValueError('build_log_path %s does not exists.',
                              build_log_path)
 
