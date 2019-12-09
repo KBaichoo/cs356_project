@@ -227,14 +227,15 @@ class DetectionHarness:
 
       try:
          # Pull down source.
-         subprocess.call(BUILD_LOG_DOWNLOAD_CMD % package_name,
+         subprocess.call((BUILD_LOG_DOWNLOAD_CMD % package_name).split(),
                          stdout=open(os.devnull, 'w'), stderr=subprocess.STDOUT)
 
          # Find source path.
          subfiles = os.listdir('.')
          if len(subfiles) != 1:
             raise Exception('package source could not be extracted')
-      except:
+      except Exception as e:
+         print str(e)
          print "Failed to download build log for %s" % package_name
          return None
       finally:

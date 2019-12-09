@@ -46,7 +46,7 @@ class Runner:
             raise ValueError('config_filepath %s is not a file.',
                              config_filepath)
 
-        if not os.path.isfile(build_log_path):
+        if build_log_path and not os.path.isfile(build_log_path):
             raise ValueError('build_log_path %s is not a file.',
                              build_log_path)
 
