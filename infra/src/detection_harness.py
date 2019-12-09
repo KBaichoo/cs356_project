@@ -234,8 +234,7 @@ class DetectionHarness:
          subfiles = os.listdir('.')
          if len(subfiles) != 1:
             raise Exception('package source could not be extracted')
-      except Exception as e:
-         print str(e)
+      except:
          print "Failed to download build log for %s" % package_name
          return None
       finally:
