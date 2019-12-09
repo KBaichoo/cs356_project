@@ -52,6 +52,26 @@ class ASLRDetector(FlagDetector):
         return detection_results
 
 
+class CppVersionDetector(Detector):
+    # TODO(kbaichoo): implement!
+    """
+    Given the build logs, attempt to detect the c++ version compiled against.
+    """
+
+    def detect_feature(self, source):
+        # TODO(kbaichoo): improve the detection.
+        if "-fPIE" in source or "-pie" in source:
+            return True
+        else:
+            return False
+
+    def run(self, parsers, **kwargs):
+        detection_results = {'Unimplemented': True}
+        logging.debug('Ran detector %s and detected feature? %s',
+                      self.name, detection_results)
+        return detection_results
+
+
 class HardeningDetector(FlagDetector):
     """
     Returns signs of hardening on the binary
@@ -178,6 +198,11 @@ class SmartPointerDetector(Detector):
             'unique_ptr': 'unique_ptr<.+>',
             'shared_ptr': 'shared_ptr<.+>',
             'weak_ptr': 'weak_ptr<.+>',
+            # Boost smart pointers (that don't conflict with stdlib)
+            'scoped_ptr': 'scoped_ptr<.+>',
+            'scoped_array': 'scoped_array<.+>',
+            'shared_array': 'shared_array<.+>',
+            'intrusive_ptr': 'intrusive_ptr<.+>',
         }
         super(SmartPointerDetector, self).__init__(name, None)
 

@@ -38,6 +38,17 @@ detectors:
         - unique_ptr
         - shared_ptr
         - weak_ptr
+        # Boost specific
+        - scoped_ptr
+        - scoped_array
+        - shared_array
+        - instrusive_ptr
+  - detector:
+      name: CPP_VERSION_DETECTOR
+      type: CppVersionDetector
+      parser_to_use: BUILD_LOG_PARSER
+      features_provided:
+        - cpp_version
 # Parsers are sometimes used by detectors.
 parsers:
   - parser:
@@ -59,9 +70,14 @@ features_selected:
   - stack-clash
   - control-flow-integrity
   # c++ specific lang. features.
+  - cpp_version
   - unique_ptr
   - shared_ptr
   - weak_ptr
+  - scoped_ptr
+  - scoped_array
+  - shared_array
+  - instrusive_ptr
   - static_cast
   - reinterpret_cast
   - const_cast
