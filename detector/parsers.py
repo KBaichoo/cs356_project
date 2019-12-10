@@ -39,6 +39,10 @@ class BuildLogParser:
             if not os.path.isfile(self.build_log_path):
                 raise ValueError('Filepath points to a non file object')
 
+            if not self.binary_name:
+                raise ValueError(
+                    'You can only use the BuildLogParser if the --binary_name flag is passed.')
+
             linker_output_flag = '-o ' + self.binary_name.lower()
             object_file_regex = re.compile('g\+\+ .* -c')
             defined_flag_regex = re.compile('-D\w*=[^\s]+')
