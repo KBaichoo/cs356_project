@@ -42,7 +42,7 @@ detectors:
         - scoped_ptr
         - scoped_array
         - shared_array
-        - instrusive_ptr
+        - intrusive_ptr
   - detector:
       name: CPP_VERSION_DETECTOR
       type: CppVersionDetector
