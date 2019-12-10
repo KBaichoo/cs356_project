@@ -58,15 +58,50 @@ class CppVersionDetector(Detector):
     Given the build logs, attempt to detect the c++ version compiled against.
     """
 
-    def detect_feature(self, source):
-        # TODO(kbaichoo): improve the detection.
-        if "-fPIE" in source or "-pie" in source:
-            return True
-        else:
-            return False
+    def detect_feature(self, compiler_lines):
+        stds_count = {
+            'c++98': 0,
+            'c++03': 0,
+            'gnu++98': 0,
+            'gnu++03': 0,
+            'c++11': 0,
+            'c++0x': 0,
+            'gnu++11': 0,
+            'gnu++0x': 0,
+            'c++14': 0,
+            'c++1y': 0,
+            'gnu++14': 0,
+            'gnu++1y': 0,
+            'c++17': 0,
+            'c++1z': 0,
+            'gnu++17': 0,
+            'gnu++1z': 0,
+            'c++2a': 0,
+            'gnu++2a': 0
+        }
+
+        for key in stds_count:
+            for line in compiler_lines:
+                if key in line:
+                    stds_count[key] += 1
+
+        return list(filter(lambda x: stds_count[x] > 0, stds_count))
 
     def run(self, parsers, **kwargs):
         detection_results = {'Unimplemented': True}
+        parser = parsers[self.parser_to_use]
+        all_compiler_lines = parser.parse(stage='all')
+
+        detection_results = self.detect_feature(all_compiler_lines)
+
+        if len(detection_results) > 1:
+            logging.warning(
+                'Huh, detection result indicated multiple c++ stds:',
+                detection_results)
+        elif len(detection_results) == 0:
+            logging.warning('Lang version not found')
+            detection_results = ["none"]
+
         logging.debug('Ran detector %s and detected feature? %s',
                       self.name, detection_results)
         return detection_results
