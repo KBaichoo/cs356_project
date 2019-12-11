@@ -42,7 +42,7 @@ class BuildLogParser:
             cpp_version_regex = re.compile(r"g\+\+ .*-std=")
             gpp_package_version_regex = re.compile(r"g\+\+ \(= .*\)")
 
-            with open(self.build_log_path, 'r') as fh:
+            with open(self.build_log_path, 'r', errors='ignore') as fh:
                 line = fh.readline()
                 while line != '':
                     if (cpp_version_regex.search(line) or
