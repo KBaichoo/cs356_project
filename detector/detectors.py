@@ -58,6 +58,36 @@ class CppVersionDetector(Detector):
     Given the build logs, attempt to detect the c++ version compiled against.
     """
 
+    def _clean_detection_results(self, results):
+        version_mapping = {
+            '98': 0,
+            '03': 1,
+            '0x': 2,
+            '11': 2,
+            '14': 3,
+            '1y': 3,
+            '17': 4,
+            '1z': 4,
+            '2a': 5
+        }
+        version_values = []
+        for version in results:
+            version_values.append(version_mapping[version[-2:]])
+        min_version = min(version_values)
+
+        if min_version == 0:
+            return 'c++98'
+        elif min_version == 1:
+            return 'c++03'
+        elif min_version == 2:
+            return 'c++11'
+        elif min_version == 3:
+            return 'c++14'
+        elif min_version == 4:
+            return 'c++17'
+        else:
+            return 'c++2a'
+
     def detect_feature(self, compiler_lines):
         stds_count = {
             'c++98': 0,
@@ -94,17 +124,18 @@ class CppVersionDetector(Detector):
         logging.info('Found %d compiler lines', len(all_compiler_lines))
         detection_results = self.detect_feature(all_compiler_lines)
 
-        # TODO(kbaichoo): equate version, downgrade if conflicting
-
-        if len(detection_results) > 1:
-            logging.warning(
-                'Huh, detection result indicated multiple c++ stds: {}'.format(
+        if detection_results:
+            logging.debug(
+                'Detected c++ std: {} prior to cleaning'.format(
                     detection_results))
-        elif len(detection_results) == 0:
-            logging.warning('Lang version not found')
-            detection_results = ["none"]
+            detection_results = self._clean_detection_results(
+                detection_results)
+            logging.info(
+                'Detected c++ std: {} after cleaning'.format(
+                    detection_results))
         else:
-            logging.info('Detected c++ std: {}'.format(detection_results))
+            logging.warning('Lang version not found')
+            detection_results = "none"
 
         logging.debug('Ran detector %s and detected feature? %s',
                       self.name, detection_results)
