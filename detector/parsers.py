@@ -39,30 +39,13 @@ class BuildLogParser:
             if not os.path.isfile(self.build_log_path):
                 raise ValueError('Filepath points to a non file object')
 
-            linker_output_flag = (
-                '-o ' + self.binary_name.lower() if self.binary_name else None)
-            object_file_regex = re.compile('g\+\+ .* -c')
-            defined_flag_regex = re.compile('-D\w*=[^\s]+')
+            cpp_version_regex = re.compile(r"g\+\+ .*-std=")
 
             with open(self.build_log_path, 'r') as fh:
                 line = fh.readline()
                 while line != '':
-                    if line.startswith('g++ '):
-                        old_line = line
-                        # Filter line, removing -D[name]=foo flags.
-                        # TODO(kbaichoo: as it, will remove any D_FORTIFY flags
-                        line = defined_flag_regex.sub('', line)
-                        logging.debug(
-                            'After removing line went from\n %s to\n %s',
-                            old_line, line)
+                    if cpp_version_regex.search(line):
                         self.compiler_lines.append(line)
-                        if (linker_output_flag and
-                                linker_output_flag in line.lower()):
-                            self.linker_lines.append(line)
-                        elif object_file_regex.match(line):
-                            self.object_file_lines.append(line)
-                        else:
-                            self.other_lines.append(line)
                     line = fh.readline()
 
             self.parser_ready = True

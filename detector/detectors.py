@@ -91,16 +91,20 @@ class CppVersionDetector(Detector):
         detection_results = {'Unimplemented': True}
         parser = parsers[self.parser_to_use]
         all_compiler_lines = parser.parse(stage='all')
-
+        logging.info('Found %d compiler lines', len(all_compiler_lines))
         detection_results = self.detect_feature(all_compiler_lines)
+
+        # TODO(kbaichoo): equate version, downgrade if conflicting
 
         if len(detection_results) > 1:
             logging.warning(
-                'Huh, detection result indicated multiple c++ stds:',
-                detection_results)
+                'Huh, detection result indicated multiple c++ stds: {}'.format(
+                    detection_results))
         elif len(detection_results) == 0:
             logging.warning('Lang version not found')
             detection_results = ["none"]
+        else:
+            logging.info('Detected c++ std: {}'.format(detection_results))
 
         logging.debug('Ran detector %s and detected feature? %s',
                       self.name, detection_results)
