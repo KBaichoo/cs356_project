@@ -20,6 +20,7 @@ GIT_REPO_PATH = 'git_bisection_repo_tmp'
 GITHUB_REPO_WHITELIST = './results/github_repo_whitelist.txt'
 BISECTION_RUNNER_PATH = './src/bisect_runner.sh'
 DETECTOR_BISECT_PATH = './src/detector_bisect.sh'
+CREATION_TIME_CMD = './src/creation_time.sh %s'
 BUILD_LOG_DOWNLOAD_CMD = 'getbuildlog %s last amd64'
 if MOCK:
    DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
@@ -244,6 +245,16 @@ class DetectionHarness:
 
       return os.path.join(os.getcwd(), BUILD_LOG_DIR_PATH, subfiles[0])
 
+   @staticmethod
+   def _extract_creation_time(package_name):
+      try:
+         creation_time_secs = subprocess.check_output((CREATION_TIME_CMD % package_name).split())
+         return datetime.datetime.fromtimestamp(int(creation_time_secs))
+      except Exception as e:
+         print e
+         print "Failed to get creation time for %s" % package_name
+         return None
+
    def run(self):
       for package_info in self._package_infos[self._start_offset:]:
          if len(self._detection_results) == self._count:
@@ -298,6 +309,9 @@ class DetectionHarness:
             # Get the build log.
             build_log_path = self._download_build_log(package_name)
 
+            # Get the package creation time from changelog.
+            creation_time = self._extract_creation_time(package_name)
+
             # Run the detection tool on the package.
             if MOCK:
                cmd = DETECTION_TOOL_CMD % binary_package_path
@@ -340,6 +354,8 @@ class DetectionHarness:
                'data_collection_timestamp': datetime.datetime.today().strftime('%Y-%m-%d-%H:%M:%S'),
                'detection_tool_output': json.loads(detection_result_string)
             }
+            if creation_time:
+               result['creation_date'] = creation_time.strftime(DATE_FMT)
             if git_bisection_data:
                result['git_bisection_data'] = git_bisection_data
             if maintainer:
