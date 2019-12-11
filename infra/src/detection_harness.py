@@ -26,7 +26,9 @@ if MOCK:
    DETECTION_TOOL_CMD = './src/mock_detection_tool.sh %s'
 else:
    CONFIG_FILE = '../detector/config.yaml'
+   CONFIG_NO_LOG_FILE = '../detector/config_no_log.yaml'
    CONFIG_NO_BINARY_FILE = '../detector/config_no_binary.yaml'
+   CONFIG_NO_BINARY_NO_LOG_FILE = '../detector/config_no_binary_no_log.yaml'
    RUNNER_PATH = '../detector/runner.py'
    DETECTION_TOOL_CMD = ('../detector/runner.py '
                          '--config_file %s '
@@ -324,7 +326,7 @@ class DetectionHarness:
                                                      source_extraction_path,
                                                      build_log_path)
                   else:
-                     cmd = DETECTION_TOOL_CMD % (CONFIG_FILE,
+                     cmd = DETECTION_TOOL_CMD % (CONFIG_NO_LOG_FILE,
                                                  binary_extraction_path,
                                                  binary_path,
                                                  source_extraction_path)
@@ -334,7 +336,7 @@ class DetectionHarness:
                                                                source_extraction_path,
                                                                build_log_path)
                   else:
-                     cmd = DETECTION_TOOL_NO_BINARY_CMD % (CONFIG_NO_BINARY_FILE,
+                     cmd = DETECTION_TOOL_NO_BINARY_CMD % (CONFIG_NO_BINARY_NO_LOG_FILE,
                                                            source_extraction_path)
             detection_result_string = subprocess.check_output(cmd.split())
 
