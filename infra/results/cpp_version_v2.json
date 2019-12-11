@@ -1,0 +1,6169 @@
+[
+    {
+        "version_number": "1.4.9", 
+        "maintainer": "APT Development Team <deity@lists.debian.org>", 
+        "package_name": "apt", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 16
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 6
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "22", 
+        "data_collection_timestamp": "2019-12-11-05:31:31", 
+        "source": "debian", 
+        "creation_date": "1998-03-31"
+    }, 
+    {
+        "version_number": "1.22.3-9", 
+        "maintainer": "Colin Watson <cjwatson@debian.org>", 
+        "package_name": "groff", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "gnu++98"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "43", 
+        "data_collection_timestamp": "2019-12-11-05:31:35", 
+        "source": "debian", 
+        "creation_date": "1996-11-06"
+    }, 
+    {
+        "version_number": "1.0.1-1", 
+        "maintainer": "Guillaume Delacour <gui@iroqwa.org>", 
+        "package_name": "gdisk", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "163", 
+        "data_collection_timestamp": "2019-12-11-05:31:36", 
+        "source": "debian", 
+        "creation_date": "2009-11-01"
+    }, 
+    {
+        "version_number": "0.25-3.1+deb9u1", 
+        "maintainer": "Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>", 
+        "package_name": "exiv2", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 37
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 81
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 481
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "PIE": "yes", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "ro-relocation": "yes", 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 38
+            }
+        }, 
+        "rank": "335", 
+        "data_collection_timestamp": "2019-12-11-05:31:39", 
+        "source": "debian", 
+        "creation_date": "2005-06-08"
+    }, 
+    {
+        "version_number": "16.02+dfsg-3+deb9u1", 
+        "maintainer": "Robert Luberda <robert@debian.org>", 
+        "package_name": "p7zip", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 7
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 64
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 187
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "509", 
+        "data_collection_timestamp": "2019-12-11-05:31:43", 
+        "source": "debian", 
+        "creation_date": "2004-08-15"
+    }, 
+    {
+        "version_number": "2.7.0-17.2+b1", 
+        "maintainer": "Chuan-kai Lin <cklin@debian.org>", 
+        "package_name": "fam", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "592", 
+        "data_collection_timestamp": "2019-12-11-05:31:45", 
+        "source": "debian", 
+        "creation_date": "2001-12-04"
+    }, 
+    {
+        "version_number": "6.5+svn4324-1", 
+        "maintainer": "Giuseppe Iuculano <iuculano@debian.org>", 
+        "package_name": "smartmontools", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 6
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "626", 
+        "data_collection_timestamp": "2019-12-11-05:31:47", 
+        "source": "debian", 
+        "creation_date": "2003-01-14"
+    }, 
+    {
+        "version_number": "3.0.8-0+deb9u1", 
+        "maintainer": "Debian Multimedia Maintainers <pkg-multimedia-maintainers@lists.alioth.debian.org>", 
+        "package_name": "vlc", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 27
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 85
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 295
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }
+        }, 
+        "rank": "654", 
+        "data_collection_timestamp": "2019-12-11-05:31:57", 
+        "source": "debian", 
+        "creation_date": "2000-03-13"
+    }, 
+    {
+        "version_number": "2.2.2-1", 
+        "maintainer": "Debian LyX Maintainers <pkg-lyx-devel@lists.alioth.debian.org>", 
+        "package_name": "lyx", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 114
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 67
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 393
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 16
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 88
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 16
+            }
+        }, 
+        "rank": "690", 
+        "data_collection_timestamp": "2019-12-11-05:32:05", 
+        "source": "debian", 
+        "creation_date": "1996-09-03"
+    }, 
+    {
+        "version_number": "73.0.3683.75-1~deb9u1", 
+        "maintainer": "Debian Chromium Maintainers <pkg-chromium-maint@lists.alioth.debian.org>", 
+        "package_name": "chromium", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 649
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 6760
+            }, 
+            "scoped_array": {
+                "detected": "yes", 
+                "occurrences": 13
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 19970
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 123
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 445
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 39488
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 31
+            }
+        }, 
+        "rank": "691", 
+        "data_collection_timestamp": "2019-12-11-05:34:39", 
+        "source": "debian"
+    }, 
+    {
+        "version_number": "0.8.7-1", 
+        "maintainer": "Aptitude Development Team <aptitude-devel@lists.alioth.debian.org>", 
+        "package_name": "aptitude", 
+        "detection_tool_output": {
+            "immediate-binding": "yes", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 12
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "cpp_version": [
+                "gnu++17"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 261
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }
+        }, 
+        "rank": "695", 
+        "data_collection_timestamp": "2019-12-11-05:34:50", 
+        "source": "debian", 
+        "creation_date": "2000-02-06"
+    }, 
+    {
+        "version_number": "0.84.2", 
+        "maintainer": "Michael Vogt <mvo@debian.org>", 
+        "package_name": "synaptic", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "721", 
+        "data_collection_timestamp": "2019-12-11-05:34:52", 
+        "source": "debian", 
+        "creation_date": "2001-11-13"
+    }, 
+    {
+        "version_number": "0.14.0-4+deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "sddm", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "cpp_version": [
+                "c++11"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "727", 
+        "data_collection_timestamp": "2019-12-11-05:34:54", 
+        "source": "debian", 
+        "creation_date": "2014-10-17"
+    }, 
+    {
+        "version_number": "4:5.8.6-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "plasma-desktop", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 15
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 222
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 7
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 21
+            }
+        }, 
+        "rank": "748", 
+        "data_collection_timestamp": "2019-12-11-05:34:58", 
+        "source": "debian", 
+        "creation_date": "2014-06-10"
+    }, 
+    {
+        "version_number": "4:16.08.3-3", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "dolphin", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 91
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 18
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }
+        }, 
+        "rank": "758", 
+        "data_collection_timestamp": "2019-12-11-05:35:00", 
+        "source": "debian", 
+        "creation_date": "1997-09-20"
+    }, 
+    {
+        "version_number": "4:16.12.0-4", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "konsole", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 89
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x", 
+                "c++11"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 6
+            }
+        }, 
+        "rank": "761", 
+        "data_collection_timestamp": "2019-12-11-05:35:03", 
+        "source": "debian", 
+        "creation_date": "2011-07-08"
+    }, 
+    {
+        "version_number": "4:16.04.2-2+b2", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kdepim-runtime", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 101
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 24
+            }
+        }, 
+        "rank": "764", 
+        "data_collection_timestamp": "2019-12-11-05:35:06", 
+        "source": "debian", 
+        "creation_date": "2009-07-12"
+    }, 
+    {
+        "version_number": "4:16.04.3-4~deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "korganizer", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 606
+            }, 
+            "cpp_version": [
+                "gnu++14", 
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }
+        }, 
+        "rank": "784", 
+        "data_collection_timestamp": "2019-12-11-05:35:10", 
+        "source": "debian", 
+        "creation_date": "2000-05-17"
+    }, 
+    {
+        "version_number": "4:16.08.2-1+deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "okular", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 30
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 237
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "PIE": "yes", 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 11
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 24
+            }
+        }, 
+        "rank": "790", 
+        "data_collection_timestamp": "2019-12-11-05:35:14", 
+        "source": "debian", 
+        "creation_date": "2011-07-07"
+    }, 
+    {
+        "version_number": "4.8.2~dfsg-1", 
+        "maintainer": "Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>", 
+        "package_name": "nodejs", 
+        "detection_tool_output": {
+            "immediate-binding": "yes", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 33
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1017
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 1435
+            }, 
+            "cpp_version": [
+                "gnu++1y"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "yes (some protected functions found)", 
+            "PIE": "no, normal executable!", 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 12
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }
+        }, 
+        "rank": "851", 
+        "data_collection_timestamp": "2019-12-11-05:35:24", 
+        "source": "debian", 
+        "creation_date": "2010-02-07"
+    }, 
+    {
+        "version_number": "4:16.04.3-4~deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kmail", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 606
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }
+        }, 
+        "rank": "883", 
+        "data_collection_timestamp": "2019-12-11-05:35:28", 
+        "source": "debian", 
+        "creation_date": "2000-05-17"
+    }, 
+    {
+        "version_number": "3.0-3.1", 
+        "maintainer": "Pulseaudio maintenance team <pkg-pulseaudio-devel@lists.alioth.debian.org>", 
+        "package_name": "pavucontrol", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "894", 
+        "data_collection_timestamp": "2019-12-11-05:35:30", 
+        "source": "debian", 
+        "creation_date": "2006-10-21"
+    }, 
+    {
+        "version_number": "4:16.04.3-4~deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "knotes", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 606
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }
+        }, 
+        "rank": "903", 
+        "data_collection_timestamp": "2019-12-11-05:35:34", 
+        "source": "debian", 
+        "creation_date": "2000-05-17"
+    }, 
+    {
+        "version_number": "4:16.08.3-3", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "gwenview", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 46
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "929", 
+        "data_collection_timestamp": "2019-12-11-05:35:38", 
+        "source": "debian", 
+        "creation_date": "2011-12-03"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kate", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 126
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 26
+            }
+        }, 
+        "rank": "939", 
+        "data_collection_timestamp": "2019-12-11-05:35:43", 
+        "source": "debian", 
+        "creation_date": "2011-07-20"
+    }, 
+    {
+        "version_number": "4:16.08.3-2", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "ark", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 35
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found"
+        }, 
+        "rank": "973", 
+        "data_collection_timestamp": "2019-12-11-05:35:46", 
+        "source": "debian", 
+        "creation_date": "2011-12-15"
+    }, 
+    {
+        "version_number": "0.92.1-1", 
+        "maintainer": "Debian Multimedia Maintainers <pkg-multimedia-maintainers@lists.alioth.debian.org>", 
+        "package_name": "inkscape", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 290
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 446
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 1074
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 4
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 49
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 1650
+            }
+        }, 
+        "rank": "987", 
+        "data_collection_timestamp": "2019-12-11-05:36:08", 
+        "source": "debian", 
+        "creation_date": "2003-12-18"
+    }, 
+    {
+        "version_number": "4:5.8.4-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "systemsettings", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "PIE": "yes", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found"
+        }, 
+        "rank": "1013", 
+        "data_collection_timestamp": "2019-12-11-05:36:10", 
+        "source": "debian", 
+        "creation_date": "2014-06-09"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "konqueror", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 39
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 21
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 340
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 63
+            }
+        }, 
+        "rank": "1088", 
+        "data_collection_timestamp": "2019-12-11-05:36:15", 
+        "source": "debian", 
+        "creation_date": "1997-09-20"
+    }, 
+    {
+        "version_number": "3.7.2-1", 
+        "maintainer": "Debian CMake Team <pkg-cmake-team@lists.alioth.debian.org>", 
+        "package_name": "cmake", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 45
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "gnu++17"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }
+        }, 
+        "rank": "1116", 
+        "data_collection_timestamp": "2019-12-11-05:36:21", 
+        "source": "debian", 
+        "creation_date": "2001-11-28"
+    }, 
+    {
+        "version_number": "4:5.8.6-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "ksysguard", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 30
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }
+        }, 
+        "rank": "1126", 
+        "data_collection_timestamp": "2019-12-11-05:36:23", 
+        "source": "debian", 
+        "creation_date": "2014-06-09"
+    }, 
+    {
+        "version_number": "1.9.5-1+deb9u5", 
+        "maintainer": "Peter Samuelson <peter@p12n.org>", 
+        "package_name": "subversion", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 35
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 181
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++11"
+            ], 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1133", 
+        "data_collection_timestamp": "2019-12-11-05:36:28", 
+        "source": "debian", 
+        "creation_date": "2001-09-29"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kcalc", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 15
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 140
+            }
+        }, 
+        "rank": "1209", 
+        "data_collection_timestamp": "2019-12-11-05:36:31", 
+        "source": "debian", 
+        "creation_date": "2012-06-17"
+    }, 
+    {
+        "version_number": "2.1.1-0.1+b3", 
+        "maintainer": "Lionel Le Folgoc <mrpouit@gmail.com>", 
+        "package_name": "ffmpegthumbnailer", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 9
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 646
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 12
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }
+        }, 
+        "rank": "1211", 
+        "data_collection_timestamp": "2019-12-11-05:36:33", 
+        "source": "debian", 
+        "creation_date": "2008-09-23"
+    }, 
+    {
+        "version_number": "4:4.14.26-2", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kdoctools", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 344
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 285
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 3631
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++11"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 203
+            }
+        }, 
+        "rank": "1255", 
+        "data_collection_timestamp": "2019-12-11-05:36:44", 
+        "source": "debian", 
+        "creation_date": "2007-05-10"
+    }, 
+    {
+        "version_number": "4:16.08.1-3", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kopete", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 67
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "scoped_array": {
+                "detected": "yes", 
+                "occurrences": 11
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 661
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++11"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 138
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 294
+            }
+        }, 
+        "rank": "1309", 
+        "data_collection_timestamp": "2019-12-11-05:36:51", 
+        "source": "debian", 
+        "creation_date": "1997-10-19"
+    }, 
+    {
+        "version_number": "3.24.0-1", 
+        "maintainer": "Adrien Cunin <adri2000@ubuntu.com>", 
+        "package_name": "filezilla", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 30
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 77
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 567
+            }, 
+            "cpp_version": [
+                "c++17"
+            ], 
+            "weak_ptr": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 28
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 114
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 44
+            }
+        }, 
+        "rank": "1359", 
+        "data_collection_timestamp": "2019-12-11-05:37:04", 
+        "source": "debian", 
+        "creation_date": "2006-09-19"
+    }, 
+    {
+        "version_number": "2.8-1+b1", 
+        "maintainer": "Jose Luis Rivas <ghostbar@debian.org>", 
+        "package_name": "powertop", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1387", 
+        "data_collection_timestamp": "2019-12-11-05:37:14", 
+        "source": "debian", 
+        "creation_date": "2007-05-12"
+    }, 
+    {
+        "version_number": "4:5.8.4-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "bluedevil", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1443", 
+        "data_collection_timestamp": "2019-12-11-05:37:17", 
+        "source": "debian", 
+        "creation_date": "2010-08-06"
+    }, 
+    {
+        "version_number": "0.9.2+git20161222-3", 
+        "maintainer": "Matthias Klumpp <mak@debian.org>", 
+        "package_name": "apper", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 25
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1445", 
+        "data_collection_timestamp": "2019-12-11-05:37:19", 
+        "source": "debian", 
+        "creation_date": "2011-10-06"
+    }, 
+    {
+        "version_number": "4:5.8.4-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "ksshaskpass", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++11"
+            ], 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1451", 
+        "data_collection_timestamp": "2019-12-11-05:37:21", 
+        "source": "debian", 
+        "creation_date": "2008-06-10"
+    }, 
+    {
+        "version_number": "2.0.3a-2+b2", 
+        "maintainer": "Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>", 
+        "package_name": "k3b", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 161
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 81
+            }
+        }, 
+        "rank": "1464", 
+        "data_collection_timestamp": "2019-12-11-05:37:26", 
+        "source": "debian", 
+        "creation_date": "2003-02-20"
+    }, 
+    {
+        "version_number": "3.22.1-1", 
+        "maintainer": "Vincent Cheng <vcheng@debian.org>", 
+        "package_name": "gnote", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 39
+            }, 
+            "cpp_version": [
+                "gnu++11"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 97
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "stack-protector": "yes", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found"
+        }, 
+        "rank": "1488", 
+        "data_collection_timestamp": "2019-12-11-05:37:30", 
+        "source": "debian", 
+        "creation_date": "2009-04-10"
+    }, 
+    {
+        "version_number": "4:16.04.3-4~deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "akregator", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 606
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }
+        }, 
+        "rank": "1504", 
+        "data_collection_timestamp": "2019-12-11-05:37:34", 
+        "source": "debian", 
+        "creation_date": "2000-05-17"
+    }, 
+    {
+        "version_number": "2.0.3-1", 
+        "maintainer": "Reinhard Tartler <siretart@tauware.de>", 
+        "package_name": "keepassx", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 36
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 65
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "yes (some protected functions found)", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++11"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found"
+        }, 
+        "rank": "1522", 
+        "data_collection_timestamp": "2019-12-11-05:37:37", 
+        "source": "debian", 
+        "creation_date": "2006-09-06"
+    }, 
+    {
+        "version_number": "4:5.8.4-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kinfocenter", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 27
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found"
+        }, 
+        "rank": "1523", 
+        "data_collection_timestamp": "2019-12-11-05:37:40", 
+        "source": "debian", 
+        "creation_date": "2014-06-09"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kwalletmanager", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 11
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 34
+            }
+        }, 
+        "rank": "1543", 
+        "data_collection_timestamp": "2019-12-11-05:37:42", 
+        "source": "debian", 
+        "creation_date": "2012-06-18"
+    }, 
+    {
+        "version_number": "4:5.8.4-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kmenuedit", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 28
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 16
+            }
+        }, 
+        "rank": "1550", 
+        "data_collection_timestamp": "2019-12-11-05:37:45", 
+        "source": "debian", 
+        "creation_date": "2014-11-10"
+    }, 
+    {
+        "version_number": "02.18-0.1", 
+        "maintainer": "Ghe Rivero <ghe@debian.org>", 
+        "package_name": "lshw", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "no, not found!", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "no, normal executable!", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1557", 
+        "data_collection_timestamp": "2019-12-11-05:37:47", 
+        "source": "debian", 
+        "creation_date": "2003-02-15"
+    }, 
+    {
+        "version_number": "3.7.2-2.1", 
+        "maintainer": "Debian Multimedia Maintainers <pkg-multimedia-maintainers@lists.alioth.debian.org>", 
+        "package_name": "audacious-plugins", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1572", 
+        "data_collection_timestamp": "2019-12-11-05:37:51", 
+        "source": "debian", 
+        "creation_date": "2006-11-03"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kgpg", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 33
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "fortify-source": "no, only unprotected functions found!", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1593", 
+        "data_collection_timestamp": "2019-12-11-05:37:54", 
+        "source": "debian", 
+        "creation_date": "2011-12-16"
+    }, 
+    {
+        "version_number": "9.22-1+b1", 
+        "maintainer": "Ryan Kavanagh <rak@debian.org>", 
+        "package_name": "rxvt-unicode", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 40
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1611", 
+        "data_collection_timestamp": "2019-12-11-05:37:56", 
+        "source": "debian", 
+        "creation_date": "2004-02-24"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kfind", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 21
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 340
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 39
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 63
+            }
+        }, 
+        "rank": "1613", 
+        "data_collection_timestamp": "2019-12-11-05:37:59", 
+        "source": "debian", 
+        "creation_date": "1997-09-20"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "juk", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 7
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 77
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 20
+            }
+        }, 
+        "rank": "1614", 
+        "data_collection_timestamp": "2019-12-11-05:38:02", 
+        "source": "debian", 
+        "creation_date": "2012-06-06"
+    }, 
+    {
+        "version_number": "4:16.08.0-1+b1", 
+        "maintainer": "Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "sweeper", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1648", 
+        "data_collection_timestamp": "2019-12-11-05:38:03", 
+        "source": "debian", 
+        "creation_date": "2012-06-19"
+    }, 
+    {
+        "version_number": "4:16.04.3-4~deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kaddressbook", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 606
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++14"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }
+        }, 
+        "rank": "1667", 
+        "data_collection_timestamp": "2019-12-11-05:38:07", 
+        "source": "debian", 
+        "creation_date": "2000-05-17"
+    }, 
+    {
+        "version_number": "1.2-7+b2", 
+        "maintainer": "Michal \u010ciha\u0159 <nijel@debian.org>", 
+        "package_name": "numlockx", 
+        "detection_tool_output": {
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "immediate-binding": "no, not found!", 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1671", 
+        "data_collection_timestamp": "2019-12-11-05:38:09", 
+        "source": "debian", 
+        "creation_date": "2002-05-26"
+    }, 
+    {
+        "version_number": "3.3.7-3", 
+        "maintainer": "Cristian Greco <cristian@debian.org>", 
+        "package_name": "qbittorrent", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 150
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "yes (some protected functions found)", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }
+        }, 
+        "rank": "1673", 
+        "data_collection_timestamp": "2019-12-11-05:38:13", 
+        "source": "debian", 
+        "creation_date": "2008-07-04"
+    }, 
+    {
+        "version_number": "1.3.1+git276-g3485bbe43+dfsg-1", 
+        "maintainer": "Thomas Pierson <contact@thomaspierson.fr>", 
+        "package_name": "clementine", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 36
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 114
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 320
+            }, 
+            "cpp_version": [
+                "gnu++11", 
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 7
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 94
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 109
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 48
+            }
+        }, 
+        "rank": "1684", 
+        "data_collection_timestamp": "2019-12-11-05:38:18", 
+        "source": "debian", 
+        "creation_date": "2011-05-23"
+    }, 
+    {
+        "version_number": "3.04-4", 
+        "maintainer": "Debian QA Group <packages@qa.debian.org>", 
+        "package_name": "xpdf", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "immediate-binding": "yes", 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1728", 
+        "data_collection_timestamp": "2019-12-11-05:38:20", 
+        "source": "debian", 
+        "creation_date": "1996-11-24"
+    }, 
+    {
+        "version_number": "4:16.08.0-1+b1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kmag", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1773", 
+        "data_collection_timestamp": "2019-12-11-05:38:22", 
+        "source": "debian", 
+        "creation_date": "2012-06-17"
+    }, 
+    {
+        "version_number": "4:16.08.0-1+b1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kmousetool", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1793", 
+        "data_collection_timestamp": "2019-12-11-05:38:24", 
+        "source": "debian", 
+        "creation_date": "2012-06-17"
+    }, 
+    {
+        "version_number": "4:16.08.0-1+b1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kmouth", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1845", 
+        "data_collection_timestamp": "2019-12-11-05:38:26", 
+        "source": "debian", 
+        "creation_date": "2012-06-17"
+    }, 
+    {
+        "version_number": "2.1.2", 
+        "maintainer": "Enrico Rossi <e.rossi@tecnobrain.com>", 
+        "package_name": "debtags", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "none"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "1899", 
+        "data_collection_timestamp": "2019-12-11-05:38:27", 
+        "source": "debian", 
+        "creation_date": "2003-04-24"
+    }, 
+    {
+        "version_number": "3.0.2-1+b1", 
+        "maintainer": "Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>", 
+        "package_name": "yakuake", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 9
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2052", 
+        "data_collection_timestamp": "2019-12-11-05:38:30", 
+        "source": "debian", 
+        "creation_date": "2005-10-29"
+    }, 
+    {
+        "version_number": "2.79.b+dfsg0-1~deb9u1", 
+        "maintainer": "Debian Multimedia Maintainers <pkg-multimedia-maintainers@lists.alioth.debian.org>", 
+        "package_name": "blender", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 82
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 330
+            }, 
+            "scoped_array": {
+                "detected": "yes", 
+                "occurrences": 40
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 1426
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 86
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 483
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 210
+            }
+        }, 
+        "rank": "2090", 
+        "data_collection_timestamp": "2019-12-11-05:38:53", 
+        "source": "debian", 
+        "creation_date": "1999-01-01"
+    }, 
+    {
+        "version_number": "0.8.1-7", 
+        "maintainer": "Debian Multimedia Maintainers <pkg-multimedia-maintainers@lists.alioth.debian.org>", 
+        "package_name": "amb-plugins", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2162", 
+        "data_collection_timestamp": "2019-12-11-05:38:54", 
+        "source": "debian", 
+        "creation_date": "2007-12-13"
+    }, 
+    {
+        "version_number": "4:16.04.3-4~deb9u1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kalarm", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 23
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 606
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }
+        }, 
+        "rank": "2180", 
+        "data_collection_timestamp": "2019-12-11-05:38:59", 
+        "source": "debian", 
+        "creation_date": "2000-05-17"
+    }, 
+    {
+        "version_number": "3.70-3+b2", 
+        "maintainer": "Barak A. Pearlmutter <bap@debian.org>", 
+        "package_name": "pstoedit", 
+        "detection_tool_output": {
+            "immediate-binding": "yes", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 16
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 14
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 6
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }
+        }, 
+        "rank": "2190", 
+        "data_collection_timestamp": "2019-12-11-05:39:01", 
+        "source": "debian", 
+        "creation_date": "1997-01-01"
+    }, 
+    {
+        "version_number": "4:16.08.0-1+b1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kmix", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 14
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "c++11"
+            ], 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 164
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 9
+            }
+        }, 
+        "rank": "2208", 
+        "data_collection_timestamp": "2019-12-11-05:39:03", 
+        "source": "debian", 
+        "creation_date": "2012-06-07"
+    }, 
+    {
+        "version_number": "7.6.33+dfsg-12", 
+        "maintainer": "Debian BOINC Maintainers <pkg-boinc-devel@lists.alioth.debian.org>", 
+        "package_name": "boinc", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 43
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 6
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2277", 
+        "data_collection_timestamp": "2019-12-11-05:39:12", 
+        "source": "debian", 
+        "creation_date": "2004-11-12"
+    }, 
+    {
+        "version_number": "4.2.0-1+b1", 
+        "maintainer": "Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "qtcreator", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 119
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 373
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 1853
+            }, 
+            "cpp_version": [
+                "c++11", 
+                "gnu++1y"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "yes", 
+                "occurrences": 6
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 44
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 82
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 391
+            }
+        }, 
+        "rank": "2285", 
+        "data_collection_timestamp": "2019-12-11-05:39:28", 
+        "source": "debian", 
+        "creation_date": "2009-03-06"
+    }, 
+    {
+        "version_number": "1.8.13-4+b1", 
+        "maintainer": "Matthias Klose <doko@debian.org>", 
+        "package_name": "doxygen", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 5
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 13
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "gnu++11"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 88
+            }
+        }, 
+        "rank": "2292", 
+        "data_collection_timestamp": "2019-12-11-05:39:32", 
+        "source": "debian", 
+        "creation_date": "2000-07-20"
+    }, 
+    {
+        "version_number": "1.10.16-1", 
+        "maintainer": "Francois Marier <francois@debian.org>", 
+        "package_name": "workrave", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "immediate-binding": "yes", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++11", 
+                "gnu++11"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2302", 
+        "data_collection_timestamp": "2019-12-11-05:39:35", 
+        "source": "debian", 
+        "creation_date": "2002-09-22"
+    }, 
+    {
+        "version_number": "1.3.6-5.1", 
+        "maintainer": "Nobuhiro Iwamatsu <iwamatsu@debian.org>", 
+        "package_name": "slim", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 9
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 25
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2320", 
+        "data_collection_timestamp": "2019-12-11-05:39:37", 
+        "source": "debian", 
+        "creation_date": "2007-04-05"
+    }, 
+    {
+        "version_number": "4.0.3-3", 
+        "maintainer": "Debian Octave Group <pkg-octave-devel@lists.alioth.debian.org>", 
+        "package_name": "octave", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 12
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 14
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 193
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 65
+            }
+        }, 
+        "rank": "2325", 
+        "data_collection_timestamp": "2019-12-11-05:39:45", 
+        "source": "debian", 
+        "creation_date": "1996-10-14"
+    }, 
+    {
+        "version_number": "16.12.2-1", 
+        "maintainer": "Patrick Matth\u00e4i <pmatthaei@debian.org>", 
+        "package_name": "kdenlive", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 272
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++11", 
+                "gnu++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2352", 
+        "data_collection_timestamp": "2019-12-11-05:39:50", 
+        "source": "debian", 
+        "creation_date": "2009-04-12"
+    }, 
+    {
+        "version_number": "7.20140602+b4", 
+        "maintainer": "Bernd Zeimetz <bzed@debian.org>", 
+        "package_name": "gimp-plugin-registry", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2413", 
+        "data_collection_timestamp": "2019-12-11-05:39:53", 
+        "source": "debian", 
+        "creation_date": "2007-05-14"
+    }, 
+    {
+        "version_number": "5.0-1", 
+        "maintainer": "Philip Rinn <rinni@inventati.org>", 
+        "package_name": "rawtherapee", 
+        "detection_tool_output": {
+            "immediate-binding": "yes", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 32
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "yes (some protected functions found)", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2424", 
+        "data_collection_timestamp": "2019-12-11-05:40:06", 
+        "source": "debian", 
+        "creation_date": "2010-05-26"
+    }, 
+    {
+        "version_number": "7.2.0-2", 
+        "maintainer": "Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>", 
+        "package_name": "grass", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2504", 
+        "data_collection_timestamp": "2019-12-11-05:40:11", 
+        "source": "debian", 
+        "creation_date": "2003-11-10"
+    }, 
+    {
+        "version_number": "4:5.3.0-1", 
+        "maintainer": "Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>", 
+        "package_name": "digikam", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 72
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 200
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 720
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "unknown, no protectable libc functions used", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 468
+            }
+        }, 
+        "rank": "2550", 
+        "data_collection_timestamp": "2019-12-11-05:40:29", 
+        "source": "debian", 
+        "creation_date": "2002-07-15"
+    }, 
+    {
+        "version_number": "1.9.1-4", 
+        "maintainer": "Eduard Bloch <blade@debian.org>", 
+        "package_name": "encfs", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 62
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 147
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 281
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2563", 
+        "data_collection_timestamp": "2019-12-11-05:40:32", 
+        "source": "debian", 
+        "creation_date": "2005-03-10"
+    }, 
+    {
+        "version_number": "1:3.1.1+dfsg-1", 
+        "maintainer": "Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "krita", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 367
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 904
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "gnu++11"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 151
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 739
+            }
+        }, 
+        "rank": "2585", 
+        "data_collection_timestamp": "2019-12-11-05:40:53", 
+        "source": "debian", 
+        "creation_date": "2016-09-11"
+    }, 
+    {
+        "version_number": "2016.2.0+dfsg-1", 
+        "maintainer": "Debian PhotoTools Maintainers <pkg-phototools-devel@lists.alioth.debian.org>", 
+        "package_name": "hugin", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 7
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 28
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 155
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 26
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }
+        }, 
+        "rank": "2593", 
+        "data_collection_timestamp": "2019-12-11-05:40:59", 
+        "source": "debian", 
+        "creation_date": "2006-07-27"
+    }, 
+    {
+        "version_number": "0.16+dfsg2-3", 
+        "maintainer": "Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>", 
+        "package_name": "freecad", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 216
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 182
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 2760
+            }, 
+            "cpp_version": [
+                "none"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 79
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 596
+            }
+        }, 
+        "rank": "2620", 
+        "data_collection_timestamp": "2019-12-11-05:41:10", 
+        "source": "debian", 
+        "creation_date": "2006-09-26"
+    }, 
+    {
+        "version_number": "4.0.5+dfsg1-4", 
+        "maintainer": "Georges Khaznadar <georgesk@debian.org>", 
+        "package_name": "kicad", 
+        "detection_tool_output": {
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 20
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 21
+            }, 
+            "scoped_array": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 524
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "scoped_ptr": {
+                "detected": "yes", 
+                "occurrences": 3
+            }, 
+            "shared_array": {
+                "detected": "yes", 
+                "occurrences": 6
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 24
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 57
+            }
+        }, 
+        "rank": "2626", 
+        "data_collection_timestamp": "2019-12-11-05:41:39", 
+        "source": "debian", 
+        "creation_date": "2006-09-30"
+    }, 
+    {
+        "version_number": "1.3.4-2.2+b2", 
+        "maintainer": "Paul Brossier <piem@debian.org>", 
+        "package_name": "kino", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 10
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2627", 
+        "data_collection_timestamp": "2019-12-11-05:41:43", 
+        "source": "debian", 
+        "creation_date": "2001-06-14"
+    }, 
+    {
+        "version_number": "4.3.1-5+b2", 
+        "maintainer": "Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>", 
+        "package_name": "ktorrent", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 17
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 12
+            }
+        }, 
+        "rank": "2628", 
+        "data_collection_timestamp": "2019-12-11-05:41:47", 
+        "source": "debian", 
+        "creation_date": "2005-10-24"
+    }, 
+    {
+        "version_number": "0.7.4-1+b2", 
+        "maintainer": "Giuseppe Iuculano <iuculano@debian.org>", 
+        "package_name": "nload", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "no, not found!", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "no, normal executable!", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2631", 
+        "data_collection_timestamp": "2019-12-11-05:41:49", 
+        "source": "debian", 
+        "creation_date": "2001-08-26"
+    }, 
+    {
+        "version_number": "4:2.1.3-4+b1", 
+        "maintainer": "Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>", 
+        "package_name": "kile", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 53
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "gnu++11", 
+                "c++0x"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 49
+            }
+        }, 
+        "rank": "2653", 
+        "data_collection_timestamp": "2019-12-11-05:41:54", 
+        "source": "debian", 
+        "creation_date": "2001-09-16"
+    }, 
+    {
+        "version_number": "0.0.20150615+2+gb4999f5e-1", 
+        "maintainer": "Axel Beckert <abe@debian.org>", 
+        "package_name": "xsettingsd", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2667", 
+        "data_collection_timestamp": "2019-12-11-05:41:56", 
+        "source": "debian", 
+        "creation_date": "2013-08-03"
+    }, 
+    {
+        "version_number": "4:16.08.3-1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "krdc", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 4
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }
+        }, 
+        "rank": "2681", 
+        "data_collection_timestamp": "2019-12-11-05:41:58", 
+        "source": "debian", 
+        "creation_date": "2013-06-21"
+    }, 
+    {
+        "version_number": "4.5-1", 
+        "maintainer": "Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>", 
+        "package_name": "texmaker", 
+        "detection_tool_output": {
+            "immediate-binding": "yes", 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 29
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "cpp_version": [
+                "gnu++11"
+            ], 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2703", 
+        "data_collection_timestamp": "2019-12-11-05:42:03", 
+        "source": "debian", 
+        "creation_date": "2006-04-25"
+    }, 
+    {
+        "version_number": "1.1.3-7", 
+        "maintainer": "Debian Edu Packaging Team <debian-edu-pkg-team@lists.alioth.debian.org>", 
+        "package_name": "lmms", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 19
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 12
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 484
+            }, 
+            "cpp_version": [
+                "c++0x", 
+                "c++11"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "yes (some protected functions found)", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 106
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found"
+        }, 
+        "rank": "2743", 
+        "data_collection_timestamp": "2019-12-11-05:42:10", 
+        "source": "debian", 
+        "creation_date": "2005-07-22"
+    }, 
+    {
+        "version_number": "2:2.5.0-2", 
+        "maintainer": "Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>", 
+        "package_name": "krusader", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 110
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 26
+            }
+        }, 
+        "rank": "2750", 
+        "data_collection_timestamp": "2019-12-11-05:42:14", 
+        "source": "debian", 
+        "creation_date": "2000-12-09"
+    }, 
+    {
+        "version_number": "1.1.9-1+b1", 
+        "maintainer": "Anibal Monsalve Salazar <anibal@debian.org>", 
+        "package_name": "pbzip2", 
+        "detection_tool_output": {
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "fortify-source": "no, only unprotected functions found!", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "no, not found!", 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found"
+        }, 
+        "rank": "2808", 
+        "data_collection_timestamp": "2019-12-11-05:42:16", 
+        "source": "debian", 
+        "creation_date": "2005-05-28"
+    }, 
+    {
+        "version_number": "1.4.6+dfsg-4", 
+        "maintainer": "Mattia Rizzolo <mattia@debian.org>", 
+        "package_name": "scribus", 
+        "detection_tool_output": {
+            "immediate-binding": "yes", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 702
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 50
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 2115
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "fortify-source": "yes (some protected functions found)", 
+            "PIE": "yes", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 293
+            }
+        }, 
+        "rank": "2822", 
+        "data_collection_timestamp": "2019-12-11-05:42:30", 
+        "source": "debian", 
+        "creation_date": "2001-10-31"
+    }, 
+    {
+        "version_number": "1.30.0-2", 
+        "maintainer": "Patrick Ruckstuhl <patrick@ch.tario.org>", 
+        "package_name": "aria2", 
+        "detection_tool_output": {
+            "immediate-binding": "no, not found!", 
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 1
+            }, 
+            "reinterpret_cast": {
+                "detected": "yes", 
+                "occurrences": 7
+            }, 
+            "ro-relocation": "yes", 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 34
+            }, 
+            "stack-clash": "unknown, no -fstack-clash-protection instructions found", 
+            "PIE": "yes", 
+            "fortify-source": "yes (some protected functions found)", 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "control-flow-integrity": "unknown, no -fcf-protection instructions found!", 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "yes", 
+                "occurrences": 1239
+            }, 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "yes", 
+                "occurrences": 681
+            }, 
+            "stack-protector": "yes", 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2840", 
+        "data_collection_timestamp": "2019-12-11-05:42:34", 
+        "source": "debian", 
+        "creation_date": "2006-08-31"
+    }, 
+    {
+        "version_number": "1:2.4~release-5+b3", 
+        "maintainer": "Debian Accessibility Team <debian-accessibility@lists.debian.org>", 
+        "package_name": "speech-tools", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "cpp_version": [
+                "c++14"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }
+        }, 
+        "rank": "2859", 
+        "data_collection_timestamp": "2019-12-11-05:42:36", 
+        "source": "debian", 
+        "creation_date": "1997-07-15"
+    }, 
+    {
+        "version_number": "4:16.08.1-1+b1", 
+        "maintainer": "Debian/Kubuntu Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>", 
+        "package_name": "kpat", 
+        "detection_tool_output": {
+            "const_cast": {
+                "detected": "yes", 
+                "occurrences": 2
+            }, 
+            "reinterpret_cast": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "static_cast": {
+                "detected": "yes", 
+                "occurrences": 6
+            }, 
+            "cpp_version": [
+                "c++0x"
+            ], 
+            "weak_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "scoped_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "intrusive_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "unique_ptr": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "shared_array": {
+                "detected": "no", 
+                "occurrences": 0
+            }, 
+            "dynamic_cast": {
+                "detected": "yes", 
+                "occurrences": 13
+            }
+        }, 
+        "rank": "2876", 
+        "data_collection_timestamp": "2019-12-11-05:42:39", 
+        "source": "debian", 
+        "creation_date": "2012-12-07"
+    }
+]
