@@ -1,0 +1,77 @@
+# This file is split into detectors, parsers and features_selected.
+# Unless you've modifying the detectors / parsers, you should only
+# modify features_selected which based on those values inits the necessary
+# detectors and parsers.
+detectors:
+  - detector:
+      name: HARDENING_DETECTOR
+      type: HardeningDetector
+      parser_to_use:
+      features_provided:
+        - ro-relocation
+        - stack-protector
+        - fortify-source
+        - PIE
+        - immediate-binding
+        - stack-clash
+        - control-flow-integrity
+  - detector:
+      name: ASLR_DETECTOR
+      type: ASLRDetector
+      parser_to_use: BUILD_LOG_PARSER
+      features_provided:
+        - aslr_in_linking
+  - detector:
+      name: NAMEDCAST_DETECTOR
+      type: NamedCastDetector
+      parser_to_use:
+      features_provided:
+        - static_cast
+        - reinterpret_cast
+        - const_cast
+        - dynamic_cast
+  - detector:
+      name: SMARTPOINTER_DETECTOR
+      type: SmartPointerDetector
+      parser_to_use:
+      features_provided:
+        - unique_ptr
+        - shared_ptr
+        - weak_ptr
+        # Boost specific
+        - scoped_ptr
+        - scoped_array
+        - shared_array
+        - intrusive_ptr
+# Parsers are sometimes used by detectors.
+parsers:
+  - parser:
+      name: BUILD_LOG_PARSER
+      type: BuildLogParser
+  - parser:
+      name: RULES_FLAG_PARSER
+      type: RulesFlagParser
+
+# Modify the features selected to adjust which parsers and detectors run.
+# Detectors are tagged with the features they can detect, uniquely labeled if
+# multiple detectors clash on provided features (see features_provided).
+features_selected:
+  - ro-relocation
+  - stack-protector
+  - fortify-source
+  - PIE
+  - immediate-binding
+  - stack-clash
+  - control-flow-integrity
+  # c++ specific lang. features.
+  - unique_ptr
+  - shared_ptr
+  - weak_ptr
+  - scoped_ptr
+  - scoped_array
+  - shared_array
+  - instrusive_ptr
+  - static_cast
+  - reinterpret_cast
+  - const_cast
+  - dynamic_cast
