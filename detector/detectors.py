@@ -4,6 +4,8 @@ binary and source.
 """
 
 import logging
+import pkg_resources
+import re
 import subprocess
 
 
@@ -53,7 +55,6 @@ class ASLRDetector(FlagDetector):
 
 
 class CppVersionDetector(Detector):
-    # TODO(kbaichoo): implement!
     """
     Given the build logs, attempt to detect the c++ version compiled against.
     """
@@ -85,7 +86,19 @@ class CppVersionDetector(Detector):
                 if key in line:
                     stds_count[key] += 1
 
-        return list(filter(lambda x: stds_count[x] > 0, stds_count))
+        results = list(filter(lambda x: stds_count[x] > 0, stds_count))
+
+        # If no results, use GCC version to infer C++ version.
+        if len(results) == 0:
+            match = re.search(r'g\+\+ \(= (?:[0-9]+:)?([0-9.]+).*\)', '\n'.join(compiler_lines))
+            if match and len(match.groups()) == 1:
+                version = match.groups()[0]
+                if pkg_resources.parse_version('6.1') < pkg_resources.parse_version(version):
+                    results = ['c++14']
+                else:
+                    results = ['c++03']
+
+        return results
 
     def run(self, parsers, **kwargs):
         detection_results = {'Unimplemented': True}

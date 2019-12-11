@@ -40,11 +40,13 @@ class BuildLogParser:
                 raise ValueError('Filepath points to a non file object')
 
             cpp_version_regex = re.compile(r"g\+\+ .*-std=")
+            gpp_package_version_regex = re.compile(r"g\+\+ \(= .*\)")
 
             with open(self.build_log_path, 'r') as fh:
                 line = fh.readline()
                 while line != '':
-                    if cpp_version_regex.search(line):
+                    if (cpp_version_regex.search(line) or
+                        gpp_package_version_regex.search(line)):
                         self.compiler_lines.append(line)
                     line = fh.readline()
 
