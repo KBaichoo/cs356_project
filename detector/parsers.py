@@ -39,11 +39,8 @@ class BuildLogParser:
             if not os.path.isfile(self.build_log_path):
                 raise ValueError('Filepath points to a non file object')
 
-            if not self.binary_name:
-                raise ValueError(
-                    'You can only use the BuildLogParser if the --binary_name flag is passed.')
-
-            linker_output_flag = '-o ' + self.binary_name.lower()
+            linker_output_flag = (
+                '-o ' + self.binary_name.lower() if self.binary_name else None)
             object_file_regex = re.compile('g\+\+ .* -c')
             defined_flag_regex = re.compile('-D\w*=[^\s]+')
 
@@ -59,7 +56,8 @@ class BuildLogParser:
                             'After removing line went from\n %s to\n %s',
                             old_line, line)
                         self.compiler_lines.append(line)
-                        if linker_output_flag in line.lower():
+                        if (linker_output_flag and
+                                linker_output_flag in line.lower()):
                             self.linker_lines.append(line)
                         elif object_file_regex.match(line):
                             self.object_file_lines.append(line)
