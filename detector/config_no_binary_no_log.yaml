@@ -45,7 +45,7 @@ features_selected:
   - scoped_ptr
   - scoped_array
   - shared_array
-  - instrusive_ptr
+  - intrusive_ptr
   - static_cast
   - reinterpret_cast
   - const_cast
