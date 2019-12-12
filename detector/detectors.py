@@ -120,7 +120,8 @@ class CppVersionDetector(Detector):
 
         # If no results, use GCC version to infer C++ version.
         if len(results) == 0:
-            match = re.search(r'g\+\+ \(= (?:[0-9]+:)?([0-9.]+).*\)', '\n'.join(compiler_lines))
+            match = re.search(
+                r'g\+\+ \(= (?:[0-9]+:)?([0-9.]+).*\)', '\n'.join(compiler_lines))
             if match and len(match.groups()) == 1:
                 version = match.groups()[0]
                 if pkg_resources.parse_version('6.1') < pkg_resources.parse_version(version):
@@ -131,7 +132,6 @@ class CppVersionDetector(Detector):
         return results
 
     def run(self, parsers, **kwargs):
-        detection_results = {'Unimplemented': True}
         parser = parsers[self.parser_to_use]
         all_compiler_lines = parser.parse(stage='all')
         logging.info('Found %d compiler lines', len(all_compiler_lines))
