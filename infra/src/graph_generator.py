@@ -7,7 +7,8 @@ import numpy as np
 
 class GraphGenerator:
    def __init__(self, data_file, output_file, graph_type,
-                title, x_axis_label, y_axis_label, render_local):
+                title, x_axis_label, y_axis_label, render_local,
+                groups):
       # Constructor arguments.
       self._data_file = data_file
       self._output_file = output_file
@@ -16,6 +17,7 @@ class GraphGenerator:
       self._x_axis_label = x_axis_label
       self._y_axis_label = y_axis_label
       self._render_local = render_local
+      self._groups = groups
 
       # Internal state.
       self._data = None
@@ -29,7 +31,7 @@ class GraphGenerator:
       fig = plt.figure()
 
       # Set title and axes.
-      fig.suptitle(self._title)
+      fig.suptitle(self._title, y=0.99)
       plt.xlabel(self._x_axis_label)
       plt.ylabel(self._y_axis_label)
 
@@ -50,6 +52,9 @@ class GraphGenerator:
       # Hide x-axis tick marks.
       plt.tick_params(axis=u'x', which=u'both', length=0)
 
+      # Set layout.
+      plt.tight_layout()
+
       # Render graph.
       if self._render_local:
          plt.show()
@@ -58,7 +63,52 @@ class GraphGenerator:
       plt.close()
 
    def _generate_grouped_bar_graph(self):
-      pass
+      fig = plt.figure()
+
+      # Set title and axes.
+      fig.suptitle(self._title, y=0.99)
+      plt.xlabel(self._x_axis_label)
+      plt.ylabel(self._y_axis_label)
+
+      # Add data.
+      labels = self._data[:,0]
+      num_groups = len(self._groups)
+      group_data = [self._data[:,i] for i in range(1, num_groups + 1)]
+      x_pos = np.arange(len(labels))
+      bar_width = 0.4
+      bar_offsets = np.arange(-(num_groups // 2 - 0.5) * bar_width,
+                              (num_groups // 2 - 0.5),
+                              bar_width)
+      color = iter(['darkgreen', 'firebrick', 'blue', 'orange', 'seagreen', 'red'])
+      group_rects = [plt.bar(x_pos + bar_offset - bar_width / 2, data, bar_width, label=name,
+                             color=next(color))
+                     for bar_offset, name, data
+                     in zip(bar_offsets, self._groups, group_data)]
+      plt.xticks(x_pos, labels)
+
+      # Add legend.
+      plt.legend()
+
+      # Add values on top of the bars.
+      height_offset = 0.02 * max([max(data.astype(np.int)) for data in group_data])
+      for rects in group_rects:
+         for rect in rects:
+            height = int(rect.get_height())
+            plt.text(rect.get_x() + bar_width / 2, height + height_offset, str(height),
+                     ha='center', va='center')
+
+      # Hide x-axis tick marks.
+      plt.tick_params(axis=u'x', which=u'both', length=0)
+
+      # Set layout.
+      plt.tight_layout()
+
+      # Render graph.
+      if self._render_local:
+         plt.show()
+      else:
+         plt.savefig(self._output_file)
+      plt.close()
 
    def _generate_cdf_graph(self):
       pass
@@ -84,6 +134,7 @@ if __name__ == '__main__':
    parser.add_argument('title', help='title for the graph')
    parser.add_argument('x_axis_label', help='label for x-axis')
    parser.add_argument('y_axis_label', help='label for y-axis')
+   parser.add_argument('--groups', help='group names for grouped bar graph', nargs='+')
    parser.add_argument('-r', '--render-local', action='store_true',
                        help='render figure locally using X11')
    args = parser.parse_args()
@@ -94,5 +145,5 @@ if __name__ == '__main__':
 
    g = GraphGenerator(args.data_file, args.output_file, args.graph_type,
                       args.title, args.x_axis_label, args.y_axis_label,
-                      args.render_local)
+                      args.render_local, args.groups)
    g.run()
