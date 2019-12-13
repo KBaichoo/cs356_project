@@ -3,8 +3,8 @@ import argparse
 import csv
 from itertools import cycle
 import matplotlib
-from matplotlib.dates import DateFormatter
 import numpy as np
+import os
 import scipy.optimize
 import scipy.stats
 
@@ -216,12 +216,13 @@ if __name__ == '__main__':
                        action='store_true')
    args = parser.parse_args()
 
-   if not args.render_local:
+   render_local = args.render_local or 'RENDER_LOCAL' in os.environ
+   if not render_local:
       matplotlib.use('Agg')
    import matplotlib.pyplot as plt
 
    g = GraphGenerator(args.data_file, args.output_file, args.graph_type,
                       args.title, args.x_axis_label, args.y_axis_label,
-                      args.render_local, args.groups, args.color, args.num_bins,
+                      render_local, args.groups, args.color, args.num_bins,
                       args.cycle_colors, args.slant)
    g.run()

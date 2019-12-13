@@ -3,6 +3,10 @@
 set -e
 set -x
 
+if [ "$1" == "-r" ]; then
+    export RENDER_LOCAL=1
+fi
+
 # C++ Version
 ./src/graph_generator.py results/query_data/cpp_version.csv results/graphs/cpp_version.png bar \
                          "C++ Version" "C++ version" "Count"
