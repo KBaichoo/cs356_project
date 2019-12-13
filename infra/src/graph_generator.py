@@ -22,9 +22,6 @@ class GraphGenerator:
 
    def _load_data(self):
       with open(self._data_file) as f:
-         # Seek past first line which has the query.
-         f.readline()
-
          # Read the CSV data.
          self._data = np.array(list(csv.reader(f, delimiter=',')))
 
