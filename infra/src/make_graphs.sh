@@ -14,7 +14,7 @@ fi
 # Binary Hardening Others
 ./src/graph_generator.py results/query_data/binary_hardening_others.csv \
                          results/graphs/binary_hardening_others.png grouped_bar \
-                         "Binary Hardening Usage" "" "Count" --groups "yes" "no" &
+                         "Binary Hardening Usage" "" "Count" --groups "Yes" "No" &
 
 # Binary Hardening Fortified Source Functions
 ./src/graph_generator.py results/query_data/binary_hardening_fsf.csv \
