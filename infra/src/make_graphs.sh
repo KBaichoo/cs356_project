@@ -29,12 +29,12 @@ fi
 # Introduction Smart Ptr
 ./src/graph_generator.py results/query_data/introduction_smart_ptr.csv \
                          results/graphs/introduction_smart_ptr.png bar \
-                         "Smart Pointer Introduction Commits" "" "Count" --slant &
+                         "Smart Pointer Introduction Year" "" "Count" --slant &
 
 # Introduction Named Cast
 ./src/graph_generator.py results/query_data/introduction_named_cast.csv \
                          results/graphs/introduction_named_cast.png bar \
-                         "Named Cast Introduction Commits" "" "Count" --slant &
+                         "Named Cast Introduction Year" "" "Count" --slant &
 
 # Project Creation Year
 ./src/graph_generator.py results/query_data/project_creation.csv \
