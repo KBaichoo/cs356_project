@@ -36,4 +36,9 @@ fi
                          results/graphs/introduction_named_cast.png bar \
                          "Named Cast Introduction Commits" "" "Count" --slant &
 
+# Project Creation Year
+./src/graph_generator.py results/query_data/project_creation.csv \
+                         results/graphs/project_creation.png bar \
+                         "Project Creation Year" "" "Count" --slant &
+
 wait
