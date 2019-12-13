@@ -84,6 +84,7 @@ class GraphGenerator:
       # Set y-lim based on max bar value.
       axes = plt.gca()
       axes.set_ylim([0, max_bar * 1.1])
+      axes.margins(0.04, 0)
 
       if self._slant:
          # Slant the x-axis labels.
