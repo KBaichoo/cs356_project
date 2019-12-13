@@ -5,11 +5,13 @@ from itertools import cycle
 import matplotlib
 from matplotlib.dates import DateFormatter
 import numpy as np
+import scipy.optimize
+import scipy.stats
 
 class GraphGenerator:
    def __init__(self, data_file, output_file, graph_type,
                 title, x_axis_label, y_axis_label, render_local,
-                groups, default_color):
+                groups, default_color, num_bins, cycle_colors):
       # Constructor arguments.
       self._data_file = data_file
       self._output_file = output_file
@@ -20,9 +22,12 @@ class GraphGenerator:
       self._render_local = render_local
       self._groups = groups
       self._default_color = default_color
+      self._num_bins = num_bins
+      self._cycle_colors = cycle_colors
 
       # Internal state.
       self._data = None
+      self._colors = ['forestgreen', 'tomato', 'blue', 'orange', 'seagreen', 'firebrick']
 
    def _load_data(self):
       with open(self._data_file) as f:
@@ -42,7 +47,11 @@ class GraphGenerator:
       x_pos = np.arange(len(x_data))
       y_data = self._data[:,1]
       y_pos = np.arange(len(y_data))
-      plt.bar(y_pos, y_data, align='center', color=self._default_color)
+      if self._cycle_colors:
+         c = self._colors
+      else:
+         c = self._default_color
+      plt.bar(y_pos, y_data, align='center', color=c)
       plt.xticks(y_pos, x_data)
 
       # Add values on top of the bars.
@@ -86,7 +95,7 @@ class GraphGenerator:
          bar_offsets = np.arange(-(num_groups // 2 + 0.5) * bar_width,
                                  (num_groups // 2) * bar_width,
                                  bar_width)
-      color = cycle(['forestgreen', 'tomato', 'blue', 'orange', 'seagreen', 'firebrick'])
+      color = cycle(self._colors)
       group_rects = [plt.bar(x_pos + bar_offset, data, bar_width, label=name,
                              color=next(color))
                      for bar_offset, name, data
@@ -125,12 +134,15 @@ class GraphGenerator:
       plt.xlabel(self._x_axis_label)
       plt.ylabel(self._y_axis_label)
 
-      # Add data.
-      data = self._data[:,0].astype(np.int)
-      num_bins = 50
-      n, bins, patches = plt.hist(data, bins=num_bins, normed=True, cumulative=True,
-                                  label='Empirical', histtype='step',
-                                  alpha=0.8, color=self._default_color, linewidth=1.5)
+      # Generate data.
+      data = self._data[:,0].astype(np.float)
+      values, base = np.histogram(data, bins=self._num_bins)
+      cumulative = np.cumsum(values).astype(np.float)
+      cumulative /= cumulative[-1]
+      base = base[:-1]
+
+      # Add plot.
+      plt.plot(base, cumulative, color=self._default_color)
 
       # Constrain y-axis values.
       axes = plt.gca()
@@ -138,9 +150,6 @@ class GraphGenerator:
 
       # Set layout.
       plt.tight_layout()
-
-      # Add legend.
-      plt.legend(loc='right', borderaxespad=1.0)
 
       # Render graph.
       if self._render_local:
@@ -174,6 +183,10 @@ if __name__ == '__main__':
    parser.add_argument('-r', '--render-local', action='store_true',
                        help='render figure locally using X11')
    parser.add_argument('--color', help='color for primary line/bar in graph', default='forestgreen')
+   parser.add_argument('--num-bins', help='number of bins for the CDF',
+                       type=int, default=1000)
+   parser.add_argument('--cycle-colors', help='use multiple colors for bar graph',
+                       action='store_true')
    args = parser.parse_args()
 
    if not args.render_local:
@@ -182,5 +195,6 @@ if __name__ == '__main__':
 
    g = GraphGenerator(args.data_file, args.output_file, args.graph_type,
                       args.title, args.x_axis_label, args.y_axis_label,
-                      args.render_local, args.groups, args.color)
+                      args.render_local, args.groups, args.color, args.num_bins,
+                      args.cycle_colors)
    g.run()
