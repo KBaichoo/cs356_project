@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 import argparse
 import csv
+from itertools import cycle
 import matplotlib
 from matplotlib.dates import DateFormatter
 import numpy as np
@@ -8,7 +9,7 @@ import numpy as np
 class GraphGenerator:
    def __init__(self, data_file, output_file, graph_type,
                 title, x_axis_label, y_axis_label, render_local,
-                groups):
+                groups, bar_color):
       # Constructor arguments.
       self._data_file = data_file
       self._output_file = output_file
@@ -18,6 +19,7 @@ class GraphGenerator:
       self._y_axis_label = y_axis_label
       self._render_local = render_local
       self._groups = groups
+      self._bar_color = bar_color
 
       # Internal state.
       self._data = None
@@ -40,7 +42,7 @@ class GraphGenerator:
       x_pos = np.arange(len(x_data))
       y_data = self._data[:,1]
       y_pos = np.arange(len(y_data))
-      plt.bar(y_pos, y_data, align='center')
+      plt.bar(y_pos, y_data, align='center', color=self._bar_color)
       plt.xticks(y_pos, x_data)
 
       # Add values on top of the bars.
@@ -84,7 +86,7 @@ class GraphGenerator:
          bar_offsets = np.arange(-(num_groups // 2 + 0.5) * bar_width,
                                  (num_groups // 2) * bar_width,
                                  bar_width)
-      color = iter(['forestgreen', 'tomato', 'blue', 'orange', 'seagreen', 'firebrick'])
+      color = cycle(['forestgreen', 'tomato', 'blue', 'orange', 'seagreen', 'firebrick'])
       group_rects = [plt.bar(x_pos + bar_offset, data, bar_width, label=name,
                              color=next(color))
                      for bar_offset, name, data
@@ -142,6 +144,7 @@ if __name__ == '__main__':
    parser.add_argument('--groups', help='group names for grouped bar graph', nargs='+')
    parser.add_argument('-r', '--render-local', action='store_true',
                        help='render figure locally using X11')
+   parser.add_argument('--bar-color', help='bar color for bar graph', default='forestgreen')
    args = parser.parse_args()
 
    if not args.render_local:
@@ -150,5 +153,5 @@ if __name__ == '__main__':
 
    g = GraphGenerator(args.data_file, args.output_file, args.graph_type,
                       args.title, args.x_axis_label, args.y_axis_label,
-                      args.render_local, args.groups)
+                      args.render_local, args.groups, args.bar_color)
    g.run()
