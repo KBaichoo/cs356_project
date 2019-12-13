@@ -38,9 +38,9 @@ class GraphGenerator:
       colors = []
       color = cycle(self._colors)
       for value in values:
-         if value == 'yes':
+         if value.lower() == 'yes':
             colors.append('forestgreen')
-         elif value == 'no':
+         elif value.lower() == 'no':
             colors.append('tomato')
          else:
             colors.append(next(color))

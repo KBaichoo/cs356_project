@@ -1,8 +1,9 @@
 select
     case
-        when fsf like 'no%' then 'no'
-        when fsf like '%some%' then 'some'
-        when fsf like 'unknown%' then 'unknown'
+        when fsf like 'no%' then 'No'
+        when fsf like '%some%' then 'Some'
+        when fsf like 'unknown%' then 'Unknown'
+        when fsf = 'yes' then 'Yes'
         else fsf
     end
     as fsf,
