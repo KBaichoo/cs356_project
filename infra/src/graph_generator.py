@@ -11,7 +11,8 @@ import scipy.stats
 class GraphGenerator:
    def __init__(self, data_file, output_file, graph_type,
                 title, x_axis_label, y_axis_label, render_local,
-                groups, default_color, num_bins, cycle_colors):
+                groups, default_color, num_bins, cycle_colors,
+                slant):
       # Constructor arguments.
       self._data_file = data_file
       self._output_file = output_file
@@ -24,6 +25,7 @@ class GraphGenerator:
       self._default_color = default_color
       self._num_bins = num_bins
       self._cycle_colors = cycle_colors
+      self._slant = slant
 
       # Internal state.
       self._data = None
@@ -67,7 +69,8 @@ class GraphGenerator:
       plt.xticks(y_pos, x_data)
 
       # Add values on top of the bars.
-      height_offset = 0.02 * max(y_data.astype(np.int))
+      max_bar = max(y_data.astype(np.int))
+      height_offset = 0.02 * max_bar
       for i, v in enumerate(y_data):
          plt.text(x_pos[i], int(v) + height_offset, str(v),
                   ha='center', va='center')
@@ -77,6 +80,14 @@ class GraphGenerator:
 
       # Set layout.
       plt.tight_layout()
+
+      # Set y-lim based on max bar value.
+      axes = plt.gca()
+      axes.set_ylim([0, max_bar * 1.1])
+
+      if self._slant:
+         # Slant the x-axis labels.
+         plt.setp(axes.get_xticklabels(), fontsize=10, rotation=40)
 
       # Render graph.
       if self._render_local:
@@ -199,6 +210,8 @@ if __name__ == '__main__':
                        type=int, default=1000)
    parser.add_argument('--cycle-colors', help='use multiple colors for bar graph',
                        action='store_true')
+   parser.add_argument('--slant', help='slant x-axis labels in bar graph',
+                       action='store_true')
    args = parser.parse_args()
 
    if not args.render_local:
@@ -208,5 +221,5 @@ if __name__ == '__main__':
    g = GraphGenerator(args.data_file, args.output_file, args.graph_type,
                       args.title, args.x_axis_label, args.y_axis_label,
                       args.render_local, args.groups, args.color, args.num_bins,
-                      args.cycle_colors)
+                      args.cycle_colors, args.slant)
    g.run()
