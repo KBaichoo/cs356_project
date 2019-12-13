@@ -1,5 +1,5 @@
 -- Smart Pointer detection against C++11 or newer lang. versions!
-SELECT "at least one smart pointer detected", count(*) AS smart_pointer_detected
+SELECT "Yes", count(*) AS smart_pointer_detected
 FROM detection_results
 WHERE "detection_tool_output.cpp_version" IN ('c++11', 'c++14', 'c++17', 'c++2a') AND (
 	"detection_tool_output.unique_ptr.detected" = 'yes' OR
@@ -12,7 +12,7 @@ WHERE "detection_tool_output.cpp_version" IN ('c++11', 'c++14', 'c++17', 'c++2a'
 	)
 ;
 
-select "no smart pointers detected", count(*) as smart_pointer_detected
+select "No", count(*) as smart_pointer_detected
 from detection_results
 where "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a') AND (
 	"detection_tool_output.unique_ptr.detected" = 'no' AND

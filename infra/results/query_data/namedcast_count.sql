@@ -1,4 +1,4 @@
-SELECT "at least one named cast detected", count(*) AS named_cast_detected_count
+SELECT "Yes", count(*) AS named_cast_detected_count
 FROM detection_results
 WHERE ("detection_tool_output.dynamic_cast.detected" = 'yes' OR
 	"detection_tool_output.static_cast.detected" = 'yes' OR
@@ -7,7 +7,7 @@ WHERE ("detection_tool_output.dynamic_cast.detected" = 'yes' OR
 	)
 ;
 
-SELECT "no named casts detected", count(*) AS named_cast_detected_count
+SELECT "No", count(*) AS named_cast_detected_count
 FROM detection_results
 WHERE ("detection_tool_output.dynamic_cast.detected" = 'no' AND
 	"detection_tool_output.static_cast.detected" = 'no' AND
