@@ -1,5 +1,5 @@
-select (case when [detection_tool_output.cpp_version] in (null, 'none') then null else [detection_tool_output.cpp_version] end) as cpp_version, count(*) from detection_results group by cpp_version;
-,87
+select (case when cpp_version is null then 'unknown' else cpp_version end), count(*) from (select (case when [detection_tool_output.cpp_version] in (null, 'none') then null else [detection_tool_output.cpp_version] end) as cpp_version from detection_results) group by cpp_version;
+unknown,87
 c++03,2
 c++11,241
 c++14,414
