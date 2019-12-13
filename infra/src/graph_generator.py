@@ -27,12 +27,24 @@ class GraphGenerator:
 
       # Internal state.
       self._data = None
-      self._colors = ['forestgreen', 'tomato', 'blue', 'orange', 'seagreen', 'firebrick']
+      self._colors = ['blue', 'orange', 'seagreen', 'firebrick']
 
    def _load_data(self):
       with open(self._data_file) as f:
          # Read the CSV data.
          self._data = np.array(list(csv.reader(f, delimiter=',')))
+
+   def _get_colors(self, values):
+      colors = []
+      color = cycle(self._colors)
+      for value in values:
+         if value.lower() == 'yes':
+            colors.append('forestgreen')
+         elif value.lower() == 'no':
+            colors.append('tomato')
+         else:
+            colors.append(next(color))
+      return colors
 
    def _generate_bar_graph(self):
       fig = plt.figure()
@@ -48,7 +60,7 @@ class GraphGenerator:
       y_data = self._data[:,1]
       y_pos = np.arange(len(y_data))
       if self._cycle_colors:
-         c = self._colors
+         c = self._get_colors(x_data)
       else:
          c = self._default_color
       plt.bar(y_pos, y_data, align='center', color=c)
@@ -95,7 +107,7 @@ class GraphGenerator:
          bar_offsets = np.arange(-(num_groups // 2 + 0.5) * bar_width,
                                  (num_groups // 2) * bar_width,
                                  bar_width)
-      color = cycle(self._colors)
+      color = iter(self._get_colors(self._groups))
       group_rects = [plt.bar(x_pos + bar_offset, data, bar_width, label=name,
                              color=next(color))
                      for bar_offset, name, data
