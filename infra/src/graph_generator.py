@@ -79,7 +79,7 @@ class GraphGenerator:
       bar_offsets = np.arange(-(num_groups // 2 - 0.5) * bar_width,
                               (num_groups // 2 - 0.5),
                               bar_width)
-      color = iter(['darkgreen', 'firebrick', 'blue', 'orange', 'seagreen', 'red'])
+      color = iter(['forestgreen', 'tomato', 'blue', 'orange', 'seagreen', 'firebrick'])
       group_rects = [plt.bar(x_pos + bar_offset - bar_width / 2, data, bar_width, label=name,
                              color=next(color))
                      for bar_offset, name, data
