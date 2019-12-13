@@ -171,6 +171,7 @@ class GraphGenerator:
       # Constrain y-axis values.
       axes = plt.gca()
       axes.set_ylim([0.0, 1.0])
+      axes.margins(0, 0)
 
       # Set layout.
       plt.tight_layout()
