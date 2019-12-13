@@ -1,0 +1,9 @@
+select count(*), [detection_tool_output.cpp_version] as cpp_version from detection_results group by cpp_version;
+12,
+2,c++03
+241,c++11
+414,c++14
+6,c++17
+2,c++2a
+8,c++98
+75,none
