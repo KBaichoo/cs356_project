@@ -1,9 +1,9 @@
-select count(*), [detection_tool_output.cpp_version] as cpp_version from detection_results group by cpp_version;
-12,
-2,c++03
-241,c++11
-414,c++14
-6,c++17
-2,c++2a
-8,c++98
-75,none
+select [detection_tool_output.cpp_version] as cpp_version, count(*) from detection_results group by cpp_version;
+,12
+c++03,2
+c++11,241
+c++14,414
+c++17,6
+c++2a,2
+c++98,8
+none,75
