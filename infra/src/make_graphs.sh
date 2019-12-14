@@ -60,4 +60,44 @@ fi
                          "Days" "Percentage of days" \
                          --color "blue" &
 
+# Named Cast Count
+# TODO: this seems to be buggy, not sure why it doesn't grok if I have a x-axis title here
+# but it does if I run this directly or if it's an empty string 
+#./src/graph_generator.py results/query_data/namedcast_count.csv \
+#                         results/graphs/namedcast_count.png bar \
+#                         "Named Casts Detected in Package" "At least a single usage detected" "Count" &
+
+# SmartPointer Count
+#./src/graph_generator.py results/query_data/smart_ptr_detected.csv \
+#                         results/graphs/smart_ptr_detected.png bar \
+#                         "Smart Pointer Detected in Package" "At least a single usage detected" "Count" &
+
+# Maintainer Count
+#./src/graph_generator.py results/query_data/maintainer_count.csv \
+#                         results/graphs/maintainer_count.png bar \
+#                         "Distribution of Number of Maintainers and the Packages Managed" "Packages Managed" "Number of Maintainers" --slant --color "orange" &
+
+# Package Scores Distribution
+#./src/graph_generator.py results/query_data/scores_distribution.csv \
+#                         results/graphs/scores_distribution.png bar \
+#                         "Distribution of Package Scores" "Package Score" "Number of Packages" --color "blue" &
+
+# TODO: Graph System doesn't work all too well with the labels given the size
+# Points Awarded Distribution
+#./src/graph_generator.py results/query_data/common_security_features.csv \
+#                         results/graphs/common_security_features.png bar \
+#                         "Security Features Deployed" "Security Features" "Detected" --color "green" --slant &
+
+# CDF of Maintainer Scores
+# TODO: Graph is missing label for the highest score of 7. It's in the data. 
+# Set num-bins to 8 as values range [0, 7] 
+./src/graph_generator.py results/query_data/maintainer_scores_cdf.csv \
+                         results/graphs/maintainer_scores_cdf.png cdf \
+                         "CDF of Maintainer Scores" \
+                         "Scores" "CDF of scores" --num-bins 8 \
+                         --color "blue" &
+
+
+
+
 wait
