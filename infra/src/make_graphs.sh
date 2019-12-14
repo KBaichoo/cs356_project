@@ -41,4 +41,18 @@ fi
                          results/graphs/project_creation.png bar \
                          "Project Creation Year" "" "Count" --slant &
 
+# Days between creation and smart pointer introduction
+./src/graph_generator.py results/query_data/creation_smart_ptr.csv \
+                         results/graphs/creation_smart_ptr.png cdf \
+                         "Days between project creation and smart pointer introduction" \
+                         "Days" "Percentage of days" \
+                         --color "blue" &
+
+# Days between creation and named cast introduction
+./src/graph_generator.py results/query_data/creation_named_cast.csv \
+                         results/graphs/creation_named_cast.png cdf \
+                         "Days between project creation and named cast introduction" \
+                         "Days" "Percentage of days" \
+                         --color "blue" &
+
 wait
