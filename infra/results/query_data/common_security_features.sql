@@ -1,4 +1,4 @@
-select "Smart Pointer Points", SUM(smart_ptr_detected) from (
+select 'Smart Pointer', SUM(smart_ptr_detected) from (
 select package_name,
 CASE
     WHEN (
@@ -40,7 +40,7 @@ from detection_results
 where "detection_tool_output.stack-protector" is not null AND "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a')
 );
 
-select "Named Cast Points", SUM(named_cast_detected) from (
+select 'Named Cast', SUM(named_cast_detected) from (
 select package_name,
 CASE
     WHEN (
@@ -82,7 +82,7 @@ from detection_results
 where "detection_tool_output.stack-protector" is not null AND "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a')
 );
 
-select "Fortified Source Points", SUM(fortified_source) from (
+select 'Fortified Source', SUM(fortified_source) from (
 select package_name,
 CASE
     WHEN (
@@ -124,7 +124,7 @@ from detection_results
 where "detection_tool_output.stack-protector" is not null AND "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a')
 );
 
-select "Stack Protector Points", SUM(stack_protector) from (
+select 'Stack Protector', SUM(stack_protector) from (
 select package_name,
 CASE
     WHEN (
@@ -166,7 +166,7 @@ from detection_results
 where "detection_tool_output.stack-protector" is not null AND "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a')
 );
 
-select "PIE Points", SUM(PIE) from (
+select 'PIE', SUM(PIE) from (
 select package_name,
 CASE
     WHEN (
@@ -208,7 +208,7 @@ from detection_results
 where "detection_tool_output.stack-protector" is not null AND "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a')
 );
 
-select "RO-Relocation Points", SUM(ro_relocation) from (
+select 'RO-Relocation', SUM(ro_relocation) from (
 select package_name,
 CASE
     WHEN (
@@ -250,7 +250,7 @@ from detection_results
 where "detection_tool_output.stack-protector" is not null AND "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a')
 );
 
-select "Immediate Binding Points", SUM(immediate_binding) from (
+select 'Immediate Binding', SUM(immediate_binding) from (
 select package_name,
 CASE
     WHEN (

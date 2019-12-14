@@ -12,7 +12,7 @@ class GraphGenerator:
    def __init__(self, data_file, output_file, graph_type,
                 title, x_axis_label, y_axis_label, render_local,
                 groups, default_color, num_bins, cycle_colors,
-                slant):
+                slant, fixed_bins):
       # Constructor arguments.
       self._data_file = data_file
       self._output_file = output_file
@@ -26,6 +26,7 @@ class GraphGenerator:
       self._num_bins = num_bins
       self._cycle_colors = cycle_colors
       self._slant = slant
+      self._fixed_bins = fixed_bins
 
       # Internal state.
       self._data = None
@@ -86,9 +87,9 @@ class GraphGenerator:
       axes.set_ylim([0, max_bar * 1.1])
       axes.margins(0.04, 0)
 
-      if self._slant:
+      if self._slant is not None:
          # Slant the x-axis labels.
-         plt.setp(axes.get_xticklabels(), fontsize=10, rotation=40)
+         plt.setp(axes.get_xticklabels(), fontsize=10, rotation=self._slant)
 
       # Render graph.
       if self._render_local:
@@ -160,7 +161,11 @@ class GraphGenerator:
 
       # Generate data.
       data = self._data[:,0].astype(np.float)
-      values, base = np.histogram(data, bins=self._num_bins)
+      if self._fixed_bins:
+         bins = range(self._num_bins + 1)
+      else:
+         bins = self._num_bins
+      values, base = np.histogram(data, bins=bins)
       cumulative = np.cumsum(values).astype(np.float)
       cumulative /= cumulative[-1]
       base = base[:-1]
@@ -213,6 +218,8 @@ if __name__ == '__main__':
    parser.add_argument('--cycle-colors', help='use multiple colors for bar graph',
                        action='store_true')
    parser.add_argument('--slant', help='slant x-axis labels in bar graph',
+                       type=int, nargs='?', default=None, const=40)
+   parser.add_argument('--fixed-bins', help='Use bins from range(0, N, 1)',
                        action='store_true')
    args = parser.parse_args()
 
@@ -224,5 +231,5 @@ if __name__ == '__main__':
    g = GraphGenerator(args.data_file, args.output_file, args.graph_type,
                       args.title, args.x_axis_label, args.y_axis_label,
                       render_local, args.groups, args.color, args.num_bins,
-                      args.cycle_colors, args.slant)
+                      args.cycle_colors, args.slant, args.fixed_bins)
    g.run()

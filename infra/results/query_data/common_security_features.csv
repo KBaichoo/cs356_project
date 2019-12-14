@@ -1,7 +1,7 @@
-"Smart Pointer Points",50
-"Named Cast Points",248
-"Fortified Source Points",185
-"Stack Protector Points",328
-"PIE Points",370
-"RO-Relocation Points",379
-"Immediate Binding Points",138
+"Smart Pointer",50
+"Named Cast",248
+"Fortified Source",185
+"Stack Protector",328
+PIE,370
+RO-Relocation,379
+"Immediate Binding",138
