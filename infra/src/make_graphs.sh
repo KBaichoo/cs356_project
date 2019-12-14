@@ -39,7 +39,7 @@ fi
 # Project Creation Year
 ./src/graph_generator.py results/query_data/project_creation.csv \
                          results/graphs/project_creation.png bar \
-                         "Project Creation Year" "" "Count" --slant &
+                         "Project Creation Year" "" "Count" --slant --color "blue" &
 
 # Days between creation and smart pointer introduction
 ./src/graph_generator.py results/query_data/creation_smart_ptr.csv \
