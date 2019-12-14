@@ -41,10 +41,10 @@ fi
                          results/graphs/project_creation.png bar \
                          "Project Creation Year" "" "Count" --slant --color "blue" &
 
-# Project Creation Year
+# Ubuntu popularity Google Trends
 ./src/graph_generator.py results/query_data/google_trends_ubuntu.csv \
                          results/graphs/google_trends_ubuntu.png bar \
-                         "Google Trends Ubuntu Search Term" "" "Count" --slant --color "blue" &
+                         "Google Trends Ubuntu Search Term" "" "Count" --slant --color "orange" &
 
 # Days between creation and smart pointer introduction
 ./src/graph_generator.py results/query_data/creation_smart_ptr.csv \
