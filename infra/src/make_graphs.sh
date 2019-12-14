@@ -51,14 +51,14 @@ fi
 ./src/graph_generator.py results/query_data/creation_smart_ptr.csv \
                          results/graphs/creation_smart_ptr.png cdf \
                          "Days between project creation and smart pointer introduction" \
-                         "Days" "Cumulative probability" \
+                         "Days" "CDF of days" \
                          --color "blue" &
 
 # Days between creation and named cast introduction
 ./src/graph_generator.py results/query_data/creation_named_cast.csv \
                          results/graphs/creation_named_cast.png cdf \
                          "Days between project creation and named cast introduction" \
-                         "Days" "Cumulative probability" \
+                         "Days" "CDF of days" \
                          --color "blue" &
 
 # Named Cast Count
@@ -90,7 +90,7 @@ fi
                          results/graphs/common_security_features.png bar \
                          "Cumulative Points for Security Features Deployed" \
                          "Security feature" \
-                         "Points" --color "green" --slant 8 &
+                         "Points" --color "green" --slant 9 &
 
 # CDF of Maintainer Scores
 ./src/graph_generator.py results/query_data/maintainer_scores_cdf.csv \
