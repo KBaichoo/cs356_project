@@ -59,7 +59,7 @@ class GraphGenerator:
       # Add data.
       x_data = self._data[:,0]
       x_pos = np.arange(len(x_data))
-      y_data = self._data[:,1]
+      y_data = self._data[:,1].astype(np.int)
       y_pos = np.arange(len(y_data))
       if self._cycle_colors:
          c = self._get_colors(x_data)
