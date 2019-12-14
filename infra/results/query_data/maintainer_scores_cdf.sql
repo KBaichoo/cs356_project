@@ -45,6 +45,6 @@ from detection_results
 where "detection_tool_output.stack-protector" is not null AND "detection_tool_output.cpp_version" in ('c++11', 'c++14', 'c++17', 'c++2a')
 );
 
-select ROUND(AVG(points)) as pts from maintainer_scores group by maintainer order by pts;
+select AVG(points) as pts from maintainer_scores group by maintainer order by pts;
 
 DROP TABLE IF EXISTS maintainer_scores;
