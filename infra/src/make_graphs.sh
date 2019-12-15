@@ -99,4 +99,18 @@ fi
                          "Scores" "CDF of scores" --num-bins 8 --fixed-bins \
                          --color "blue" &
 
+# Named Cast Usage by Project Creation Year
+./src/graph_generator.py results/query_data/year_named_cast.csv \
+                         results/graphs/year_named_cast.png bar \
+                         "Named Count Usage by Project Creation Year" \
+                         "Project creation year" "Usage percentage" --slant --color "orange" \
+                         --disable-value-above-bar &
+
+# Smart Pointer Usage by Project Creation Year
+./src/graph_generator.py results/query_data/year_smart_ptr.csv \
+                         results/graphs/year_smart_ptr.png bar \
+                         "Smart Pointer Usage by Project Creation Year" \
+                         "Project creation year" "Usage percentage" --slant --color "orange" \
+                         --disable-value-above-bar &
+
 wait

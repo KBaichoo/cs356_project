@@ -8,11 +8,28 @@ import os
 import scipy.optimize
 import scipy.stats
 
+def is_float(s):
+   try:
+      float(s)
+   except ValueError:
+      return False
+   else:
+      return True
+
+def is_int(s):
+   try:
+      a = float(s)
+      b = int(a)
+   except ValueError:
+      return False
+   else:
+      return a == b
+
 class GraphGenerator:
    def __init__(self, data_file, output_file, graph_type,
                 title, x_axis_label, y_axis_label, render_local,
                 groups, default_color, num_bins, cycle_colors,
-                slant, fixed_bins):
+                slant, fixed_bins, disable_value_above_bar):
       # Constructor arguments.
       self._data_file = data_file
       self._output_file = output_file
@@ -27,6 +44,7 @@ class GraphGenerator:
       self._cycle_colors = cycle_colors
       self._slant = slant
       self._fixed_bins = fixed_bins
+      self._disable_value_above_bar = disable_value_above_bar
 
       # Internal state.
       self._data = None
@@ -60,7 +78,13 @@ class GraphGenerator:
       # Add data.
       x_data = self._data[:,0]
       x_pos = np.arange(len(x_data))
-      y_data = self._data[:,1].astype(np.int)
+      data_elem = self._data[:,1][0]
+      if is_int(data_elem):
+         # If integer, convert to integer array.
+         y_data = self._data[:,1].astype(np.int)
+      elif is_float(data_elem):
+         # If float, convert to float array.
+         y_data = self._data[:,1].astype(np.float)
       y_pos = np.arange(len(y_data))
       if self._cycle_colors:
          c = self._get_colors(x_data)
@@ -70,11 +94,12 @@ class GraphGenerator:
       plt.xticks(y_pos, x_data)
 
       # Add values on top of the bars.
-      max_bar = max(y_data.astype(np.int))
+      max_bar = max(y_data.astype(np.float))
       height_offset = 0.02 * max_bar
-      for i, v in enumerate(y_data):
-         plt.text(x_pos[i], int(v) + height_offset, str(v),
-                  ha='center', va='center')
+      if not self._disable_value_above_bar:
+         for i, v in enumerate(y_data):
+            plt.text(x_pos[i], int(v) + height_offset, str(v),
+                     ha='center', va='center')
 
       # Hide x-axis tick marks.
       plt.tick_params(axis=u'x', which=u'both', length=0)
@@ -84,7 +109,7 @@ class GraphGenerator:
 
       # Set y-lim based on max bar value.
       axes = plt.gca()
-      axes.set_ylim([0, max_bar * 1.1])
+      axes.set_ylim([0.0, max_bar * 1.1])
       axes.margins(0.04, 0)
 
       if self._slant is not None:
@@ -131,12 +156,13 @@ class GraphGenerator:
       plt.legend()
 
       # Add values on top of the bars.
-      height_offset = 0.02 * max([max(data.astype(np.int)) for data in group_data])
-      for rects in group_rects:
-         for rect in rects:
-            height = int(rect.get_height())
-            plt.text(rect.get_x() + bar_width / 2, height + height_offset, str(height),
-                     ha='center', va='center')
+      if not self._disable_value_above_bar:
+         height_offset = 0.02 * max([max(data.astype(np.int)) for data in group_data])
+         for rects in group_rects:
+            for rect in rects:
+               height = int(rect.get_height())
+               plt.text(rect.get_x() + bar_width / 2, height + height_offset, str(height),
+                        ha='center', va='center')
 
       # Hide x-axis tick marks.
       plt.tick_params(axis=u'x', which=u'both', length=0)
@@ -221,6 +247,8 @@ if __name__ == '__main__':
                        type=int, nargs='?', default=None, const=40)
    parser.add_argument('--fixed-bins', help='Use bins from range(0, N, 1)',
                        action='store_true')
+   parser.add_argument('--disable-value-above-bar', help='Don\'t display value above bar',
+                       action='store_true')
    args = parser.parse_args()
 
    render_local = args.render_local or 'RENDER_LOCAL' in os.environ
@@ -231,5 +259,6 @@ if __name__ == '__main__':
    g = GraphGenerator(args.data_file, args.output_file, args.graph_type,
                       args.title, args.x_axis_label, args.y_axis_label,
                       render_local, args.groups, args.color, args.num_bins,
-                      args.cycle_colors, args.slant, args.fixed_bins)
+                      args.cycle_colors, args.slant, args.fixed_bins,
+                      args.disable_value_above_bar)
    g.run()
